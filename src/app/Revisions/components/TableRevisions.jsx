@@ -17,12 +17,14 @@ import { toast } from "react-toastify";
 import instance from "../../../axios/instance";
 import { useProgressBarContext } from "../../../Context/ProgressBarContext";
 import { useNotificationContext } from "../../../Context/NotificationContext";
+import { useNavigate } from "react-router-dom";
 
 const TableRevisions = () => {
   const { darkMode } = useStateShareContext();
   const [loading, setLoading] = useState(false);
   const { revisions, setRevisions } = useProgressBarContext();
   const { setNotificationsCount } = useNotificationContext();
+  const navigate = useNavigate();
 
   const fetchRevisions = async () => {
     setLoading(true);
@@ -65,7 +67,7 @@ const TableRevisions = () => {
               </Badge>
             </div>
             <Button
-              onClick={() => {}}
+              onClick={() => navigate("/revisions/create")}
               className={` dark:text-darkMode-cardText dark:hover:text-darkMode-cardTextHover py-2
                  text-blue-500 border-[1px] bg-transparent  border-blue-500 dark:border-darkMode-cardButton
                   hover:bg-darkMode-cardButtonHover hover:text-white
@@ -85,6 +87,7 @@ const TableRevisions = () => {
           <TableHead className="min-w-[200px]">Submit before</TableHead>
           <TableHead className="min-w-[150px]">Timer</TableHead>
           <TableHead className="min-w-[200px]">Status</TableHead>
+          <TableHead className="min-w-[100px]" />
         </TableHeader>
         <TableBody
           className={`divide-gray-25 divide-y ${loading ? "hidden" : ""} `}

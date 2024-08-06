@@ -8,10 +8,13 @@ export const useAdminContext = () => useContext(createdAdminContext);
 
 const AdminContext = ({ children }) => {
   const [showChooseWriterModal, setShowChooseWriterModal] = useState(false);
+  const [showChooseWorkModal, setShowChooseWorkModal] = useState(false);
   const [showDeleteUserModal, setShowDeleteUserModal] = useState(false);
   const [showDeactivateUserModal, setShowDeactivateUserModal] = useState(false);
-  const [writer, setWriter] = useState(null);
+  const [writer, setWriter] = useState("");
   const [writerName, setWriterName] = useState("");
+  const [work, setWork] = useState("");
+  const [workCode, setWorkCode] = useState("");
 
   return (
     <createdAdminContext.Provider
@@ -26,6 +29,12 @@ const AdminContext = ({ children }) => {
         setShowDeleteUserModal,
         showDeactivateUserModal,
         setShowDeactivateUserModal,
+        showChooseWorkModal,
+        setShowChooseWorkModal,
+        work,
+        setWork,
+        workCode,
+        setWorkCode,
       }}
     >
       {children}

@@ -50,6 +50,9 @@ import DeleteUserModal from "./app/ChangeUser/components/DeleteUserModal";
 import DeactivateUserModal from "./app/ChangeUser/components/DeactivateUserModal";
 import CreateRegistrationCode from "./app/CreateRegistrationCode/page";
 import ChangeRegistrationCode from "./app/ChangeRegistrationCode/page";
+import CreateRevision from "./app/CreateRevision/page";
+import ChooseWorkModal from "./app/CreateRevision/components/ChooseWorkModal";
+import ChangeRevision from "./app/ChangeRevision/page";
 
 const EntryPoint = () => {
   const { showEditInfoModal, darkMode, showEditPFPModal } =
@@ -128,6 +131,8 @@ const EntryPoint = () => {
               element={<ChangeRegistrationCode />}
             />
             <Route path="/revisions" element={<Revisions />} />
+            <Route path="/revisions/create" element={<CreateRevision />} />
+            <Route path="/revisions/:id/change" element={<ChangeRevision />} />
             <Route path="/submissions" element={<Submissions />} />
             <Route
               path="/settings/change-password"
@@ -167,6 +172,7 @@ const EntryPoint = () => {
         {/* <DeleteSubmissionModal /> */}
         {/* admin____________________________________ */}
         <ChooseWriterModal />
+        <ChooseWorkModal />
         <DeleteUserModal />
         <DeactivateUserModal />
       </div>

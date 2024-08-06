@@ -215,6 +215,7 @@ const CreateWorkForm = () => {
           Writer
         </label>
         <div className="mt-1">
+          {/* the hidden input that will be submitted */}
           <input
             placeholder="Writer"
             type="text"

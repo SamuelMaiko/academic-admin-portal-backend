@@ -1,4 +1,4 @@
-import { Table, Badge, TableRow, TableCell } from "keep-react";
+import { Table, Badge, TableRow, TableCell, Button } from "keep-react";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import formatDate from "../../Home/components/datetime/formatDate";
@@ -32,7 +32,7 @@ const TableRowRevisions = ({
   };
   return (
     <TableRow
-      onClick={navigateToDetails}
+      onClick={() => navigate("/revisions/1")}
       className={`bg-white dark:bg-darkMode-cardBg dark:text-white cursor-pointer ${
         !read
           ? "bg-blue-100 hover:bg-blue-200 dark:bg-blue-700 hover:dark:bg-blue-800"
@@ -100,6 +100,22 @@ const TableRowRevisions = ({
             {status}
           </Badge>
         </>
+      </TableCell>
+      <TableCell>
+        <div className="flex items-center gap-1">
+          <Button
+            onClick={(e) => {
+              e.stopPropagation();
+              navigate("/revisions/1/change");
+            }}
+            className={` dark:text-darkMode-cardText
+               dark:hover:text-darkMode-cardTextHover py-2 bg-blue-500
+                dark:bg-darkMode-cardButton hover:bg-darkMode-cardButtonHover px-7
+                 text-white  transition-colors duration-300`}
+          >
+            Edit
+          </Button>
+        </div>
       </TableCell>
     </TableRow>
   );

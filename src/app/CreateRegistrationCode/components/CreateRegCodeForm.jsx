@@ -57,7 +57,7 @@ const CreateRegCodeForm = () => {
         <label className="text-base text-neutral-500 dark:text-darkMode-gray">
           Time to expire
         </label>
-        <div className="mt-1 flex flex-col gap-4">
+        <div className="mt-1 flex gap-4">
           <div>
             <Popover showArrow={false} placement="bottom-start">
               <PopoverTrigger asChild>

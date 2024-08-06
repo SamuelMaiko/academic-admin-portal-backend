@@ -87,7 +87,7 @@ const RevisionsDetails = () => {
   }, [revisionMessages]);
 
   useEffect(() => {
-    getRevisionDetails();
+    // getRevisionDetails();
   }, []);
 
   const unReadMessages = revisionMessages.filter(

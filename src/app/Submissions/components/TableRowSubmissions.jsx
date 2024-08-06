@@ -90,7 +90,7 @@ const TableRowSubmissions = ({
       </TableCell>
 
       <TableCell>
-        <p>John Kimani</p>
+        <p className="whitespace-nowrap">John Kimani</p>
       </TableCell>
       <TableCell>
         <p>Admin</p>
