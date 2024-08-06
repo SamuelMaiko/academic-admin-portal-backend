@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Techwave Writers - Writers Portal Frontend
 
 ## Introduction
@@ -98,3 +99,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Contact
 
 Created by [Maiko](mailto:samuel.maiko.dev@gmail.com) - feel free to contact me!
+=======
+# academic-admin-portal-backend
+>>>>>>> cb4233cb15560e6184506a1ad242e3eb14c2a29a
