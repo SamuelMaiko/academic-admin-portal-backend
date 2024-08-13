@@ -20,6 +20,7 @@ const CreateWorkForm = () => {
     writerName,
     setWriterName,
     setShowChooseWriterModal,
+    setShowUploadFilesModal,
   } = useAdminContext();
   const [type, setType] = useState("");
   // words to submit
@@ -320,6 +321,17 @@ const CreateWorkForm = () => {
           </label>
         </div>
       </div>
+
+      <Button
+        type="button"
+        onClick={() => setShowUploadFilesModal(true)}
+        className={`py-1
+              text-neutral-600 border-neutral-600 bg-transparent hover:bg-neutral-200
+              hover:border-neutral-600 hover:text-neutral-600 border-[1px]
+              px-4 transition-colors duration-300`}
+      >
+        Upload files
+      </Button>
 
       <input
         onClick={() => {}}

@@ -53,6 +53,7 @@ import ChangeRegistrationCode from "./app/ChangeRegistrationCode/page";
 import CreateRevision from "./app/CreateRevision/page";
 import ChooseWorkModal from "./app/CreateRevision/components/ChooseWorkModal";
 import ChangeRevision from "./app/ChangeRevision/page";
+import UploadFilesModal from "./app/CreateWork/components/UploadFilesModal";
 
 const EntryPoint = () => {
   const { showEditInfoModal, darkMode, showEditPFPModal } =
@@ -175,6 +176,7 @@ const EntryPoint = () => {
         <ChooseWorkModal />
         <DeleteUserModal />
         <DeactivateUserModal />
+        <UploadFilesModal />
       </div>
     </div>
   );

@@ -11,6 +11,7 @@ const AdminContext = ({ children }) => {
   const [showChooseWorkModal, setShowChooseWorkModal] = useState(false);
   const [showDeleteUserModal, setShowDeleteUserModal] = useState(false);
   const [showDeactivateUserModal, setShowDeactivateUserModal] = useState(false);
+  const [showUploadFilesModal, setShowUploadFilesModal] = useState(true);
   const [writer, setWriter] = useState("");
   const [writerName, setWriterName] = useState("");
   const [work, setWork] = useState("");
@@ -35,6 +36,8 @@ const AdminContext = ({ children }) => {
         setWork,
         workCode,
         setWorkCode,
+        showUploadFilesModal,
+        setShowUploadFilesModal,
       }}
     >
       {children}
