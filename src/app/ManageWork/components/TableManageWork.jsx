@@ -18,39 +18,21 @@ import { useProgressBarContext } from "../../../Context/ProgressBarContext";
 import Loader from "../../../SharedComponents/Loader";
 import TableRowManageWork from "./TableRowManageWork";
 import { useNavigate } from "react-router-dom";
+import getWork from "../api/getWork";
 
 const TableManageWork = () => {
   const { darkMode } = useStateShareContext();
   const [loading, setLoading] = useState(false);
-  const { assignedWork, setAssignedWork } = useProgressBarContext();
+  const [work, setWork] = useState([]);
   const navigate = useNavigate();
 
-  const fetchAssignedWork = async () => {
-    setLoading(true);
-    try {
-      const response = await instance.get("/work/assigned/");
-      setAssignedWork(response.data);
-    } catch (error) {
-      if (error.response && error.response.status) {
-        const status = error.response.status;
-        const message = error.response.data;
-
-        switch (status) {
-          case 500:
-            toast.error(`Internal server error`);
-            break;
-        }
-      } else {
-        toast.error("An unexpected error occurred. Please try again later.");
-      }
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
-    // fetchAssignedWork();
+    getWork()
+     .then((data) => {
+        setWork(data);
+      })
   }, []);
+
   return (
     <>
       <Table showCheckbox={false} hoverable="true" className="">
@@ -61,7 +43,7 @@ const TableManageWork = () => {
                 Work
               </p>
               <Badge size="sm" color="secondary" className="dark:text-black">
-                {assignedWork.length} items
+                {work.length} items
               </Badge>
             </div>
             <Button
@@ -92,10 +74,10 @@ const TableManageWork = () => {
         <TableBody
           className={`divide-gray-25 divide-y ${loading ? "hidden" : ""}`}
         >
-          {/* {assignedWork &&
-            assignedWork.map((work, index) => {
+          {work &&
+            work.map((work, index) => {
               return (
-                <TableRowAssignedWork
+                <TableRowManageWork
                   key={index}
                   id={work.id}
                   work_code={work.work_code}
@@ -104,46 +86,17 @@ const TableManageWork = () => {
                   deadline={work.deadline}
                   status={work.status}
                   read={work.assigned_is_read}
+                  writer={work.writer}
                   isSubmitted={work.is_submitted}
                 />
               );
-            })} */}
-          <TableRowManageWork
-            id={2}
-            work_code="WKghgeu"
-            type="Essay"
-            words={2800}
-            deadline="2024-08-05T14:30:00Z"
-            status="In Progress"
-            read={false}
-            isSubmitted={false}
-          />
-          <TableRowManageWork
-            id={2}
-            work_code="WKghgeu"
-            type="Essay"
-            words={2800}
-            deadline="2024-08-08T14:30:00Z"
-            status="In Progress"
-            read={false}
-            isSubmitted={false}
-          />
-          <TableRowManageWork
-            id={2}
-            work_code="WKghgeu"
-            type="Essay"
-            words={2800}
-            deadline="2024-08-20T14:30:00Z"
-            status="In Progress"
-            read={false}
-            isSubmitted={false}
-          />
+            })} 
         </TableBody>
       </Table>
       <Loader loading={loading} />
       <div
         className={`pb-[8rem] ${
-          assignedWork.length !== 0 || loading ? "hidden  " : ""
+          work.length !== 0 || loading ? "hidden  " : ""
         }`}
       >
         <img

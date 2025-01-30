@@ -16,6 +16,7 @@ const TableRowManageWork = ({
   type,
   status,
   isSubmitted,
+  writer
 }) => {
   const navigate = useNavigate();
   const { assignedWork, setAssignedWork } = useProgressBarContext();
@@ -90,7 +91,7 @@ const TableRowManageWork = ({
         <p className="whitespace-nowrap">{type}</p>
       </TableCell>
       <TableCell className="whitespace-nowrap">
-        <p>John kimani</p>
+        <p>{writer&&writer.full_name}</p>
       </TableCell>
       <TableCell>
         <p>{words}</p>

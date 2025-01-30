@@ -65,7 +65,9 @@ const TableRowSubmissions = ({
 
   return (
     <TableRow
-      onClick={handleSeeDetails}
+      onClick={() => {
+        navigate("/submissions/1");
+      }}
       className={`bg-white dark:bg-darkMode-cardBg dark:text-white cursor-pointer ${
         !read
           ? "bg-blue-100 hover:bg-blue-200 dark:bg-blue-700 hover:dark:bg-blue-800"

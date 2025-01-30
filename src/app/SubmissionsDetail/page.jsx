@@ -14,7 +14,7 @@ const SubmissionsDetail = () => {
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
   const [details, setDetails] = useState([]);
-  const [comment, setComment] = useState("");
+  const [comment, setComment] = useState("Hello there this is me here");
   const { id } = useParams();
 
   const getSubmissionDetails = async () => {
@@ -46,7 +46,7 @@ const SubmissionsDetail = () => {
   };
 
   useEffect(() => {
-    getSubmissionDetails();
+    // getSubmissionDetails();
   }, []);
 
   return (
@@ -64,22 +64,31 @@ const SubmissionsDetail = () => {
         />
         <div className="flex flex-col gap-5 mt-[3rem] ">
           <h3 className="font-medium ">File</h3>
-          <div className={`flex gap-8 ${!file ? "hidden" : ""} md:w-fit`}>
+          <div
+            className={`flex gap-8 ${
+              file ? "hidden" : ""
+            } md:w-fit items-center`}
+          >
             {file && (
               <FileLink
                 file_name={file && file.split("/").at(-1)}
                 download_url={details.file_download_link}
               />
             )}
-            <DeleteFileButton work={details.work} setFile={setFile} />
+
+            <FileLink
+              file_name={"StudentApplicationcv.zip"}
+              download_url={"https"}
+            />
+            {/* <DeleteFileButton work={details.work} setFile={setFile} /> */}
           </div>
           {/* file upload form */}
-          <FileForm
+          {/* <FileForm
             file={file}
             setFile={setFile}
             work={details.work}
             setDetails={setDetails}
-          />
+          /> */}
         </div>
       </div>
     </div>

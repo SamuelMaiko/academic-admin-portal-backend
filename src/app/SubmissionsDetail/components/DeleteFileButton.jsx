@@ -43,7 +43,8 @@ const DeleteFileButton = ({ work, setFile }) => {
   return (
     <button
       onClick={handleDeleteFile}
-      className="text-red-500 hover:text-red-700 transition-colors duration-300 cursor-pointer h-full"
+      className="text-red-500 hover:text-red-700 
+       h-full hover:bg-gray-200 rounded-full p-2 cursor-pointer transition-colors duration-300"
       disabled={loading}
     >
       <Trash2 size={20} />

@@ -2,6 +2,13 @@ import React, { useState } from "react";
 import PageHeader from "../../SharedComponents/PageHeader";
 import CreateWorkForm from "./components/CreateWorkForm";
 
+const dropdownOptions = [
+  { name: "I wk ago", onClick: () => {} },
+  { name: "2 wks ago", onClick: () => {} },
+  { name: "3 wks ago", onClick: () => {} },
+  { name: "4 wks ago", onClick: () => {} },
+];
+
 const CreateWork = () => {
   return (
     <div

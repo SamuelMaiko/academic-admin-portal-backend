@@ -37,18 +37,22 @@ const FileLink = ({ file_name = "", file, download_url }) => {
         {/* </a> */}
       </div>
       <div className="flex gap-4 ml-5 md:mr-[60%]">
-        <a href={file} target="blank" className={`${match?"hidden":""}`}>
+        <a href={file} target="blank" className={`${match ? "hidden" : ""}`}>
           <Eye
             size={20}
             className="cursor-pointer text-black hover:text-[#4caf50] dark:text-white
           dark:hover:text-[#90ee90] transition-colors duration"
           />
         </a>
-        <a href={download_url} download>
+        <a
+          href={download_url}
+          download
+          className="hover:bg-gray-200 rounded-full p-2 cursor-pointer transition-colors duration-300 "
+        >
           <Download
             size={20}
             className="cursor-pointer text-black hover:text-[#4caf50] dark:text-white
-          dark:hover:text-[#90ee90] transition-colors duration"
+          dark:hover:text-[#90ee90] transition-colors duration "
           />
         </a>
       </div>

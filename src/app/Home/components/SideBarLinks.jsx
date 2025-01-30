@@ -28,9 +28,9 @@ const SideBarLinks = () => {
       {/* writer dashboard  button */}
       <div>
         <Button
-          onClick={() => navigate("/analytics")}
+          onClick={() => navigate("/dashboard")}
           icon={
-            pathname === "/analytics" ? (
+            pathname === "/dashboard" ? (
               <LayoutDashboard
                 size={20}
                 weight="fill"
@@ -40,9 +40,9 @@ const SideBarLinks = () => {
               <LayoutDashboard size={20} weight="fill" />
             )
           }
-          title={"My Dashboard"}
+          title={"Dashboard"}
           className={`${
-            pathname === "/analytics" ? "text-sidebartext-hover" : ""
+            pathname === "/dashboard" ? "text-sidebartext-hover" : ""
           } w-full`}
         />
       </div>
@@ -61,7 +61,7 @@ const SideBarLinks = () => {
               <LayoutDashboard size={20} weight="fill" />
             )
           }
-          title={"Manage Work"}
+          title={"Work"}
           className={`${
             pathname === "/manage-work" ? "text-sidebartext-hover" : ""
           } w-full`}
@@ -82,7 +82,7 @@ const SideBarLinks = () => {
               <LayoutDashboard size={20} weight="fill" />
             )
           }
-          title={"Manage Users"}
+          title={"Users"}
           className={`${
             pathname === "/manage-users" ? "text-sidebartext-hover" : ""
           } w-full`}
@@ -106,7 +106,7 @@ const SideBarLinks = () => {
           title={"Registration Codes"}
           className={`${
             pathname === "/reg-codes" ? "text-sidebartext-hover" : ""
-          } w-full`}
+          } w-full whitespace-nowrap`}
         />
       </div>
       {/* revisions section button */}

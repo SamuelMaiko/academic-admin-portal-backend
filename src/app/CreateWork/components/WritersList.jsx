@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useAdminContext } from "../../../Context/AdminContext";
 import { X } from "phosphor-react";
 import WriterListCard from "./WriterListCard";
+import getWriters from "../api/getWriters";
 
 const WritersList = () => {
   const { setShowChooseWriterModal } = useAdminContext();
+  const [writersList, setWritersList]=useState()
+
+  useEffect(()=>{
+    getWriters()
+    .then(data => setWritersList(data))
+  },[])
   return (
     <div
       className="absolute w-full md:w-[46%] h-[34rem] rounded-lg  md:px-2 left-[50%]
@@ -24,7 +31,12 @@ const WritersList = () => {
         </button>
       </div>
       <div>
-        <WriterListCard id={1} firstName="Samuel" lastName="Maiko" />
+        {
+          writersList && writersList.map((writer, index)=>{
+            return <WriterListCard key={index} writer={writer} />
+          })
+        }
+        
       </div>
     </div>
   );

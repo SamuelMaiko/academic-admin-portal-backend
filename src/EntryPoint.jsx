@@ -32,7 +32,7 @@ import SideBarModal from "./MobileView/SideBar/SideBarModal";
 import TransparentModal from "./MobileView/SideBar/TransparentModal";
 import ChangePassword from "./app/ChangePassword/page";
 import SubmissionsDetail from "./app/SubmissionsDetail/page";
-import Analytics from "./app/Analytics/page";
+// import Analytics from "./app/Analytics/page";
 import DeleteAccountModal from "./app/Settings/components/DeleteAccountModal";
 import DeactivateAccountModal from "./app/Settings/components/DeactivateAccountModal";
 import ScrollToTop from "./SharedComponents/ScrollToTop ";
@@ -53,7 +53,9 @@ import ChangeRegistrationCode from "./app/ChangeRegistrationCode/page";
 import CreateRevision from "./app/CreateRevision/page";
 import ChooseWorkModal from "./app/CreateRevision/components/ChooseWorkModal";
 import ChangeRevision from "./app/ChangeRevision/page";
-import UploadFilesModal from "./app/CreateWork/components/UploadFilesModal";
+import EditImagesModal from "./app/ChangeWork/components/EditImagesModal";
+import EditFilesModal from "./app/ChangeWork/components/EditFilesModal";
+import Dashboard from "./app/Dashboard/page";
 
 const EntryPoint = () => {
   const { showEditInfoModal, darkMode, showEditPFPModal } =
@@ -112,7 +114,7 @@ const EntryPoint = () => {
             <Route path="/work/:id" element={<WorkDetail />} />
             <Route path="/work/:id/submit" element={<SubmitWork />} />
             <Route path="/submissions/:id" element={<SubmissionsDetail />} />
-            <Route path="/analytics" element={<Analytics />} />
+            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/profile" element={<Profile />} />
 
             {/* admins _______________________________________ */}
@@ -176,7 +178,8 @@ const EntryPoint = () => {
         <ChooseWorkModal />
         <DeleteUserModal />
         <DeactivateUserModal />
-        <UploadFilesModal />
+        <EditImagesModal />
+        <EditFilesModal />
       </div>
     </div>
   );

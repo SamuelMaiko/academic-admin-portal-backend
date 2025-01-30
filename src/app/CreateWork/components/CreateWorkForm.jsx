@@ -12,6 +12,12 @@ import {
 import { TimeInput } from "@nextui-org/react";
 import { Time, parseAbsoluteToLocal } from "@internationalized/date";
 import { useAdminContext } from "../../../Context/AdminContext";
+import formatToISO from "../helpers/formatToISO";
+import createWork from "../api/createWork";
+import uploadWorkFiles from "../api/uploadWorkFiles";
+import { useNavigate } from "react-router-dom";
+import uploadWorkImages from "../api/uploadWorkImages";
+
 
 const CreateWorkForm = () => {
   const {
@@ -22,7 +28,6 @@ const CreateWorkForm = () => {
     setShowChooseWriterModal,
     setShowUploadFilesModal,
   } = useAdminContext();
-  const [type, setType] = useState("");
   // words to submit
   const [words, setWords] = useState("500");
   const [comment, setComment] = useState("");
@@ -30,14 +35,20 @@ const CreateWorkForm = () => {
 
   const [showWordInput, setShowWordInput] = useState(false);
   const [status, setStatus] = useState("Not started");
-  const [date, setDate] = useState(null);
-  let [time, setTime] = React.useState(
+  const [workType, setWorkType] = useState("1");
+  const [date, setDate] = useState(() => new Date());
+  const [time, setTime] = React.useState(
     parseAbsoluteToLocal("2021-04-07T18:45:22Z")
   );
   const loading = false;
 
   const [selectedWordCount, setSelectedWordCount] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [files, setFiles] = useState(null);
+  const [images, setImages] = useState(null);
+  const navigate = useNavigate()
+
+
 
   const handleWordCountChange = (event) => {
     setShowWordInput(false);
@@ -48,26 +59,83 @@ const CreateWorkForm = () => {
     setStatus(event.target.id);
   };
 
+  const handleWorkTypeChange = (event) => {
+    setWorkType(event.target.id);
+  };
+
   const handleOtherWords = () => {
     setShowWordInput(true);
   };
 
+  const handleSubmit=(e)=>{
+    e.preventDefault()
+    const data={
+      assigned_to: parseInt(writer, 10),
+      deadline: formatToISO(date, time),
+      comment,
+      words,
+      type: parseInt(workType, 10),
+    }
+    // console.log("TIME:",time)
+    // console.log("DATE:",date)
+    // console.log("DATEsjuid:",formatToISO(date, time))
+    createWork(data)
+    .then(data=>{
+
+      // upload the files to the server
+      uploadWorkFiles(data.id, files)
+      .then(data=>{
+        // navigate(-1)
+      })
+
+      // upload the images to the server
+      uploadWorkImages(data.id, images)
+      .then(data=>{
+        navigate("/manage-work")  
+      })
+      
+    })
+  }
+
   return (
-    <form className="pt-5 w-[58%] pb-14">
+    <form onSubmit={handleSubmit} className="pt-5 w-[58%] pb-14">
       <div className="mt-1 mb-5">
         <label className="text-base text-neutral-500 dark:text-darkMode-gray">
           Type*
         </label>
-        <input
-          placeholder="Type"
-          type="text"
-          className="flex mt-2 h-10 w-full rounded-md border border-gray-300 bg-transparent px-3
-           py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1
-            focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
-          name="type"
-          value={type}
-          onChange={(e) => setType(e.target.value)}
-        />
+        <div className="mt-1 flex items-center gap-10 ">
+            <div className="flex gap-2 text-neutral-500">
+              <input
+                type="radio"
+                name="type"
+                id="1"
+                className="cursor-pointer"
+                onChange={handleWorkTypeChange}
+                checked={workType == "1"}
+              />
+              <label htmlFor="Essay">Essay</label>
+            </div>
+            <div className="flex gap-2 text-neutral-500">
+              <input
+                type="radio"
+                name="type"
+                id="2"
+                className="cursor-pointer"
+                onChange={handleWorkTypeChange}
+              />
+              <label htmlFor="Research Paper">Research Paper</label>
+            </div>
+            <div className="flex gap-2 text-neutral-500">
+              <input
+                type="radio"
+                name="type"
+                id="3"
+                className="cursor-pointer"
+                onChange={handleWorkTypeChange}
+              />
+              <label htmlFor="Reflective Paper">Reflective Paper</label>
+            </div>
+          </div>
       </div>
       <div className="mb-5 ">
         <label className="text-base text-neutral-500 dark:text-darkMode-gray ">
@@ -158,59 +226,48 @@ const CreateWorkForm = () => {
           />
         </div>
       </div>
-      <div className="mb-8">
-        <label className="text-base text-neutral-500 dark:text-darkMode-gray">
-          Deadline
-        </label>
-        <div className="mt-1 flex flex-row gap-10">
-          <div>
-            <Popover showArrow={false} placement="bottom-start">
-              <PopoverTrigger asChild>
-                <Button
-                  className="py-4 justify-start gap-2 rounded-xl border border-metal-50 px-4
-                   text-left text-body-4 font-normal text-metal-600 hover:bg-white active:focus:scale-100
-                    dark:border-metal-900 dark:bg-metal-900 dark:text-white dark:hover:bg-metal-800"
-                  variant="outline"
-                  color="secondary"
-                  type="button"
-                >
-                  <Calendar
-                    size={20}
-                    className="text-metal-400 dark:text-white"
+        <div className="mb-8">
+          <label className="text-base text-neutral-500 dark:text-darkMode-gray">
+            Deadline
+          </label>
+          <div className="mt-1 flex flex-row gap-10">
+            <div>
+              <Popover showArrow={false} placement="bottom-start">
+                <PopoverTrigger asChild>
+                  <Button
+                    className="py-4 justify-start gap-2 rounded-xl border border-metal-50 px-4
+                    text-left text-body-4 font-normal text-metal-600 hover:bg-white active:focus:scale-100
+                      dark:border-metal-900 dark:bg-metal-900 dark:text-white dark:hover:bg-metal-800"
+                    variant="outline"
+                    color="secondary"
+                    type="button"
+                  >
+                    <Calendar
+                      size={20}
+                      className="text-metal-400 dark:text-white"
+                    />
+                    {date ? (
+                      format(date ?? new Date(), "PPP")
+                    ) : (
+                      <span>Select Your Date</span>
+                    )}
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="z-50 max-w-min">
+                  <DatePicker
+                    mode="single"
+                    selected={date}
+                    onSelect={setDate}
+                    showOutsideDays={true}
                   />
-                  {date ? (
-                    format(date ?? new Date(), "PPP")
-                  ) : (
-                    <span>Select Your Date</span>
-                  )}
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent className="z-50 max-w-min">
-                <DatePicker
-                  mode="single"
-                  selected={date}
-                  onSelect={setDate}
-                  showOutsideDays={true}
-                />
-              </PopoverContent>
-            </Popover>
+                </PopoverContent>
+              </Popover>
+            </div>
+            <div className="flex flex-wrap gap-4">
+              <TimeInput value={time} onChange={setTime} label="Time" />
+            </div>
           </div>
-          <div className="flex flex-wrap gap-4">
-            <TimeInput value={time} onChange={setTime} label="Time" />
-            {/* <TimeInput label="Event Time" defaultValue={new Time(11, 45)} /> */}
-          </div>
-          {/* <input
-            placeholder="Deadline"
-            type="text"
-            className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent
-             px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1
-              focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
-            name="deadline"
-            value={deadline}
-            onChange={(e) => setDeadline(e.target.value)}
-          /> */}
         </div>
-      </div>
       <div className="mb-8">
         <label className="text-base text-neutral-500 dark:text-darkMode-gray">
           Writer
@@ -266,6 +323,7 @@ const CreateWorkForm = () => {
             </Button>
           </div>
         </div>
+        {/* ______________________________________
         <div className="mb-5 mt-5 ">
           <label className="text-base text-neutral-500 dark:text-darkMode-gray ">
             Status
@@ -305,7 +363,8 @@ const CreateWorkForm = () => {
             </div>
           </div>
         </div>
-        <div className="mb-5 mt-5 flex items-center gap-5">
+        ______________________________________________ */}
+        {/* <div className="mb-5 mt-5 flex items-center gap-5">
           <input
             type="checkbox"
             name="is_submitted"
@@ -319,22 +378,66 @@ const CreateWorkForm = () => {
           >
             is submitted
           </label>
-        </div>
+        </div> */}
+      </div>
+      <div className="flex items-center gap-5">
+        <input
+          id="upload_files_input"
+          multiple
+          type="file"
+          onChange={(e) => {
+            setFiles([...e.target.files]);
+            e.target = "";
+          }}
+          className="hidden"
+        />
+        <Button
+          type="button"
+          onClick={() => {
+            document.getElementById("upload_files_input").click();
+          }}
+          className={`py-1
+          text-neutral-600 border-neutral-600 bg-transparent hover:bg-neutral-200
+          hover:border-neutral-600 hover:text-neutral-600 border-[1px]
+          px-4 transition-colors duration-300`}
+        >
+          Upload files
+        </Button>
+        <p className="italic text-gray-500 font-normal text-sm ">
+          {files?.length ?? 0} files uploaded
+        </p>
+      </div>
+      <div className="flex items-center gap-5 mt-2">
+        <input
+          id="upload_images_input"
+          multiple
+          accept="image/*"
+          type="file"
+          onChange={(e) => {
+            setImages([...e.target.files]);
+            e.target = "";
+          }}
+          className="hidden"
+        />
+        <Button
+          type="button"
+          onClick={() => {
+            document.getElementById("upload_images_input").click();
+          }}
+          className={`py-1
+            text-neutral-600 border-neutral-600 bg-transparent hover:bg-neutral-200
+            hover:border-neutral-600 hover:text-neutral-600 border-[1px]
+            px-4 transition-colors duration-300`}
+        >
+          Upload images
+        </Button>
+        <p className="italic text-gray-500 font-normal text-sm ">
+          {images?.length ?? 0} images uploaded
+        </p>
       </div>
 
-      <Button
-        type="button"
-        onClick={() => setShowUploadFilesModal(true)}
-        className={`py-1
-              text-neutral-600 border-neutral-600 bg-transparent hover:bg-neutral-200
-              hover:border-neutral-600 hover:text-neutral-600 border-[1px]
-              px-4 transition-colors duration-300`}
-      >
-        Upload files
-      </Button>
-
       <input
-        onClick={() => {}}
+        // onClick={() => {}}
         className="bg-green-700 hover:bg-green-800 mt-3 rounded-lg text-white flex items-center 
       } p-[0.6rem] cursor-pointer transition-colors duration-300"
         type="submit"

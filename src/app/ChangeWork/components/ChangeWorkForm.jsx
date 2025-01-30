@@ -20,6 +20,8 @@ const ChangeWorkForm = () => {
     writerName,
     setWriterName,
     setShowChooseWriterModal,
+    setShowChangeImagesModal,
+    setShowChangeFilesModal,
   } = useAdminContext();
   const [workCode, setWorkCode] = useState("WK6547");
   const [type, setType] = useState("");
@@ -324,7 +326,30 @@ const ChangeWorkForm = () => {
           </label>
         </div>
       </div>
-
+      <Button
+        type="button"
+        onClick={() => {
+          setShowChangeImagesModal(true);
+        }}
+        className={`py-1
+            text-neutral-600 border-neutral-600 bg-transparent hover:bg-neutral-200
+            hover:border-neutral-600 hover:text-neutral-600 border-[1px]
+            px-4 transition-colors duration-300`}
+      >
+        Edit images
+      </Button>
+      <Button
+        type="button"
+        onClick={() => {
+          setShowChangeFilesModal(true);
+        }}
+        className={`py-1
+            text-neutral-600 border-neutral-600 bg-transparent hover:bg-neutral-200
+            hover:border-neutral-600 hover:text-neutral-600 border-[1px]
+            px-4 transition-colors duration-300 mt-3 `}
+      >
+        Edit files
+      </Button>
       <input
         onClick={() => {}}
         className="bg-green-700 hover:bg-green-800 mt-3 rounded-lg text-white flex items-center 
