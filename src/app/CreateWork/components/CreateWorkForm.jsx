@@ -15,11 +15,10 @@ import { useAdminContext } from "../../../Context/AdminContext";
 import formatToISO from "../helpers/formatToISO";
 import createWork from "../api/createWork";
 import uploadWorkFiles from "../api/uploadWorkFiles";
-import getWorkTypes from "../api/getWorkTypes"
+import getWorkTypes from "../api/getWorkTypes";
 import { useNavigate } from "react-router-dom";
 import uploadWorkImages from "../api/uploadWorkImages";
-import WorkTypeCard from "./WorkTypeCard"
-
+import WorkTypeCard from "./WorkTypeCard";
 
 const CreateWorkForm = () => {
   const {
@@ -48,10 +47,8 @@ const CreateWorkForm = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [files, setFiles] = useState(null);
   const [images, setImages] = useState(null);
-  const [storedTypes, setStoredTypes]=useState([])
-  const navigate = useNavigate()
-
-
+  const [storedTypes, setStoredTypes] = useState([]);
+  const navigate = useNavigate();
 
   const handleWordCountChange = (event) => {
     setShowWordInput(false);
@@ -62,53 +59,47 @@ const CreateWorkForm = () => {
     setStatus(event.target.id);
   };
 
-  
-
   const handleOtherWords = () => {
     setShowWordInput(true);
   };
 
-  const handleSubmit=(e)=>{
-    e.preventDefault()
-    const data={
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const data = {
       assigned_to: parseInt(writer, 10),
       deadline: formatToISO(date, time),
       comment,
       words,
       type: parseInt(workType, 10),
-    }
+    };
     // console.log("TIME:",time)
     // console.log("DATE:",date)
     // console.log("DATEsjuid:",formatToISO(date, time))
-    createWork(data)
-    .then(data=>{
-
+    createWork(data).then((data) => {
       // upload the files to the server
-      uploadWorkFiles(data.id, files)
-      .then(data=>{
+      uploadWorkFiles(data.id, files).then((data) => {
         // navigate(-1)
-      })
+      });
 
       // upload the images to the server
-      uploadWorkImages(data.id, images)
-      .then(data=>{
-        navigate("/manage-work")  
-      })
-      
-    })
-  }
+      uploadWorkImages(data.id, images).then((data) => {
+        navigate("/manage-work");
+      });
+    });
 
+    // deleting the writer details in input
+    setWriterName("");
+    setWriter("");
+  };
 
   // getting the stored types
 
-  useEffect(()=>{
-    getWorkTypes()
-    .then(data=>{
-      setStoredTypes(data)
+  useEffect(() => {
+    getWorkTypes().then((data) => {
+      setStoredTypes(data);
       // console.log(data)
-    })
-  },[])
-
+    });
+  }, []);
 
   return (
     <form onSubmit={handleSubmit} className="pt-5 w-[58%] pb-14">
@@ -117,9 +108,15 @@ const CreateWorkForm = () => {
           Type*
         </label>
         <div className="mt-1 flex items-center gap-x-10 gap-y-3 flex-wrap ">
-            {
-              storedTypes&& storedTypes.map((type)=> <WorkTypeCard key={type.id} {...type} setWorkType={setWorkType} workType={workType} />)
-            }
+          {storedTypes &&
+            storedTypes.map((type) => (
+              <WorkTypeCard
+                key={type.id}
+                {...type}
+                setWorkType={setWorkType}
+                workType={workType}
+              />
+            ))}
         </div>
       </div>
       <div className="mb-10 ">
@@ -211,48 +208,48 @@ const CreateWorkForm = () => {
           />
         </div>
       </div>
-        <div className="mb-10">
-          <label className="text-base text-neutral-500 dark:text-darkMode-gray">
-            Deadline
-          </label>
-          <div className="mt-1 flex flex-row gap-10">
-            <div>
-              <Popover showArrow={false} placement="bottom-start">
-                <PopoverTrigger asChild>
-                  <Button
-                    className="py-4 justify-start gap-2 rounded-xl border border-metal-50 px-4
+      <div className="mb-10">
+        <label className="text-base text-neutral-500 dark:text-darkMode-gray">
+          Deadline
+        </label>
+        <div className="mt-1 flex flex-row gap-10">
+          <div>
+            <Popover showArrow={false} placement="bottom-start">
+              <PopoverTrigger asChild>
+                <Button
+                  className="py-4 justify-start gap-2 rounded-xl border border-metal-50 px-4
                     text-left text-body-4 font-normal text-metal-600 hover:bg-white active:focus:scale-100
                       dark:border-metal-900 dark:bg-metal-900 dark:text-white dark:hover:bg-metal-800"
-                    variant="outline"
-                    color="secondary"
-                    type="button"
-                  >
-                    <Calendar
-                      size={20}
-                      className="text-metal-400 dark:text-white"
-                    />
-                    {date ? (
-                      format(date ?? new Date(), "PPP")
-                    ) : (
-                      <span>Select Your Date</span>
-                    )}
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent className="z-50 max-w-min">
-                  <DatePicker
-                    mode="single"
-                    selected={date}
-                    onSelect={setDate}
-                    showOutsideDays={true}
+                  variant="outline"
+                  color="secondary"
+                  type="button"
+                >
+                  <Calendar
+                    size={20}
+                    className="text-metal-400 dark:text-white"
                   />
-                </PopoverContent>
-              </Popover>
-            </div>
-            <div className="flex flex-wrap gap-4">
-              <TimeInput value={time} onChange={setTime} label="Time" />
-            </div>
+                  {date ? (
+                    format(date ?? new Date(), "PPP")
+                  ) : (
+                    <span>Select Your Date</span>
+                  )}
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="z-50 max-w-min">
+                <DatePicker
+                  mode="single"
+                  selected={date}
+                  onSelect={setDate}
+                  showOutsideDays={true}
+                />
+              </PopoverContent>
+            </Popover>
+          </div>
+          <div className="flex flex-wrap gap-4">
+            <TimeInput value={time} onChange={setTime} label="Time" />
           </div>
         </div>
+      </div>
       <div className="mb-10">
         <label className="text-base text-neutral-500 dark:text-darkMode-gray">
           Writer
@@ -308,7 +305,6 @@ const CreateWorkForm = () => {
             </Button>
           </div>
         </div>
-        
       </div>
 
       <div className="flex items-center gap-5 mt-2">
@@ -339,7 +335,7 @@ const CreateWorkForm = () => {
           {images?.length ?? 0} images uploaded
         </p>
       </div>
-      
+
       <div className="flex items-center gap-5">
         <input
           id="upload_files_input"
@@ -367,7 +363,6 @@ const CreateWorkForm = () => {
           {files?.length ?? 0} files uploaded
         </p>
       </div>
-      
 
       <input
         // onClick={() => {}}

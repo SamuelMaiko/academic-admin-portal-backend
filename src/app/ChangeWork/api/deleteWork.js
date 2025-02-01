@@ -1,13 +1,10 @@
 import { toast } from "react-toastify";
 import instance from "../../../axios/instance";
 
-const deleteWorkImage = async (imageId) => {
+const deleteWork = async (id) => {
   try {
-    const response = await instance.delete(
-      `/work/work-images/${imageId}/delete/`
-    );
-
-    toast.success("Image deleted successfully");
+    const response = await instance.delete(`/work/${id}/delete/`);
+    toast.success("Work deleted successfully", { autoClose: 2000 });
     return response.data;
   } catch (error) {
     if (error.response && error.response.status) {
@@ -18,7 +15,7 @@ const deleteWorkImage = async (imageId) => {
           toast.error("Internal server error");
           break;
         case 404:
-          toast.error("Image not found");
+          toast.error("Work not found");
           break;
         case 401:
           toast.error("Unauthorized access");
@@ -33,4 +30,4 @@ const deleteWorkImage = async (imageId) => {
   }
 };
 
-export default deleteWorkImage;
+export default deleteWork;

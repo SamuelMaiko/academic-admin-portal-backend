@@ -30,7 +30,7 @@ const SideBarLinks = () => {
         <Button
           onClick={() => navigate("/dashboard")}
           icon={
-            pathname === "/dashboard" ? (
+            /^\/dashboard(\/|$)/.test(pathname) ? (
               <LayoutDashboard
                 size={20}
                 weight="fill"
@@ -42,7 +42,7 @@ const SideBarLinks = () => {
           }
           title={"Dashboard"}
           className={`${
-            pathname === "/dashboard" ? "text-sidebartext-hover" : ""
+            /^\/dashboard(\/|$)/.test(pathname) ? "text-black" : ""
           } w-full`}
         />
       </div>
@@ -51,7 +51,7 @@ const SideBarLinks = () => {
         <Button
           onClick={() => navigate("/manage-work")}
           icon={
-            pathname === "/manage-work" ? (
+            /^\/manage-work(\/|$)/.test(pathname) ? (
               <LayoutDashboard
                 size={20}
                 weight="fill"
@@ -63,7 +63,7 @@ const SideBarLinks = () => {
           }
           title={"Work"}
           className={`${
-            pathname === "/manage-work" ? "text-sidebartext-hover" : ""
+            /^\/manage-work(\/|$)/.test(pathname) ? "text-black " : ""
           } w-full`}
         />
       </div>
@@ -72,7 +72,7 @@ const SideBarLinks = () => {
         <Button
           onClick={() => navigate("/manage-users")}
           icon={
-            pathname === "/manage-users" ? (
+            /^\/manage-users(\/|$)/.test(pathname) ? (
               <LayoutDashboard
                 size={20}
                 weight="fill"
@@ -84,7 +84,7 @@ const SideBarLinks = () => {
           }
           title={"Users"}
           className={`${
-            pathname === "/manage-users" ? "text-sidebartext-hover" : ""
+            /^\/manage-users(\/|$)/.test(pathname) ? "text-black" : ""
           } w-full`}
         />
       </div>
@@ -93,7 +93,7 @@ const SideBarLinks = () => {
         <Button
           onClick={() => navigate("/reg-codes")}
           icon={
-            pathname === "/reg-codes" ? (
+            /^\/reg-codes(\/|$)/.test(pathname) ? (
               <LayoutDashboard
                 size={20}
                 weight="fill"
@@ -105,7 +105,7 @@ const SideBarLinks = () => {
           }
           title={"Registration Codes"}
           className={`${
-            pathname === "/reg-codes" ? "text-sidebartext-hover" : ""
+            /^\/reg-codes(\/|$)/.test(pathname) ? "text-black" : ""
           } w-full whitespace-nowrap`}
         />
       </div>
@@ -114,7 +114,7 @@ const SideBarLinks = () => {
         <Button
           onClick={() => navigate("/revisions")}
           icon={
-            pathname === "/revisions" ? (
+            /^\/revisions(\/|$)/.test(pathname) ? (
               <LayoutDashboard
                 size={20}
                 weight="fill"
@@ -126,7 +126,7 @@ const SideBarLinks = () => {
           }
           title={"Revisions"}
           className={`${
-            pathname === "/revisions" ? "text-sidebartext-hover" : ""
+            /^\/revisions(\/|$)/.test(pathname) ? "text-black" : ""
           } w-full`}
         />
         {/* counter */}
@@ -142,7 +142,7 @@ const SideBarLinks = () => {
         <Button
           onClick={() => navigate("/submissions")}
           icon={
-            pathname === "/submissions" ? (
+            /^\/submissions(\/|$)/.test(pathname) ? (
               <LayoutDashboard
                 size={20}
                 weight="fill"
@@ -154,7 +154,7 @@ const SideBarLinks = () => {
           }
           title={"Submissions"}
           className={`${
-            pathname === "/submissions" ? "text-sidebartext-hover" : ""
+            /^\/submissions(\/|$)/.test(pathname) ? "text-black" : ""
           } w-full`}
         />
         {/* counter */}
@@ -165,155 +165,6 @@ const SideBarLinks = () => {
           {0}
         </div>
       </div>
-      {/* home  button */}
-      {/* <div>
-        <Button
-          onClick={() => navigate("/home")}
-          icon={
-            pathname === "/home" ? (
-              <House size={20} weight="fill" />
-            ) : (
-              <House size={20} />
-            )
-          }
-          title={"Home"}
-          className={`${
-            pathname === "/home" ? "text-sidebartext-hover" : ""
-          } w-full`}
-        />
-      {/* writer dashboard  button */}
-      {/* <div>
-        <Button
-          onClick={() => navigate("/analytics")}
-          icon={
-            pathname === "/analytics" ? (
-              <LayoutDashboard
-                size={20}
-                weight="fill"
-                style={{ fill: "currentColor", stroke: "none" }}
-              />
-            ) : (
-              <LayoutDashboard size={20} weight="fill" />
-            )
-          }
-          title={"My Dashboard"}
-          className={`${
-            pathname === "/analytics" ? "text-sidebartext-hover" : ""
-          } w-full`}
-        />
-      </div> */}
-      {/* </div>  */}
-      {/* <p
-        className={`${shrinkSideBar ? "" : "hidden"} text-center text-sm my-5`}
-      >
-        Pages
-      </p> */}
-      {/* assigned work button */}
-      {/* <div className="relative">
-        <Button
-          onClick={() => navigate("/assigned-work")}
-          icon={
-            pathname === "/assigned-work" ? (
-              <Pen size={20} weight="fill" />
-            ) : (
-              <Pen size={20} />
-            )
-          }
-          title={"Assigned Work"}
-          className={`${
-            pathname === "/assigned-work" ? "text-sidebartext-hover" : ""
-          } w-full`}
-        /> */}
-      {/* counter */}
-      {/* <div
-          className="absolute top-1/2 -translate-y-1/2 right-[0.5rem] size-[0.95rem]
-           grid place-items-center font-semibold bg-red-500 text-white rounded-full text-[10px]"
-        >
-          {notificationsCount.assigned_work}
-        </div>
-      </div> */}
-      {/* uptaken work button */}
-      {/* <div className="relative">
-        <Button
-          onClick={() => navigate("/uptaken-work")}
-          icon={
-            pathname === "/uptaken-work" ? (
-              <Briefcase size={20} weight="fill" />
-            ) : (
-              <Briefcase size={20} />
-            )
-          }
-          title={"Uptaken Work"}
-          className={`${
-            pathname === "/uptaken-work" ? "text-sidebartext-hover" : ""
-          }  w-full`}
-        /> */}
-      {/* counter */}
-      {/* <div
-          className="absolute top-1/2 -translate-y-1/2 right-[0.5rem] size-[0.95rem]
-           grid place-items-center font-semibold bg-red-500 text-white rounded-full text-[10px]"
-        >
-          {notificationsCount.uptaken_work}
-        </div>
-      </div> */}
-      {/* revisions button */}
-      {/* <div className="relative">
-        <Button
-          onClick={() => navigate("/revisions")}
-          icon={
-            pathname === "/revisions" ? (
-              <Binoculars size={20} weight="fill" />
-            ) : (
-              <Binoculars size={20} />
-            )
-          }
-          title={"Revisions"}
-          className={`${
-            pathname === "/revisions" ? "text-sidebartext-hover" : ""
-          } w-full`}
-        />
-        {/* counter */}
-      {/* <div
-          className={`absolute top-1/2 -translate-y-1/2 right-[0.5rem] size-[0.95rem]
-           grid place-items-center font-semibold bg-red-500 text-white rounded-full text-[10px] `}
-        >
-          {notificationsCount.revisions}
-        </div> */}
-      {/* </div>  */}
-      {/* bookmark button */}
-      {/* // <div>
-      //   <Button
-      //     onClick={() => navigate("/bookmarks")}
-      //     icon={
-      //       pathname === "/bookmarks" ? (
-      //         <BookmarkSimple size={20} weight="fill" />
-      //       ) : (
-      //         <BookmarkSimple size={20} />
-      //       )
-      //     }
-      //     title={"Bookmarks"}
-      //     className={`${
-      //       pathname === "/bookmarks" ? "text-sidebartext-hover" : ""
-      //     } w-full`}
-      //   />
-      // </div> */}
-      {/* submissions button */}
-      {/* // <div>
-      //   <Button
-      //     onClick={() => navigate("/submissions")}
-      //     icon={
-      //       pathname === "/submissions" ? (
-      //         <FileDoc size={20} weight="fill" />
-      //       ) : (
-      //         <FileDoc size={20} />
-      //       )
-      //     }
-      //     title={"Submissions"}
-      //     className={`${
-      //       pathname === "/submissions" ? "text-sidebartext-hover" : ""
-      //     } w-full`}
-      //   />
-      // </div> */}
     </div>
   );
 };

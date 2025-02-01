@@ -22,7 +22,8 @@ const AdminContext = ({ children }) => {
   const [zipDetails, setZipDetails] = useState({});
   const [workToUploadFiles, setWorkToUploadFiles] = useState(null);
   const [images, setImages] = useState(null);
-  const [showDeleteWorkModal, setShowDeleteWorkModal]=useState(true)
+  const [showDeleteWorkModal, setShowDeleteWorkModal] = useState(false);
+  const [workToDelete, setWorkToDelete] = useState(null);
 
   return (
     <createdAdminContext.Provider
@@ -47,12 +48,20 @@ const AdminContext = ({ children }) => {
         setShowChangeImagesModal,
         showChangeFilesModal,
         setShowChangeFilesModal,
-        workImages, setWorkImages,
-        zipDetails, setZipDetails,
-        workToUploadFiles, setWorkToUploadFiles,
-        workFiles, setWorkFiles,
-        images, setImages,
-        showDeleteWorkModal, setShowDeleteWorkModal
+        workImages,
+        setWorkImages,
+        zipDetails,
+        setZipDetails,
+        workToUploadFiles,
+        setWorkToUploadFiles,
+        workFiles,
+        setWorkFiles,
+        images,
+        setImages,
+        showDeleteWorkModal,
+        setShowDeleteWorkModal,
+        workToDelete,
+        setWorkToDelete,
       }}
     >
       {children}

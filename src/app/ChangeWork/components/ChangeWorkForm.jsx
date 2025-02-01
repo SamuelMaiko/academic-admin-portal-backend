@@ -2,7 +2,7 @@ import { Textarea } from "keep-react";
 import React, { useEffect, useState } from "react";
 import { format } from "date-fns";
 import { Calendar } from "phosphor-react";
-import {PencilLine} from "lucide-react"
+import { PencilLine } from "lucide-react";
 import {
   Button,
   DatePicker,
@@ -12,17 +12,17 @@ import {
 } from "keep-react";
 import { TimeInput } from "@nextui-org/react";
 import { Time, parseAbsoluteToLocal } from "@internationalized/date";
-import { useAdminContext } from "../../../Context/AdminContext";
-import getWorkDetails from "../api/getWorkDetails"
-import {useParams} from "react-router-dom"
+import getWorkDetails from "../api/getWorkDetails";
+import { useParams } from "react-router-dom";
 import { parseISO } from "date-fns";
 import formatToISO from "../../CreateWork/helpers/formatToISO";
 import updateWork from "../api/updateWork";
 import { createNewCookie } from "../../../Cookies/Cookie";
-import WorkTypeCard from "../../CreateWork/components/WorkTypeCard"
-import getWorkTypes from "../../CreateWork/api/getWorkTypes"
+import WorkTypeCard from "../../CreateWork/components/WorkTypeCard";
+import getWorkTypes from "../../CreateWork/api/getWorkTypes";
+import { useAdminContext } from "../../../Context/AdminContext";
 
-const ChangeWorkForm = ({setLoading}) => {
+const ChangeWorkForm = ({ setLoading }) => {
   const {
     writer,
     setWriter,
@@ -34,7 +34,9 @@ const ChangeWorkForm = ({setLoading}) => {
     setWorkImages,
     setWorkFiles,
     setZipDetails,
-    setWorkToUploadFiles
+    setWorkToUploadFiles,
+    setShowDeleteWorkModal,
+    setWorkToDelete,
   } = useAdminContext();
   const [workCode, setWorkCode] = useState("");
   const [workDetails, setWorkDetails] = useState({});
@@ -43,7 +45,9 @@ const ChangeWorkForm = ({setLoading}) => {
   const [workType, setWorkType] = useState("");
   // words to submit
   const [words, setWords] = useState("");
-  const [deadlineFromAPI, setDeadlineFromAPI] = useState("2025-03-13T20:00:00+03:00");
+  const [deadlineFromAPI, setDeadlineFromAPI] = useState(
+    "2025-03-13T20:00:00+03:00"
+  );
   // const [deadline, setDeadline] = useState("");
 
   const [showWordInput, setShowWordInput] = useState(false);
@@ -53,37 +57,35 @@ const ChangeWorkForm = ({setLoading}) => {
 
   const extractDate = (isoString) => {
     if (!isoString || typeof isoString !== "string") {
-        console.error("Invalid date string:", isoString);
-        return new Date(); // Default to today's date if invalid
+      console.error("Invalid date string:", isoString);
+      return new Date(); // Default to today's date if invalid
     }
     return parseISO(isoString);
-};
+  };
 
+  const extractTime = (isoString) => {
+    if (!isoString || typeof isoString !== "string") {
+      console.error("Invalid time string:", isoString);
+      return;
+    }
 
-const extractTime = (isoString) => {
-  if (!isoString || typeof isoString !== "string") {
-    console.error("Invalid time string:", isoString);
-    return;
-  }
+    // Parse the incoming ISO string into a Date object
+    const parsedDate = parseISO(isoString);
 
-  // Parse the incoming ISO string into a Date object
-  const parsedDate = parseISO(isoString);
+    // Format it to UTC "2021-04-07T18:45:22Z"
+    const utcString = format(parsedDate, "yyyy-MM-dd'T'HH:mm:ss'Z'");
 
-  // Format it to UTC "2021-04-07T18:45:22Z"
-  const utcString = format(parsedDate, "yyyy-MM-dd'T'HH:mm:ss'Z'");
+    // Now pass this UTC string to parseAbsoluteToLocal
+    return parseAbsoluteToLocal(utcString);
+  };
 
-  // Now pass this UTC string to parseAbsoluteToLocal
-  return parseAbsoluteToLocal(utcString);
-};
-
-
-const [date, setDate] = useState(() => extractDate(deadlineFromAPI));
-const [time, setTime] = useState(new Time(11, 45));
-  const loading = false;
+  const [date, setDate] = useState(() => extractDate(deadlineFromAPI));
+  const [time, setTime] = useState(new Time(11, 45));
+  // for the save button
+  const [isLoading, setIsLoading] = useState(false);
 
   const [selectedWordCount, setSelectedWordCount] = useState("");
-  const [storedTypes, setStoredTypes]=useState([])
-
+  const [storedTypes, setStoredTypes] = useState([]);
 
   const handleWordCountChange = (event) => {
     setShowWordInput(false);
@@ -98,76 +100,71 @@ const [time, setTime] = useState(new Time(11, 45));
     setShowWordInput(true);
   };
 
+  const { id } = useParams();
 
-  const {id}=useParams()
-
-  useEffect(()=>{
+  useEffect(() => {
     // setDate(extractDate("2025-03-13T20:00:00+03:00"))
     // setTime(extractTime("2025-03-13T20:00:00+03:00"))
-    getWorkDetails(id)
-    .then(data => {
-      setWorkDetails(data)
+    getWorkDetails(id).then((data) => {
+      setWorkDetails(data);
       // console.log(data.work_code)
-      setWorkCode(data.work_code)
-      setType(data.type)
-      setWorkType(data.type.id)
-      setWords(data.words)
-      setComment(data.comment)
-      if (data.writer!=null){
-        setWriter(data.writer.id)
-        setWriterName(`${data.writer.first_name} ${data.writer.last_name}`)
+      setWorkCode(data.work_code);
+      setType(data.type);
+      setWorkType(data.type.id);
+      setWords(data.words);
+      setComment(data.comment);
+      if (data.writer != null) {
+        setWriter(data.writer.id);
+        setWriterName(`${data.writer.first_name} ${data.writer.last_name}`);
+      } else {
+        setWriter(null);
       }
-      else{
-        setWriter(null)
-      }
-      setStatus(data.status)
-      setIsSubmitted(data.is_submitted)
+      setStatus(data.status);
+      setIsSubmitted(data.is_submitted);
       // setDeadlineFromAPI(data.deadline)
-      setDate(extractDate(data.deadline))
-      const deadlineDate = new Date(data.deadline); 
-      setTime(new Time( deadlineDate.getHours(), deadlineDate.getMinutes()))
+      setDate(extractDate(data.deadline));
+      const deadlineDate = new Date(data.deadline);
+      setTime(new Time(deadlineDate.getHours(), deadlineDate.getMinutes()));
 
       // storing the images in state
-      setWorkImages(data.images)
+      setWorkImages(data.images);
 
       // storing the files in state
-      setWorkFiles(data.files)
+      setWorkFiles(data.files);
 
-      if (data.words>2000){
-        setShowWordInput(true)
+      if (data.words > 2000) {
+        setShowWordInput(true);
       }
-      setLoading(false)
-    }
-  )
-  },[])
+      // for the loader in the whole page
+      setLoading(false);
+    });
+  }, []);
 
-  const handleSubmit=async (e)=>{
-    e.preventDefault()
-    const data={
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    const data = {
       assigned_to: parseInt(writer, 10),
       type: parseInt(workType, 10),
       words,
       comment,
       deadline: formatToISO(date, time),
       status,
-      is_submitted: isSubmitted
-    }
-    createNewCookie("here",time)
-    // alert(formatToISO(date, time))
-    updateWork(id, data)
-    .then(data=>{
+      is_submitted: isSubmitted,
+    };
+    updateWork(id, data).then((data) => {
       // console.log(data)
-    })
-  }
+      setIsLoading(false);
+    });
+  };
 
   // getting the work types
-  useEffect(()=>{
-    getWorkTypes()
-    .then(data=>{
-      setStoredTypes(data)
+  useEffect(() => {
+    getWorkTypes().then((data) => {
+      setStoredTypes(data);
       // console.log(data)
-    })
-  },[])
+    });
+  }, []);
 
   return (
     <form onSubmit={handleSubmit} className="pt-5 w-[58%] pb-14">
@@ -192,10 +189,16 @@ const [time, setTime] = useState(new Time(11, 45));
           Type*
         </label>
         <div className="mt-1 flex items-center gap-x-10 gap-y-3 flex-wrap">
-          {
-            storedTypes&& storedTypes.map((type)=> <WorkTypeCard key={type.id} {...type} setWorkType={setWorkType} workType={workType} />)
-          }
-          </div>
+          {storedTypes &&
+            storedTypes.map((type) => (
+              <WorkTypeCard
+                key={type.id}
+                {...type}
+                setWorkType={setWorkType}
+                workType={workType}
+              />
+            ))}
+        </div>
       </div>
       <div className="mb-10 ">
         <label className="text-base text-neutral-500 dark:text-darkMode-gray ">
@@ -210,7 +213,7 @@ const [time, setTime] = useState(new Time(11, 45));
               id="500"
               className="cursor-pointer"
               onChange={handleWordCountChange}
-              checked={words=="500"}
+              checked={words == "500"}
             />
             <label htmlFor="500">500</label>
           </div>
@@ -221,7 +224,7 @@ const [time, setTime] = useState(new Time(11, 45));
               id="1000"
               className="cursor-pointer"
               onChange={handleWordCountChange}
-              checked={words=="1000"}
+              checked={words == "1000"}
             />
             <label htmlFor="1000">1000</label>
           </div>
@@ -232,7 +235,7 @@ const [time, setTime] = useState(new Time(11, 45));
               id="1500"
               className="cursor-pointer"
               onChange={handleWordCountChange}
-              checked={words=="1500"}
+              checked={words == "1500"}
             />
             <label htmlFor="1500">1500</label>
           </div>
@@ -243,10 +246,9 @@ const [time, setTime] = useState(new Time(11, 45));
               id="2000"
               className="cursor-pointer"
               onChange={handleWordCountChange}
-              checked={words=="2000"}
+              checked={words == "2000"}
             />
             <label htmlFor="2000">2000</label>
-            
           </div>
           <div className="flex gap-2 text-neutral-500">
             <input
@@ -255,9 +257,9 @@ const [time, setTime] = useState(new Time(11, 45));
               id="Other"
               className="cursor-pointer"
               onChange={handleOtherWords}
-              checked={words>2000}
+              checked={words > 2000}
             />
-            <label htmlFor="Other">Other {words>2000&&`(${words})`}</label>
+            <label htmlFor="Other">Other {words > 2000 && `(${words})`}</label>
           </div>
         </div>
         <div className={`${showWordInput ? "" : "hidden"} mt-1`}>
@@ -329,7 +331,12 @@ const [time, setTime] = useState(new Time(11, 45));
             </Popover>
           </div>
           <div className="flex flex-wrap gap-4">
-            <TimeInput defaultValue={new Time(11, 45)} value={time} onChange={setTime} label="Time" />
+            <TimeInput
+              defaultValue={new Time(11, 45)}
+              value={time}
+              onChange={setTime}
+              label="Time"
+            />
           </div>
         </div>
       </div>
@@ -450,11 +457,11 @@ const [time, setTime] = useState(new Time(11, 45));
           setShowChangeImagesModal(true);
           // images zip details
           setZipDetails({
-            zipName:workDetails&&workDetails.work_code,
-            zipDownloadLink:workDetails&&workDetails.images_zip_url
-          })
+            zipName: workDetails && workDetails.work_code,
+            zipDownloadLink: workDetails && workDetails.images_zip_url,
+          });
           // storing work to upload files in global state
-          setWorkToUploadFiles(id)
+          setWorkToUploadFiles(id);
         }}
         className={`py-1
             text-neutral-600 bg-transparent bg-neutral-200 hover:bg-neutral-300
@@ -469,7 +476,7 @@ const [time, setTime] = useState(new Time(11, 45));
         onClick={() => {
           setShowChangeFilesModal(true);
           // storing work to upload files in global state
-          setWorkToUploadFiles(id)
+          setWorkToUploadFiles(id);
         }}
         className={`py-1
             text-neutral-600 bg-transparent bg-neutral-200 hover:bg-neutral-300
@@ -485,12 +492,15 @@ const [time, setTime] = useState(new Time(11, 45));
           className="bg-green-700 hover:bg-green-800 rounded-lg text-white flex items-center 
               } p-[0.6rem] cursor-pointer transition-colors duration-300"
           type="submit"
-          value={loading ? "Saving..." : "Save"}
-          disabled={loading}
+          value={isLoading ? "Saving..." : "Save"}
+          disabled={isLoading}
         />
         <Button
           type="button"
-          onClick={() => setShowChooseWriterModal(true)}
+          onClick={() => {
+            setShowDeleteWorkModal(true);
+            setWorkToDelete(id);
+          }}
           className={` dark:text-darkMode-cardText dark:hover:text-darkMode-cardTextHover py-[0.6rem]
                     bg-red-500 hover:bg-red-600 text-white h-full
                     px-4 transition-colors duration-300`}
@@ -498,7 +508,6 @@ const [time, setTime] = useState(new Time(11, 45));
           Delete work
         </Button>
       </div>
-        
     </form>
   );
 };

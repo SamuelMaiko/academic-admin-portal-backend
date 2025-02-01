@@ -9,7 +9,7 @@ const CountdownToDate = ({ deadline }) => {
     if (completed) {
       // Render a completed state
       return (
-        <span className="text-red-500 dark:text-red-400 font-medium text-sm whitespace-nowrap">
+        <span className="text-blue-500 dark:text-blue-400 font-medium text-sm whitespace-nowrap">
           deadline reached
         </span>
       );

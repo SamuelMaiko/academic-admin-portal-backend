@@ -5,10 +5,15 @@ import { CircleAlert, CloudUpload, Plus } from "lucide-react";
 import EditFilesBody from "./EditFilesBody";
 import { Button } from "keep-react";
 import uploadWorkFiles from "../../CreateWork/api/uploadWorkFiles";
-import {toast} from "react-toastify"
+import { toast } from "react-toastify";
 
 const EditFiles = () => {
-  const { setShowChangeFilesModal, workFiles, setWorkFiles, workToUploadFiles } = useAdminContext();
+  const {
+    setShowChangeFilesModal,
+    workFiles,
+    setWorkFiles,
+    workToUploadFiles,
+  } = useAdminContext();
   const [loading, setLoading] = useState(false);
   const [files, setFiles] = useState("");
 
@@ -21,12 +26,14 @@ const EditFiles = () => {
     >
       {/* header */}
       <div className="  flex justify-between items-center py-3 px-4 border-b-neutral-300 border-b-[1px]">
-        <p className="text-xl font-semibold">Edit Files {`(${workFiles&&workFiles.length})`}</p>
+        <p className="text-xl font-semibold">
+          Edit Files {`(${workFiles && workFiles.length})`}
+        </p>
         {/* close button */}
         <button
           onClick={() => {
             setShowChangeFilesModal(false);
-            setFiles("")
+            setFiles("");
           }}
           className="rounded-full hover:bg-neutral-200 dark:hover:bg-gray-600 p-2"
         >
@@ -69,19 +76,25 @@ const EditFiles = () => {
             </p>
             {/* cloud upload button */}
             <button
+              disabled={files.length === 0}
               type="submit"
               onClick={(e) => {
                 e.preventDefault();
-                uploadWorkFiles(workToUploadFiles, files)
-                .then(data=>{
-                  setWorkFiles(current=>[...current, ...data])
-                  toast.success("Files uploaded successfully")
-                  setFiles("")
-                })
+                uploadWorkFiles(workToUploadFiles, files).then((data) => {
+                  setWorkFiles((current) => [...current, ...data]);
+                  toast.success("Files uploaded successfully", {
+                    autoClose: 1000,
+                  });
+                  setFiles("");
+                });
                 // setShowChangeFilesModal(false);
               }}
-              className="bg-blue-500 text-white text-sm hover:bg-blue-600 dark:hover:bg-gray-600
-           px-2 py-1 flex gap-2 transition-colors duration-300 rounded-lg"
+              className={`  text-sm dark:hover:bg-gray-600
+           px-2 py-1 flex gap-2 transition-colors duration-300 rounded-lg ${
+             files.length === 0
+               ? "bg-neutral-300 text-metal-600"
+               : "bg-blue-500 hover:bg-blue-600 text-white"
+           }`}
             >
               <CloudUpload size={20} />
               <span>Upload</span>
