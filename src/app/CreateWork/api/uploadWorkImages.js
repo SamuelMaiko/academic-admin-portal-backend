@@ -13,6 +13,8 @@ const uploadWorkImages = async (workId, images) => {
                 "Content-Type": "multipart/form-data",
             },
         });
+        toast.success("Images uploaded successfully.");
+        return response.data;
     } catch (error) {
         toast.error("upload error")
         // console.error("Upload Error:", error.response?.data || error.message);

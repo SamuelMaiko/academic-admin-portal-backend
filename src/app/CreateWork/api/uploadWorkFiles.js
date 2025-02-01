@@ -13,6 +13,7 @@ const uploadWorkFiles = async (workId, files) => {
                 "Content-Type": "multipart/form-data",
             },
         });
+        return response.data
     } catch (error) {
         toast.error("upload error")
         // console.error("Upload Error:", error.response?.data || error.message);

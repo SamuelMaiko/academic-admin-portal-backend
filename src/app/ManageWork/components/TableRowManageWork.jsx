@@ -23,50 +23,50 @@ const TableRowManageWork = ({
   const { setNotificationsCount } = useNotificationContext();
   //
 
-  const handleSubmitWork = (event) => {
-    event.stopPropagation();
-    if (!isSubmitted) {
-      navigate(`/work/${id}/submit`);
-    }
-  };
+  // const handleSubmitWork = (event) => {
+  //   event.stopPropagation();
+  //   if (!isSubmitted) {
+  //     navigate(`/work/${id}/submit`);
+  //   }
+  // };
 
-  const handleSeeDetails = () => {
-    navigate(`/work/${id}`);
-    if (!read) {
-      markAsRead();
-      setNotificationsCount((current) => ({
-        ...current,
-        assigned_work: current.assigned_work - 1,
-      }));
-    }
-  };
+  // const handleSeeDetails = () => {
+  //   navigate(`/work/${id}`);
+  //   if (!read) {
+  //     markAsRead();
+  //     setNotificationsCount((current) => ({
+  //       ...current,
+  //       assigned_work: current.assigned_work - 1,
+  //     }));
+  //   }
+  // };
 
-  const markAsRead = async () => {
-    try {
-      const response = await instance.post(`/work/${id}/read/`);
-      const updatedAssignedWork = assignedWork.map((item) =>
-        item.id === id ? { ...item, assigned_is_read: true } : item
-      );
-      setAssignedWork(updatedAssignedWork);
-    } catch (error) {
-      if (error.response && error.response.status) {
-        const status = error.response.status;
-        const message = error.response.data;
+  // const markAsRead = async () => {
+  //   try {
+  //     const response = await instance.post(`/work/${id}/read/`);
+  //     const updatedAssignedWork = assignedWork.map((item) =>
+  //       item.id === id ? { ...item, assigned_is_read: true } : item
+  //     );
+  //     setAssignedWork(updatedAssignedWork);
+  //   } catch (error) {
+  //     if (error.response && error.response.status) {
+  //       const status = error.response.status;
+  //       const message = error.response.data;
 
-        switch (status) {
-          case 500:
-            toast.error(`Internal server error`);
-            break;
-        }
-      } else {
-        toast.error("An unexpected error occurred. Please try again later.");
-      }
-    }
-  };
+  //       switch (status) {
+  //         case 500:
+  //           toast.error(`Internal server error`);
+  //           break;
+  //       }
+  //     } else {
+  //       toast.error("An unexpected error occurred. Please try again later.");
+  //     }
+  //   }
+  // };
 
   return (
     <TableRow
-      onClick={() => navigate(`/manage-work/1/change`)}
+      onClick={() => navigate(`/manage-work/${id}/change`)}
       className={`bg-white dark:bg-darkMode-cardBg dark:text-white cursor-pointer ${
         !read
           ? "bg-blue-100 hover:bg-blue-200 dark:bg-blue-700 hover:dark:bg-blue-800"

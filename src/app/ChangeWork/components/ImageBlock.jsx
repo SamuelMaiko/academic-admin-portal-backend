@@ -1,9 +1,12 @@
 import React from "react";
 import { Download, Trash } from "lucide-react";
 import { useStateShareContext } from "../../../Context/StateContext";
+import { useAdminContext } from "../../../Context/AdminContext";
+import deleteWorkImage from "../api/deleteWorkImage"
 
-const ImageBlock = ({ image, image_name, download_url, combined }) => {
+const ImageBlock = ({ id, image, image_name, download_url, combined, workToUploadFiles }) => {
   const { setShowCarouselModal } = useStateShareContext();
+  const {setWorkImages}=useAdminContext()
 
   // JUST to prevent propagation nothing else
   const handleDownload = (e) => {
@@ -12,7 +15,6 @@ const ImageBlock = ({ image, image_name, download_url, combined }) => {
 
   return (
     <div
-      onClick={() => setShowCarouselModal(true)}
       className="relative size-[6rem] cursor-pointer hover:bg-gray-400 overflow-hidden"
     >
       <img className="h-full w-full " src={image} alt={image_name} />
@@ -24,15 +26,24 @@ const ImageBlock = ({ image, image_name, download_url, combined }) => {
       <a href={download_url} download={combined}>
         <Download
           size={18}
-          className="absolute top-1 right-1 text-white z-20"
+          className="absolute top-1 right-1 text-white hover:bg-gray-300 transition-colors duration-300 z-20"
           onClick={handleDownload}
         />
       </a>
       <Trash
         size={18}
-        className="absolute top-8 right-1 text-white z-20"
+        className="absolute top-8 right-1 text-white hover:bg-gray-300 transition-colors duration-300 z-20"
         onClick={(e) => {
           e.stopPropagation();
+          
+          deleteWorkImage(id)
+          .then(data=>{
+            // console.log(data)
+            setWorkImages(prev=>{
+              const newList=prev.filter(image=> image.id!==id)
+              return newList
+            })
+          })
         }}
       />
     </div>

@@ -88,7 +88,7 @@ const App = () => {
                 </div>
                 {/* <MobileNavBar /> */}
                 {/* <EntryPoint /> */}
-                <ToastContainer position="bottom-left" />
+                <ToastContainer position="bottom-left" hideProgressBar />
               </AdminContext>
             </NotificationContext>
           </ProgressBarContext>

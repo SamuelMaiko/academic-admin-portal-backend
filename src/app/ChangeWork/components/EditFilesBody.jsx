@@ -1,19 +1,15 @@
 import React from "react";
 import FileCard from "./FileCard";
+import { useAdminContext } from "../../../Context/AdminContext";
 
 const EditFilesBody = () => {
+  const {workFiles} =useAdminContext()
+
   return (
     <div className="">
-      <FileCard />
-      <FileCard />
-      <FileCard />
-      <FileCard />
-      <FileCard />
-      <FileCard />
-      <FileCard />
-      <FileCard />
-      <FileCard />
-      <FileCard />
+      {
+        workFiles && workFiles.map((workFile, index)=> <FileCard key={index} {...workFile} />)
+      }
     </div>
   );
 };

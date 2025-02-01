@@ -12,6 +12,12 @@ import {
 import { TimeInput } from "@nextui-org/react";
 import { Time, parseAbsoluteToLocal } from "@internationalized/date";
 import { useAdminContext } from "../../../Context/AdminContext";
+import getWorkDetails from "../api/getWorkDetails"
+import {useParams} from "react-router-dom"
+import { parseISO } from "date-fns";
+import formatToISO from "../../CreateWork/helpers/formatToISO";
+import updateWork from "../api/updateWork";
+import { createNewCookie } from "../../../Cookies/Cookie";
 
 const ChangeWorkForm = () => {
   const {
@@ -22,21 +28,53 @@ const ChangeWorkForm = () => {
     setShowChooseWriterModal,
     setShowChangeImagesModal,
     setShowChangeFilesModal,
+    setWorkImages,
+    setWorkFiles,
+    setZipDetails,
+    setWorkToUploadFiles
   } = useAdminContext();
-  const [workCode, setWorkCode] = useState("WK6547");
+  const [workCode, setWorkCode] = useState("");
+  const [workDetails, setWorkDetails] = useState({});
+
   const [type, setType] = useState("");
   // words to submit
   const [words, setWords] = useState("");
-  const [comment, setComment] = useState("");
+  const [deadlineFromAPI, setDeadlineFromAPI] = useState("2025-03-13T20:00:00+03:00");
   // const [deadline, setDeadline] = useState("");
 
   const [showWordInput, setShowWordInput] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [status, setStatus] = useState("Not started");
-  const [date, setDate] = useState(null);
-  let [time, setTime] = React.useState(
-    parseAbsoluteToLocal("2021-04-07T18:45:22Z")
-  );
+  const [comment, setComment] = useState("");
+  const [status, setStatus] = useState("");
+
+  const extractDate = (isoString) => {
+    if (!isoString || typeof isoString !== "string") {
+        console.error("Invalid date string:", isoString);
+        return new Date(); // Default to today's date if invalid
+    }
+    return parseISO(isoString);
+};
+
+
+const extractTime = (isoString) => {
+  if (!isoString || typeof isoString !== "string") {
+    console.error("Invalid time string:", isoString);
+    return;
+  }
+
+  // Parse the incoming ISO string into a Date object
+  const parsedDate = parseISO(isoString);
+
+  // Format it to UTC "2021-04-07T18:45:22Z"
+  const utcString = format(parsedDate, "yyyy-MM-dd'T'HH:mm:ss'Z'");
+
+  // Now pass this UTC string to parseAbsoluteToLocal
+  return parseAbsoluteToLocal(utcString);
+};
+
+
+const [date, setDate] = useState(() => extractDate(deadlineFromAPI));
+const [time, setTime] = useState(new Time(11, 45));
   const loading = false;
 
   const [selectedWordCount, setSelectedWordCount] = useState("");
@@ -54,8 +92,65 @@ const ChangeWorkForm = () => {
     setShowWordInput(true);
   };
 
+
+  const {id}=useParams()
+
+  useEffect(()=>{
+    // setDate(extractDate("2025-03-13T20:00:00+03:00"))
+    // setTime(extractTime("2025-03-13T20:00:00+03:00"))
+    getWorkDetails(id)
+    .then(data => {
+      setWorkDetails(data)
+      // console.log(data.work_code)
+      setWorkCode(data.work_code)
+      setType(data.type)
+      setWords(data.words)
+      setComment(data.comment)
+      if (data.writer!=null){
+        setWriter(data.writer.id)
+        setWriterName(`${data.writer.first_name} ${data.writer.last_name}`)
+      }
+      else{
+        setWriter(null)
+      }
+      setStatus(data.status)
+      setIsSubmitted(data.is_submitted)
+      // setDeadlineFromAPI(data.deadline)
+      setDate(extractDate(data.deadline))
+      const deadlineDate = new Date(data.deadline); 
+      setTime(new Time( deadlineDate.getHours(), deadlineDate.getMinutes()))
+
+      // storing the images in state
+      setWorkImages(data.images)
+
+      // storing the files in state
+      setWorkFiles(data.files)
+    }
+  )
+  },[])
+
+  const handleSubmit=async (e)=>{
+    e.preventDefault()
+    const data={
+      assigned_to: parseInt(writer, 10),
+      
+      type: parseInt(type, 10),
+      words,
+      comment,
+      deadline: formatToISO(date, time),
+      status,
+      is_submitted: isSubmitted
+    }
+    createNewCookie("here",time)
+    // alert(formatToISO(date, time))
+    updateWork(id, data)
+    .then(data=>{
+      // console.log(data)
+    })
+  }
+
   return (
-    <form className="pt-5 w-[58%] pb-14">
+    <form onSubmit={handleSubmit} className="pt-5 w-[58%] pb-14">
       <div className="mt-1 mb-5">
         <label className="text-base text-neutral-500 dark:text-darkMode-gray">
           Work code
@@ -66,7 +161,7 @@ const ChangeWorkForm = () => {
           className="flex mt-2 h-10 w-full rounded-md border border-gray-300 bg-transparent px-3
                 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1
                     focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
-          name="type"
+          name="work code"
           value={workCode}
           onChange={(e) => setWorkCode(e.target.value)}
           disabled
@@ -83,9 +178,14 @@ const ChangeWorkForm = () => {
                 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1
                     focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
           name="type"
-          value={type}
-          onChange={(e) => setType(e.target.value)}
-        />
+          value={type &&type.name}
+          onChange={(e) =>
+          setType((current) => ({
+            ...current,
+            name: e.target.value,
+          }))
+        }
+        />type
       </div>
       <div className="mb-5 ">
         <label className="text-base text-neutral-500 dark:text-darkMode-gray ">
@@ -100,6 +200,7 @@ const ChangeWorkForm = () => {
               id="500"
               className="cursor-pointer"
               onChange={handleWordCountChange}
+              checked={words=="500"}
             />
             <label htmlFor="500">500</label>
           </div>
@@ -110,6 +211,7 @@ const ChangeWorkForm = () => {
               id="1000"
               className="cursor-pointer"
               onChange={handleWordCountChange}
+              checked={words=="1000"}
             />
             <label htmlFor="1000">1000</label>
           </div>
@@ -120,6 +222,7 @@ const ChangeWorkForm = () => {
               id="1500"
               className="cursor-pointer"
               onChange={handleWordCountChange}
+              checked={words=="1500"}
             />
             <label htmlFor="1500">1500</label>
           </div>
@@ -130,8 +233,10 @@ const ChangeWorkForm = () => {
               id="2000"
               className="cursor-pointer"
               onChange={handleWordCountChange}
+              checked={words=="2000"}
             />
             <label htmlFor="2000">2000</label>
+            
           </div>
           <div className="flex gap-2 text-neutral-500">
             <input
@@ -140,8 +245,9 @@ const ChangeWorkForm = () => {
               id="Other"
               className="cursor-pointer"
               onChange={handleOtherWords}
+              checked={words>2000}
             />
-            <label htmlFor="Other">Other</label>
+            <label htmlFor="Other">Other {words>2000&&`(${words})`}</label>
           </div>
         </div>
         <div className={`${showWordInput ? "" : "hidden"} mt-1`}>
@@ -213,7 +319,7 @@ const ChangeWorkForm = () => {
             </Popover>
           </div>
           <div className="flex flex-wrap gap-4">
-            <TimeInput value={time} onChange={setTime} label="Time" />
+            <TimeInput defaultValue={new Time(11, 45)} value={time} onChange={setTime} label="Time" />
           </div>
         </div>
       </div>
@@ -292,11 +398,12 @@ const ChangeWorkForm = () => {
               <input
                 type="radio"
                 name="status"
-                id="In progress"
+                id="In Progress"
                 className="cursor-pointer"
                 onChange={handleWordStatusChange}
+                checked={status == "In Progress"}
               />
-              <label htmlFor="In progress">In progress</label>
+              <label htmlFor="In Progress">In progress</label>
             </div>
             <div className="flex gap-2 text-neutral-500">
               <input
@@ -305,6 +412,7 @@ const ChangeWorkForm = () => {
                 id="Completed"
                 className="cursor-pointer"
                 onChange={handleWordStatusChange}
+                checked={status == "Completed"}
               />
               <label htmlFor="Completed">Completed</label>
             </div>
@@ -330,6 +438,13 @@ const ChangeWorkForm = () => {
         type="button"
         onClick={() => {
           setShowChangeImagesModal(true);
+          // images zip details
+          setZipDetails({
+            zipName:workDetails&&workDetails.work_code,
+            zipDownloadLink:workDetails&&workDetails.images_zip_url
+          })
+          // storing work to upload files in global state
+          setWorkToUploadFiles(id)
         }}
         className={`py-1
             text-neutral-600 border-neutral-600 bg-transparent hover:bg-neutral-200
@@ -342,6 +457,8 @@ const ChangeWorkForm = () => {
         type="button"
         onClick={() => {
           setShowChangeFilesModal(true);
+          // storing work to upload files in global state
+          setWorkToUploadFiles(id)
         }}
         className={`py-1
             text-neutral-600 border-neutral-600 bg-transparent hover:bg-neutral-200
@@ -351,7 +468,7 @@ const ChangeWorkForm = () => {
         Edit files
       </Button>
       <input
-        onClick={() => {}}
+        // onClick={() => {}}
         className="bg-green-700 hover:bg-green-800 mt-3 rounded-lg text-white flex items-center 
             } p-[0.6rem] cursor-pointer transition-colors duration-300"
         type="submit"

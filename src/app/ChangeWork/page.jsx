@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import PageHeader from "../../SharedComponents/PageHeader";
 import ChangeWorkForm from "./components/ChangeWorkForm";
 import { useStateShareContext } from "../../Context/StateContext";
+import { useAdminContext } from "../../Context/AdminContext";
 import CarouselComponent from "./components/CarouselComponent ";
 import { X } from "lucide-react";
 import { ArrowLeft } from "phosphor-react";
@@ -9,6 +10,7 @@ import Chimp from "../../assets/gpt-redesign-5.webp";
 
 const ChangeWork = () => {
   const { showCarouselModal, setShowCarouselModal } = useStateShareContext();
+  const { workImages } = useAdminContext();
 
   return (
     <div
@@ -30,7 +32,7 @@ const ChangeWork = () => {
       dark:text-darkMode-text bg-transparent flex items-center 
      "
         >
-          <CarouselComponent images={[{ image: Chimp }, { image: Chimp }]} />
+          <CarouselComponent images={workImages} />
           {/* cancel button */}
           <button
             onClick={() => setShowCarouselModal(false)}

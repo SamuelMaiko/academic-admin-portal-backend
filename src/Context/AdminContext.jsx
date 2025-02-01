@@ -17,6 +17,11 @@ const AdminContext = ({ children }) => {
   const [writerName, setWriterName] = useState("");
   const [work, setWork] = useState("");
   const [workCode, setWorkCode] = useState("");
+  const [workImages, setWorkImages] = useState([]);
+  const [workFiles, setWorkFiles] = useState([]);
+  const [zipDetails, setZipDetails] = useState({});
+  const [workToUploadFiles, setWorkToUploadFiles] = useState(null);
+  const [images, setImages] = useState(null);
 
   return (
     <createdAdminContext.Provider
@@ -41,6 +46,11 @@ const AdminContext = ({ children }) => {
         setShowChangeImagesModal,
         showChangeFilesModal,
         setShowChangeFilesModal,
+        workImages, setWorkImages,
+        zipDetails, setZipDetails,
+        workToUploadFiles, setWorkToUploadFiles,
+        workFiles, setWorkFiles,
+        images, setImages
       }}
     >
       {children}

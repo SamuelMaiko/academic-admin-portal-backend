@@ -4,11 +4,13 @@ import { X } from "phosphor-react";
 import { CircleAlert, CloudUpload, Plus } from "lucide-react";
 import EditFilesBody from "./EditFilesBody";
 import { Button } from "keep-react";
+import uploadWorkFiles from "../../CreateWork/api/uploadWorkFiles";
+import {toast} from "react-toastify"
 
 const EditFiles = () => {
-  const { setShowChangeFilesModal } = useAdminContext();
+  const { setShowChangeFilesModal, workFiles, setWorkFiles, workToUploadFiles } = useAdminContext();
   const [loading, setLoading] = useState(false);
-  const [files, setFiles] = useState(null);
+  const [files, setFiles] = useState("");
 
   return (
     <div
@@ -19,11 +21,12 @@ const EditFiles = () => {
     >
       {/* header */}
       <div className="  flex justify-between items-center py-3 px-4 border-b-neutral-300 border-b-[1px]">
-        <p className="text-xl font-semibold">Edit Files</p>
+        <p className="text-xl font-semibold">Edit Files {`(${workFiles&&workFiles.length})`}</p>
         {/* close button */}
         <button
           onClick={() => {
             setShowChangeFilesModal(false);
+            setFiles("")
           }}
           className="rounded-full hover:bg-neutral-200 dark:hover:bg-gray-600 p-2"
         >
@@ -69,6 +72,12 @@ const EditFiles = () => {
               type="submit"
               onClick={(e) => {
                 e.preventDefault();
+                uploadWorkFiles(workToUploadFiles, files)
+                .then(data=>{
+                  setWorkFiles(current=>[...current, ...data])
+                  toast.success("Files uploaded successfully")
+                  setFiles("")
+                })
                 // setShowChangeFilesModal(false);
               }}
               className="bg-blue-500 text-white text-sm hover:bg-blue-600 dark:hover:bg-gray-600
