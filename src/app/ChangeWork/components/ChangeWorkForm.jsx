@@ -2,6 +2,7 @@ import { Textarea } from "keep-react";
 import React, { useEffect, useState } from "react";
 import { format } from "date-fns";
 import { Calendar } from "phosphor-react";
+import {PencilLine} from "lucide-react"
 import {
   Button,
   DatePicker,
@@ -18,8 +19,10 @@ import { parseISO } from "date-fns";
 import formatToISO from "../../CreateWork/helpers/formatToISO";
 import updateWork from "../api/updateWork";
 import { createNewCookie } from "../../../Cookies/Cookie";
+import WorkTypeCard from "../../CreateWork/components/WorkTypeCard"
+import getWorkTypes from "../../CreateWork/api/getWorkTypes"
 
-const ChangeWorkForm = () => {
+const ChangeWorkForm = ({setLoading}) => {
   const {
     writer,
     setWriter,
@@ -37,6 +40,7 @@ const ChangeWorkForm = () => {
   const [workDetails, setWorkDetails] = useState({});
 
   const [type, setType] = useState("");
+  const [workType, setWorkType] = useState("");
   // words to submit
   const [words, setWords] = useState("");
   const [deadlineFromAPI, setDeadlineFromAPI] = useState("2025-03-13T20:00:00+03:00");
@@ -78,6 +82,8 @@ const [time, setTime] = useState(new Time(11, 45));
   const loading = false;
 
   const [selectedWordCount, setSelectedWordCount] = useState("");
+  const [storedTypes, setStoredTypes]=useState([])
+
 
   const handleWordCountChange = (event) => {
     setShowWordInput(false);
@@ -104,6 +110,7 @@ const [time, setTime] = useState(new Time(11, 45));
       // console.log(data.work_code)
       setWorkCode(data.work_code)
       setType(data.type)
+      setWorkType(data.type.id)
       setWords(data.words)
       setComment(data.comment)
       if (data.writer!=null){
@@ -125,6 +132,11 @@ const [time, setTime] = useState(new Time(11, 45));
 
       // storing the files in state
       setWorkFiles(data.files)
+
+      if (data.words>2000){
+        setShowWordInput(true)
+      }
+      setLoading(false)
     }
   )
   },[])
@@ -133,8 +145,7 @@ const [time, setTime] = useState(new Time(11, 45));
     e.preventDefault()
     const data={
       assigned_to: parseInt(writer, 10),
-      
-      type: parseInt(type, 10),
+      type: parseInt(workType, 10),
       words,
       comment,
       deadline: formatToISO(date, time),
@@ -149,9 +160,18 @@ const [time, setTime] = useState(new Time(11, 45));
     })
   }
 
+  // getting the work types
+  useEffect(()=>{
+    getWorkTypes()
+    .then(data=>{
+      setStoredTypes(data)
+      // console.log(data)
+    })
+  },[])
+
   return (
     <form onSubmit={handleSubmit} className="pt-5 w-[58%] pb-14">
-      <div className="mt-1 mb-5">
+      <div className="mt-1 mb-10">
         <label className="text-base text-neutral-500 dark:text-darkMode-gray">
           Work code
         </label>
@@ -167,27 +187,17 @@ const [time, setTime] = useState(new Time(11, 45));
           disabled
         />
       </div>
-      <div className="mt-1 mb-5">
+      <div className="mt-1 mb-10">
         <label className="text-base text-neutral-500 dark:text-darkMode-gray">
           Type*
         </label>
-        <input
-          placeholder="Type"
-          type="text"
-          className="flex mt-2 h-10 w-full rounded-md border border-gray-300 bg-transparent px-3
-                py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1
-                    focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
-          name="type"
-          value={type &&type.name}
-          onChange={(e) =>
-          setType((current) => ({
-            ...current,
-            name: e.target.value,
-          }))
-        }
-        />type
+        <div className="mt-1 flex items-center gap-x-10 gap-y-3 flex-wrap">
+          {
+            storedTypes&& storedTypes.map((type)=> <WorkTypeCard key={type.id} {...type} setWorkType={setWorkType} workType={workType} />)
+          }
+          </div>
       </div>
-      <div className="mb-5 ">
+      <div className="mb-10 ">
         <label className="text-base text-neutral-500 dark:text-darkMode-gray ">
           Words*
         </label>
@@ -263,7 +273,7 @@ const [time, setTime] = useState(new Time(11, 45));
           />
         </div>
       </div>
-      <div className="mb-8">
+      <div className="mb-10">
         <label className="text-base text-neutral-500 dark:text-darkMode-gray">
           Comment
         </label>
@@ -281,7 +291,7 @@ const [time, setTime] = useState(new Time(11, 45));
           />
         </div>
       </div>
-      <div className="mb-8">
+      <div className="mb-10">
         <label className="text-base text-neutral-500 dark:text-darkMode-gray">
           Deadline
         </label>
@@ -323,7 +333,7 @@ const [time, setTime] = useState(new Time(11, 45));
           </div>
         </div>
       </div>
-      <div className="mb-8">
+      <div className="mb-10">
         <label className="text-base text-neutral-500 dark:text-darkMode-gray">
           Writer
         </label>
@@ -370,14 +380,14 @@ const [time, setTime] = useState(new Time(11, 45));
                 setWriterName("");
               }}
               className={` dark:text-darkMode-cardText dark:hover:text-darkMode-cardTextHover py-1
-                    bg-red-500 ext-white  hover:bg-red-600 text-white
+                    bg-orange-500 ext-white  hover:bg-orange  -600 text-white
                     px-4 transition-colors duration-300`}
             >
               Remove
             </Button>
           </div>
         </div>
-        <div className="mb-5 mt-5 ">
+        <div className="mb-10 mt-10 ">
           <label className="text-base text-neutral-500 dark:text-darkMode-gray ">
             Status
           </label>
@@ -447,11 +457,12 @@ const [time, setTime] = useState(new Time(11, 45));
           setWorkToUploadFiles(id)
         }}
         className={`py-1
-            text-neutral-600 border-neutral-600 bg-transparent hover:bg-neutral-200
-            hover:border-neutral-600 hover:text-neutral-600 border-[1px]
-            px-4 transition-colors duration-300`}
+            text-neutral-600 bg-transparent bg-neutral-200 hover:bg-neutral-300
+            hover:text-neutral-600 border-none
+            px-4 transition-colors duration-300 flex items-center gap-3 `}
       >
-        Edit images
+        <PencilLine size={18} />
+        <span>Edit images</span>
       </Button>
       <Button
         type="button"
@@ -461,20 +472,33 @@ const [time, setTime] = useState(new Time(11, 45));
           setWorkToUploadFiles(id)
         }}
         className={`py-1
-            text-neutral-600 border-neutral-600 bg-transparent hover:bg-neutral-200
-            hover:border-neutral-600 hover:text-neutral-600 border-[1px]
-            px-4 transition-colors duration-300 mt-3 `}
+            text-neutral-600 bg-transparent bg-neutral-200 hover:bg-neutral-300
+            hover:text-neutral-600 border-none
+            px-4 transition-colors duration-300 mt-5 flex items-center gap-3 `}
       >
-        Edit files
+        <PencilLine size={18} />
+        <span>Edit files</span>
       </Button>
-      <input
-        // onClick={() => {}}
-        className="bg-green-700 hover:bg-green-800 mt-3 rounded-lg text-white flex items-center 
-            } p-[0.6rem] cursor-pointer transition-colors duration-300"
-        type="submit"
-        value={loading ? "Saving..." : "Save"}
-        disabled={loading}
-      />
+      <div className="flex items-center w-full justify-between mt-10">
+        <input
+          // onClick={() => {}}
+          className="bg-green-700 hover:bg-green-800 rounded-lg text-white flex items-center 
+              } p-[0.6rem] cursor-pointer transition-colors duration-300"
+          type="submit"
+          value={loading ? "Saving..." : "Save"}
+          disabled={loading}
+        />
+        <Button
+          type="button"
+          onClick={() => setShowChooseWriterModal(true)}
+          className={` dark:text-darkMode-cardText dark:hover:text-darkMode-cardTextHover py-[0.6rem]
+                    bg-red-500 hover:bg-red-600 text-white h-full
+                    px-4 transition-colors duration-300`}
+        >
+          Delete work
+        </Button>
+      </div>
+        
     </form>
   );
 };

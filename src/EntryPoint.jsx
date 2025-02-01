@@ -14,7 +14,7 @@ import SpecificUserDetails from "./app/Admin/SpecificUserDetails/page";
 import EditUsers from "./app/Admin/EditUsers/page";
 import EditWork from "./app/Admin/EditWork/page";
 // import DeactivateUserModal from "./app/Admin/UserManagement/components/DeactivateUserModal";
-import DeleteWorkModal from "./app/Admin/WorkManagement/components/DeleteWorkModal";
+import DeleteWorkModal from "./app/ChangeWork/components/DeleteWorkModal";
 import RevisionsDetails from "./app/RevisionsDetails/page";
 // import Revisions from "./app/Revisions/page";
 import SubmitWork from "./app/SubmitWork/page";

@@ -112,7 +112,7 @@ const LoginForm = () => {
   return (
     // <form onSubmit={handleUserLogin} className="lg:w-[35rem] w-full px-5">
     <form
-      onSubmit={() => navigate("/home")}
+      onSubmit={handleUserLogin}
       className="lg:w-[35rem] w-full px-5"
     >
       {success && <p className="text-green-500">{success}</p>}

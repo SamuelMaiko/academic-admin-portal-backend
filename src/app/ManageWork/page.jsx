@@ -8,7 +8,7 @@ const ManageWork = () => {
 
   return (
     <div
-      className={`w-full px-[1rem] md:px-[2rem] ${
+      className={`w-full px-[1rem] md:px-[2rem] pb-[2rem] ${
         darkMode ? "dark" : ""
       } dark:bg-darkMode-body min-h-screen `}
     >
@@ -18,7 +18,7 @@ const ManageWork = () => {
           "Create, assign, edit, or delete work. Manage all tasks effectively from here."
         }
       />{" "}
-      <div>
+      <div className="relative">
         <TableManageWork />
       </div>
     </div>

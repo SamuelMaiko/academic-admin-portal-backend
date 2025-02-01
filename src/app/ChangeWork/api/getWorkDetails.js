@@ -5,7 +5,7 @@ import instance from "../../../axios/instance";
 const getWorkDetails = async (id) => {
     try {
       const response = await instance.get(`/work/${id}/`);
-      console.log(response.data)  
+      // console.log(response.data)  
       return response.data;
     } catch (error) {
       if (error.response && error.response.status) {

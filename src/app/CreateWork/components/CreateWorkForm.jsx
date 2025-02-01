@@ -15,8 +15,10 @@ import { useAdminContext } from "../../../Context/AdminContext";
 import formatToISO from "../helpers/formatToISO";
 import createWork from "../api/createWork";
 import uploadWorkFiles from "../api/uploadWorkFiles";
+import getWorkTypes from "../api/getWorkTypes"
 import { useNavigate } from "react-router-dom";
 import uploadWorkImages from "../api/uploadWorkImages";
+import WorkTypeCard from "./WorkTypeCard"
 
 
 const CreateWorkForm = () => {
@@ -46,6 +48,7 @@ const CreateWorkForm = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [files, setFiles] = useState(null);
   const [images, setImages] = useState(null);
+  const [storedTypes, setStoredTypes]=useState([])
   const navigate = useNavigate()
 
 
@@ -59,9 +62,7 @@ const CreateWorkForm = () => {
     setStatus(event.target.id);
   };
 
-  const handleWorkTypeChange = (event) => {
-    setWorkType(event.target.id);
-  };
+  
 
   const handleOtherWords = () => {
     setShowWordInput(true);
@@ -97,47 +98,31 @@ const CreateWorkForm = () => {
     })
   }
 
+
+  // getting the stored types
+
+  useEffect(()=>{
+    getWorkTypes()
+    .then(data=>{
+      setStoredTypes(data)
+      // console.log(data)
+    })
+  },[])
+
+
   return (
     <form onSubmit={handleSubmit} className="pt-5 w-[58%] pb-14">
-      <div className="mt-1 mb-5">
+      <div className="mt-1 mb-10">
         <label className="text-base text-neutral-500 dark:text-darkMode-gray">
           Type*
         </label>
-        <div className="mt-1 flex items-center gap-10 ">
-            <div className="flex gap-2 text-neutral-500">
-              <input
-                type="radio"
-                name="type"
-                id="1"
-                className="cursor-pointer"
-                onChange={handleWorkTypeChange}
-                checked={workType == "1"}
-              />
-              <label htmlFor="Essay">Essay</label>
-            </div>
-            <div className="flex gap-2 text-neutral-500">
-              <input
-                type="radio"
-                name="type"
-                id="2"
-                className="cursor-pointer"
-                onChange={handleWorkTypeChange}
-              />
-              <label htmlFor="Research Paper">Research Paper</label>
-            </div>
-            <div className="flex gap-2 text-neutral-500">
-              <input
-                type="radio"
-                name="type"
-                id="3"
-                className="cursor-pointer"
-                onChange={handleWorkTypeChange}
-              />
-              <label htmlFor="Reflective Paper">Reflective Paper</label>
-            </div>
-          </div>
+        <div className="mt-1 flex items-center gap-x-10 gap-y-3 flex-wrap ">
+            {
+              storedTypes&& storedTypes.map((type)=> <WorkTypeCard key={type.id} {...type} setWorkType={setWorkType} workType={workType} />)
+            }
+        </div>
       </div>
-      <div className="mb-5 ">
+      <div className="mb-10 ">
         <label className="text-base text-neutral-500 dark:text-darkMode-gray ">
           Words*
         </label>
@@ -208,7 +193,7 @@ const CreateWorkForm = () => {
           />
         </div>
       </div>
-      <div className="mb-8">
+      <div className="mb-10">
         <label className="text-base text-neutral-500 dark:text-darkMode-gray">
           Comment
         </label>
@@ -226,7 +211,7 @@ const CreateWorkForm = () => {
           />
         </div>
       </div>
-        <div className="mb-8">
+        <div className="mb-10">
           <label className="text-base text-neutral-500 dark:text-darkMode-gray">
             Deadline
           </label>
@@ -268,7 +253,7 @@ const CreateWorkForm = () => {
             </div>
           </div>
         </div>
-      <div className="mb-8">
+      <div className="mb-10">
         <label className="text-base text-neutral-500 dark:text-darkMode-gray">
           Writer
         </label>
@@ -316,97 +301,16 @@ const CreateWorkForm = () => {
                 setWriterName("");
               }}
               className={` dark:text-darkMode-cardText dark:hover:text-darkMode-cardTextHover py-1
-              bg-red-500 ext-white  hover:bg-red-600 text-white
+              bg-orange-500 ext-white  hover:bg-orange-600 text-white
               px-4 transition-colors duration-300`}
             >
               Remove
             </Button>
           </div>
         </div>
-        {/* ______________________________________
-        <div className="mb-5 mt-5 ">
-          <label className="text-base text-neutral-500 dark:text-darkMode-gray ">
-            Status
-          </label>
+        
+      </div>
 
-          <div className="mt-1 flex items-center gap-10 ">
-            <div className="flex gap-2 text-neutral-500">
-              <input
-                type="radio"
-                name="status"
-                id="Not started"
-                className="cursor-pointer"
-                onChange={handleWordStatusChange}
-                checked={status == "Not started"}
-              />
-              <label htmlFor="Not started">Not started</label>
-            </div>
-            <div className="flex gap-2 text-neutral-500">
-              <input
-                type="radio"
-                name="status"
-                id="In progress"
-                className="cursor-pointer"
-                onChange={handleWordStatusChange}
-              />
-              <label htmlFor="In progress">In progress</label>
-            </div>
-            <div className="flex gap-2 text-neutral-500">
-              <input
-                type="radio"
-                name="status"
-                id="Completed"
-                className="cursor-pointer"
-                onChange={handleWordStatusChange}
-              />
-              <label htmlFor="Completed">Completed</label>
-            </div>
-          </div>
-        </div>
-        ______________________________________________ */}
-        {/* <div className="mb-5 mt-5 flex items-center gap-5">
-          <input
-            type="checkbox"
-            name="is_submitted"
-            id="submitted"
-            checked={isSubmitted}
-            onChange={() => setIsSubmitted((current) => !current)}
-          />
-          <label
-            htmlFor="submitted"
-            className="text-base text-neutral-500 dark:text-darkMode-gray "
-          >
-            is submitted
-          </label>
-        </div> */}
-      </div>
-      <div className="flex items-center gap-5">
-        <input
-          id="upload_files_input"
-          multiple
-          type="file"
-          onChange={(e) => {
-            setFiles([...e.target.files]);
-            e.target = "";
-          }}
-          className="hidden"
-        />
-        <Button
-          type="button"
-          onClick={() => {
-            document.getElementById("upload_files_input").click();
-          }}
-          className={`py-1
-          text-neutral-600 border-neutral-600 bg-transparent hover:bg-neutral-200
-          hover:border-neutral-600 hover:text-neutral-600 border-[1px]
-          px-4 transition-colors duration-300`}
-        >
-          Upload files
-        </Button>
-        <p className="italic text-gray-500 font-normal text-sm ">
-          {files?.length ?? 0} files uploaded
-        </p>
-      </div>
       <div className="flex items-center gap-5 mt-2">
         <input
           id="upload_images_input"
@@ -425,9 +329,9 @@ const CreateWorkForm = () => {
             document.getElementById("upload_images_input").click();
           }}
           className={`py-1
-            text-neutral-600 border-neutral-600 bg-transparent hover:bg-neutral-200
-            hover:border-neutral-600 hover:text-neutral-600 border-[1px]
-            px-4 transition-colors duration-300`}
+            text-neutral-600 bg-transparent bg-neutral-200 hover:bg-neutral-300
+            hover:text-neutral-600 border-none
+            px-4 transition-colors duration-300 flex items-center gap-3`}
         >
           Upload images
         </Button>
@@ -435,10 +339,39 @@ const CreateWorkForm = () => {
           {images?.length ?? 0} images uploaded
         </p>
       </div>
+      
+      <div className="flex items-center gap-5">
+        <input
+          id="upload_files_input"
+          multiple
+          type="file"
+          onChange={(e) => {
+            setFiles([...e.target.files]);
+            e.target = "";
+          }}
+          className="hidden"
+        />
+        <Button
+          type="button"
+          onClick={() => {
+            document.getElementById("upload_files_input").click();
+          }}
+          className={`py-1
+            text-neutral-600 bg-transparent bg-neutral-200 hover:bg-neutral-300
+            hover:text-neutral-600 border-none
+            px-4 transition-colors duration-300 mt-5 flex items-center gap-3`}
+        >
+          Upload files
+        </Button>
+        <p className="italic text-gray-500 font-normal text-sm ">
+          {files?.length ?? 0} files uploaded
+        </p>
+      </div>
+      
 
       <input
         // onClick={() => {}}
-        className="bg-green-700 hover:bg-green-800 mt-3 rounded-lg text-white flex items-center 
+        className="bg-green-700 hover:bg-green-800 mt-10 rounded-lg text-white flex items-center 
       } p-[0.6rem] cursor-pointer transition-colors duration-300"
         type="submit"
         value={loading ? "Creating..." : "Create"}

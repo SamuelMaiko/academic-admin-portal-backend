@@ -27,9 +27,11 @@ const TableManageWork = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    setLoading(true)
     getWork()
      .then((data) => {
         setWork(data);
+        setLoading(false)
       })
   }, []);
 
@@ -93,9 +95,12 @@ const TableManageWork = () => {
             })} 
         </TableBody>
       </Table>
-      <Loader loading={loading} />
+      {/* <div className="">
+        
+      </div> */}
       <div
-        className={`pb-[8rem] ${
+        className={`pb-[8rem] pt-[6rem] ${
+          // work.length !== 0 || loading ? "  " : "hidden"
           work.length !== 0 || loading ? "hidden  " : ""
         }`}
       >
@@ -104,10 +109,16 @@ const TableManageWork = () => {
           src={darkMode ? UnavailableDark : UnavailableLight}
           alt=""
         />
-        <p className="font-bold text-2xl text-center">No assigned work yet!</p>
+        <p className="font-bold text-2xl text-center">No Work!</p>
         <p className="font-medium text-sm text-center mt-2">
-          Any assigned work will appear here.
+          Any work in the platform will appear here.
         </p>
+      </div>
+      <div className={`absolute bg-[rgba(255,255,255,0.5)] inset-0 h-[80vh] bottom-0 flex flex-col items-center justify-center
+        ${loading?"":"hidden"}
+        `}>
+        <Loader loading={loading} />
+        <h1 className="font-semibold">Loading ...</h1>
       </div>
     </>
   );

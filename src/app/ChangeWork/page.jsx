@@ -6,19 +6,20 @@ import { useAdminContext } from "../../Context/AdminContext";
 import CarouselComponent from "./components/CarouselComponent ";
 import { X } from "lucide-react";
 import { ArrowLeft } from "phosphor-react";
-import Chimp from "../../assets/gpt-redesign-5.webp";
+import Loader from "../../SharedComponents/Loader";
 
 const ChangeWork = () => {
   const { showCarouselModal, setShowCarouselModal } = useStateShareContext();
   const { workImages } = useAdminContext();
+  const [loading, setLoading]=useState(true)
 
   return (
     <div
-      className={`w-full px-[1rem] md:px-[2rem] dark:bg-darkMode-body min-h-screen `}
+      className={`relative w-full px-[1rem] md:px-[2rem] dark:bg-darkMode-body min-h-screen `}
     >
       <PageHeader title="Change work" subTitle={"Edit work details."} />
 
-      <ChangeWorkForm />
+      <ChangeWorkForm setLoading={setLoading}/>
 
       {/* carousel modal */}
       <div
@@ -50,6 +51,13 @@ const ChangeWork = () => {
             <ArrowLeft size={24} />
           </button>
         </div>
+      </div>
+
+      <div className={`absolute bg-[rgba(255,255,255,0.9)] inset-0 bottom-0 flex flex-col items-center pt-[13rem]
+        ${loading?"":"hidden"}
+        `}>
+        <Loader loading={loading} />
+        <h1 className="font-semibold">Loading ...</h1>
       </div>
     </div>
   );
