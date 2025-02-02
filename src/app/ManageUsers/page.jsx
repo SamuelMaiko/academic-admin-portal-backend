@@ -18,7 +18,7 @@ const ManageUsers = () => {
           "Create, edit, delete, or deactivate users. Oversee all user accounts here."
         }
       />
-      <div>
+      <div className="relative">
         <TableManageUsers />
       </div>
     </div>

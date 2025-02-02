@@ -18,38 +18,22 @@ import { useProgressBarContext } from "../../../Context/ProgressBarContext";
 import Loader from "../../../SharedComponents/Loader";
 import TableRowManageUsers from "./TableRowManageUsers";
 import { useNavigate } from "react-router-dom";
+import getAccounts from "../api/getAccounts";
 
 const TableManageUsers = () => {
   const { darkMode } = useStateShareContext();
   const [loading, setLoading] = useState(false);
   const { assignedWork, setAssignedWork } = useProgressBarContext();
   const navigate = useNavigate();
-
-  const fetchAssignedWork = async () => {
-    setLoading(true);
-    try {
-      const response = await instance.get("/work/assigned/");
-      setAssignedWork(response.data);
-    } catch (error) {
-      if (error.response && error.response.status) {
-        const status = error.response.status;
-        const message = error.response.data;
-
-        switch (status) {
-          case 500:
-            toast.error(`Internal server error`);
-            break;
-        }
-      } else {
-        toast.error("An unexpected error occurred. Please try again later.");
-      }
-    } finally {
-      setLoading(false);
-    }
-  };
+  const [accounts, setAccounts] = useState([]);
 
   useEffect(() => {
-    // fetchAssignedWork();
+    setLoading(true);
+    getAccounts().then((data) => {
+      setAccounts(data);
+      setLoading(false);
+      console.log(data);
+    });
   }, []);
   return (
     <>
@@ -61,7 +45,7 @@ const TableManageUsers = () => {
                 Users
               </p>
               <Badge size="sm" color="secondary" className="dark:text-black">
-                {assignedWork.length} items
+                {accounts.length} accounts
               </Badge>
             </div>
             <Button
@@ -96,58 +80,15 @@ const TableManageUsers = () => {
         <TableBody
           className={`divide-gray-25 divide-y ${loading ? "hidden" : ""}`}
         >
-          {/* {assignedWork &&
-            assignedWork.map((work, index) => {
-              return (
-                <TableRowAssignedWork
-                  key={index}
-                  id={work.id}
-                  work_code={work.work_code}
-                  type={work.type}
-                  words={work.words}
-                  deadline={work.deadline}
-                  status={work.status}
-                  read={work.assigned_is_read}
-                  isSubmitted={work.is_submitted}
-                />
-              );
-            })} */}
-          <TableRowManageUsers
-            id={2}
-            work_code="WKghgeu"
-            type="Essay"
-            words={2800}
-            deadline="2024-08-05T14:30:00Z"
-            status="In Progress"
-            read={false}
-            isSubmitted={false}
-          />
-          <TableRowManageUsers
-            id={2}
-            work_code="WKghgeu"
-            type="Essay"
-            words={2800}
-            deadline="2024-08-08T14:30:00Z"
-            status="In Progress"
-            read={false}
-            isSubmitted={false}
-          />
-          <TableRowManageUsers
-            id={2}
-            work_code="WKghgeu"
-            type="Essay"
-            words={2800}
-            deadline="2024-08-20T14:30:00Z"
-            status="In Progress"
-            read={false}
-            isSubmitted={false}
-          />
+          {accounts &&
+            accounts.map((account, index) => (
+              <TableRowManageUsers key={index} {...account} />
+            ))}
         </TableBody>
       </Table>
-      <Loader loading={loading} />
       <div
-        className={`pb-[8rem] ${
-          assignedWork.length !== 0 || loading ? "hidden  " : ""
+        className={`pb-[8rem] pt-[7rem] ${
+          accounts.length !== 0 || loading ? "hidden  " : ""
         }`}
       >
         <img
@@ -155,10 +96,18 @@ const TableManageUsers = () => {
           src={darkMode ? UnavailableDark : UnavailableLight}
           alt=""
         />
-        <p className="font-bold text-2xl text-center">No assigned work yet!</p>
+        <p className="font-bold text-2xl text-center">No user accounts!</p>
         <p className="font-medium text-sm text-center mt-2">
-          Any assigned work will appear here.
+          Any accounts in the system appear here.
         </p>
+      </div>
+      <div
+        className={`absolute bg-[rgba(255,255,255,0.5)] inset-0 h-[80vh] bottom-0 flex flex-col items-center justify-center
+        ${loading ? "" : "hidden"}
+        `}
+      >
+        <Loader loading={loading} />
+        <h1 className="font-semibold">Loading ...</h1>
       </div>
     </>
   );

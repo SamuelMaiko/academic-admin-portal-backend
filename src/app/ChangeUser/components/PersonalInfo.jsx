@@ -7,9 +7,17 @@ const PersonalInfo = ({
   setLastName,
   email,
   setEmail,
+  phoneNumber,
+  setPhoneNumber,
   emailVerified,
   setEmailVerified,
+  role,
+  setRole,
 }) => {
+  const handleRoleChange = (e) => {
+    setRole(e.target.id);
+  };
+
   return (
     <>
       <h1 className="mt-8 bg-blue-500 text-white py-2 px-1 text-md">
@@ -49,7 +57,7 @@ const PersonalInfo = ({
           />
         </div>
       </div>
-      <div className="mb-8">
+      <div className="mb-5">
         <label className="text-base text-neutral-500 dark:text-darkMode-gray">
           Email*
         </label>
@@ -67,10 +75,28 @@ const PersonalInfo = ({
           />
         </div>
       </div>
+      <div className="mb-8">
+        <label className="text-base text-neutral-500 dark:text-darkMode-gray">
+          Phone number*
+        </label>
+        <div className="mt-1">
+          <input
+            placeholder="Phone number"
+            type="text"
+            className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent
+             px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1
+              focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+            name="last_name"
+            value={phoneNumber}
+            onChange={(e) => setPhoneNumber(e.target.value)}
+            required
+          />
+        </div>
+      </div>
       <div className="mb-5 mt-5 flex items-center gap-5">
         <input
           type="checkbox"
-          name="is_submitted"
+          name="isVerified"
           id="submitted"
           onChange={() => setEmailVerified((current) => !current)}
           checked={emailVerified}
@@ -91,22 +117,24 @@ const PersonalInfo = ({
           <div className="flex gap-2 text-neutral-500">
             <input
               type="radio"
-              name="status"
-              id="In progress"
+              name="role"
+              id="Admin"
               className="cursor-pointer"
-              onChange={() => {}}
+              onChange={handleRoleChange}
+              checked={role === "Admin"}
             />
-            <label htmlFor="In progress">Admin</label>
+            <label htmlFor="Admin">Admin</label>
           </div>
           <div className="flex gap-2 text-neutral-500">
             <input
               type="radio"
-              name="status"
-              id="Completed"
+              name="role"
+              id="Writer"
               className="cursor-pointer"
-              onChange={() => {}}
+              onChange={handleRoleChange}
+              checked={role === "Writer"}
             />
-            <label htmlFor="Completed">Writer</label>
+            <label htmlFor="Writer">Writer</label>
           </div>
         </div>
       </div>
