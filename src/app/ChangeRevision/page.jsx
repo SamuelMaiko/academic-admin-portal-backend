@@ -1,25 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import PageHeader from "../../SharedComponents/PageHeader";
 import ChangeRevisionForm from "./components/ChangeRevisionForm";
+import Loader from "../../SharedComponents/Loader";
 
 const ChangeRevision = () => {
+  const [pageLoading, setPageLoading] = useState(false);
+
   return (
     <div
-      className={`w-full px-[1rem] md:px-[2rem] dark:bg-darkMode-body min-h-screen `}
+      className={`relative w-full px-[1rem] md:px-[2rem] dark:bg-darkMode-body min-h-screen `}
     >
       <PageHeader
         title="Change revision"
         subTitle={"Edit created revisions."}
       />
 
-      <ChangeRevisionForm />
+      <ChangeRevisionForm setPageLoading={setPageLoading} />
+
+      {/* loader */}
+      <div
+        className={`absolute bg-[rgba(255,255,255,0.9)] inset-0 bottom-0 flex flex-col items-center pt-[13rem]
+        ${pageLoading ? "" : "hidden"}
+        `}
+      >
+        <Loader loading={pageLoading} />
+        <h1 className="font-semibold">Loading ...</h1>
+      </div>
     </div>
   );
 };
 
 export default ChangeRevision;
-
-// tomorrow
-// submission detail page
-// files and images upload, view and delete for work
-// work around for same state used in create and change of work and revision i.e change work, change writer

@@ -14,13 +14,13 @@ import { TimeInput } from "@nextui-org/react";
 import { Time, parseAbsoluteToLocal } from "@internationalized/date";
 import getWorkDetails from "../api/getWorkDetails";
 import { useParams } from "react-router-dom";
-import { parseISO } from "date-fns";
 import formatToISO from "../../CreateWork/helpers/formatToISO";
 import updateWork from "../api/updateWork";
 import { createNewCookie } from "../../../Cookies/Cookie";
 import WorkTypeCard from "../../CreateWork/components/WorkTypeCard";
 import getWorkTypes from "../../CreateWork/api/getWorkTypes";
 import { useAdminContext } from "../../../Context/AdminContext";
+import extractDate from "../helpers/extractDate";
 
 const ChangeWorkForm = ({ setLoading }) => {
   const {
@@ -54,30 +54,6 @@ const ChangeWorkForm = ({ setLoading }) => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [comment, setComment] = useState("");
   const [status, setStatus] = useState("");
-
-  const extractDate = (isoString) => {
-    if (!isoString || typeof isoString !== "string") {
-      console.error("Invalid date string:", isoString);
-      return new Date(); // Default to today's date if invalid
-    }
-    return parseISO(isoString);
-  };
-
-  const extractTime = (isoString) => {
-    if (!isoString || typeof isoString !== "string") {
-      console.error("Invalid time string:", isoString);
-      return;
-    }
-
-    // Parse the incoming ISO string into a Date object
-    const parsedDate = parseISO(isoString);
-
-    // Format it to UTC "2021-04-07T18:45:22Z"
-    const utcString = format(parsedDate, "yyyy-MM-dd'T'HH:mm:ss'Z'");
-
-    // Now pass this UTC string to parseAbsoluteToLocal
-    return parseAbsoluteToLocal(utcString);
-  };
 
   const [date, setDate] = useState(() => extractDate(deadlineFromAPI));
   const [time, setTime] = useState(new Time(11, 45));

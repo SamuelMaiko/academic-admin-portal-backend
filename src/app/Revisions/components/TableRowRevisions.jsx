@@ -5,35 +5,14 @@ import formatDate from "../../Home/components/datetime/formatDate";
 import { useNotificationContext } from "../../../Context/NotificationContext";
 import { useProgressBarContext } from "../../../Context/ProgressBarContext";
 import CountdownToDate from "../../Home/components/CountdownToDate";
+import { Minus } from "lucide-react";
 
-const TableRowRevisions = ({
-  id,
-  read,
-  status,
-  submit_before,
-  work,
-  reviewer,
-  timeReviewed,
-  submitBefore,
-}) => {
+const TableRowRevisions = ({ id, status, writer, submit_before, work }) => {
   const navigate = useNavigate();
-  const { setNotificationsCount } = useNotificationContext();
-  const { revisions } = useProgressBarContext();
 
-  const navigateToDetails = () => {
-    // if not Read means it will be read soon (by MarkAsRead function in detail page),
-    // so I might as well deduct the counter by one now, right?
-    if (!read) {
-      setNotificationsCount((current) => ({
-        ...current,
-        revisions: current.revisions - 1,
-      }));
-    }
-    navigate(`/revisions/${id}`);
-  };
   return (
     <TableRow
-      onClick={() => navigate("/revisions/1")}
+      onClick={() => navigate(`/revisions/${id}`)}
       className={`bg-white dark:bg-darkMode-cardBg dark:text-white cursor-pointer h-[4rem]`}
     >
       <TableCell>
@@ -41,8 +20,8 @@ const TableRowRevisions = ({
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2">
               <div>
-                <p className="-mb-0.5 text-body-4 font-medium text-metal-600 dark:text-sidebartext-hover">
-                  {/* {work.work_code} */}WKvggd
+                <p className="-mb-0.5 text-body-4 text-metal-600 dark:text-sidebartext-hover font-bold text-[15px]">
+                  {work.work_code}
                 </p>
               </div>
             </div>
@@ -52,18 +31,21 @@ const TableRowRevisions = ({
 
       <TableCell>
         <p className="whitespace-nowrap">
-          {/* {reviewer?.first_name} {reviewer?.last_name} */}
-          John Kimani
+          {writer.id ? (
+            `${writer.first_name} ${writer.last_name}`
+          ) : (
+            <Minus className="ml-[30%]" size={18} />
+          )}
         </p>
       </TableCell>
       <TableCell>
-        <p className="whitespace-nowrap">
-          {formatDate("2024-08-05T14:30:00Z")}
+        <p className="whitespace-nowrap lowercase">
+          {formatDate(submit_before)}
         </p>
       </TableCell>
       <TableCell>
-        <p className="whitespace-nowrap">
-          <CountdownToDate deadline={"2024-08-05T14:30:00Z"} />
+        <p className="whitespace-nowrap lowercase">
+          <CountdownToDate deadline={submit_before} />
         </p>
       </TableCell>
       <TableCell>
@@ -71,12 +53,12 @@ const TableRowRevisions = ({
           <Badge
             showIcon={true}
             className={`${
-              status == "Not started" ? "" : ""
+              status == "Not started" ? "" : "hidden"
             } bg-[#e0e0e0] dark:bg-[#2c2c2c] text-[#333] dark:text-[#ccc] 
                     hover:bg-[#d0d0d0] dark:hover:bg-[#3c3c3c] transition-colors duration-300`}
           >
             {/* {status} */}
-            Not started
+            {status}
           </Badge>
           <Badge
             showIcon={true}

@@ -7,6 +7,7 @@ import instance from "../../axios/instance";
 import { toast } from "react-toastify";
 import { File, X } from "lucide-react";
 import { useProgressBarContext } from "../../Context/ProgressBarContext";
+import getRevisionDetails from "./api/getRevisionDetails";
 
 const RevisionsDetails = () => {
   const [loading, setLoading] = useState(false);
@@ -20,37 +21,38 @@ const RevisionsDetails = () => {
   const { id } = useParams();
   const { revisions } = useProgressBarContext();
 
-  const getRevisionDetails = async () => {
-    setLoading(true);
-    try {
-      const response = await instance.get(`/revisions/${id}/`);
-      setRevisionMessages(response.data.messages);
+  // const getRevisionDetails = async () => {
+  //   setLoading(true);
+  //   try {
+  //     const response = await instance.get(`/revisions/${id}/`);
+  //     setRevisionMessages(response.data.messages);
+  //     console.log(response.data);
 
-      // mark all messages as read
-      markMessagesAsRead();
-    } catch (error) {
-      if (error.response && error.response.status) {
-        const status = error.response.status;
-        const message = error.response.data.error;
+  //     // mark all messages as read
+  //     markMessagesAsRead();
+  //   } catch (error) {
+  //     if (error.response && error.response.status) {
+  //       const status = error.response.status;
+  //       const message = error.response.data.error;
 
-        switch (status) {
-          case 404:
-            console.log(message);
-            break;
-          case 500:
-            toast.error(`Internal server error`);
-            break;
-          default:
-            toast.error(`Error: ${message}`);
-            break;
-        }
-      } else {
-        toast.error("An unexpected error occurred. Please try again later.");
-      }
-    } finally {
-      setLoading(false);
-    }
-  };
+  //       switch (status) {
+  //         case 404:
+  //           console.log(message);
+  //           break;
+  //         case 500:
+  //           toast.error(`Internal server error`);
+  //           break;
+  //         default:
+  //           toast.error(`Error: ${message}`);
+  //           break;
+  //       }
+  //     } else {
+  //       toast.error("An unexpected error occurred. Please try again later.");
+  //     }
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
   const markMessagesAsRead = async () => {
     try {
@@ -87,14 +89,17 @@ const RevisionsDetails = () => {
   }, [revisionMessages]);
 
   useEffect(() => {
-    // getRevisionDetails();
+    setLoading(true);
+    getRevisionDetails(id).then((data) => {
+      setRevisionMessages(data.messages);
+      console.log(data);
+      setLoading(false);
+    });
   }, []);
 
   const unReadMessages = revisionMessages.filter(
     (item) => item.is_read == false && item.is_mine == false
   ).length;
-
-  useEffect(() => {}, []);
 
   return (
     <div

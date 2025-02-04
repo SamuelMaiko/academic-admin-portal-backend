@@ -15,7 +15,8 @@ const AdminContext = ({ children }) => {
   const [showChangeFilesModal, setShowChangeFilesModal] = useState(false);
   const [writer, setWriter] = useState("");
   const [writerName, setWriterName] = useState("");
-  const [work, setWork] = useState("");
+  // used in creating revision
+  const [work, setWork] = useState(null);
   const [workCode, setWorkCode] = useState("");
   const [workImages, setWorkImages] = useState([]);
   const [workFiles, setWorkFiles] = useState([]);

@@ -72,9 +72,7 @@ const CreateWorkForm = () => {
       words,
       type: parseInt(workType, 10),
     };
-    // console.log("TIME:",time)
-    // console.log("DATE:",date)
-    // console.log("DATEsjuid:",formatToISO(date, time))
+
     createWork(data).then((data) => {
       // upload the files to the server
       uploadWorkFiles(data.id, files).then((data) => {

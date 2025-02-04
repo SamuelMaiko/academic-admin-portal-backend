@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useAdminContext } from "../../../Context/AdminContext";
 import { format } from "date-fns";
 import { Calendar } from "phosphor-react";
@@ -11,18 +11,47 @@ import {
 } from "keep-react";
 import { TimeInput } from "@nextui-org/react";
 import { Time, parseAbsoluteToLocal } from "@internationalized/date";
+import { useParams } from "react-router-dom";
+import extractDate from "../../ChangeWork/helpers/extractDate";
+import formatToISO from "../../CreateWork/helpers/formatToISO";
+import updateRevision from "../api/updateRevision";
+import getRevisionDetails from "../../RevisionsDetails/api/getRevisionDetails";
 
-const ChangeRevisionForm = () => {
+const ChangeRevisionForm = ({ setPageLoading }) => {
   const { work, setWork, workCode, setWorkCode, setShowChooseWorkModal } =
     useAdminContext();
   const [date, setDate] = useState(null);
   let [time, setTime] = React.useState(
     parseAbsoluteToLocal("2021-04-07T18:45:22Z")
   );
-  const loading = false;
+  const [loading, setLoading] = useState(false);
+  const { id } = useParams();
+
+  useEffect(() => {
+    setPageLoading(true);
+    getRevisionDetails(id).then((data) => {
+      setWorkCode(data.work.work_code);
+      setWork(data.work.id);
+      setDate(extractDate(data.submit_before));
+      const deadlineDate = new Date(data.submit_before);
+      setTime(new Time(deadlineDate.getHours(), deadlineDate.getMinutes()));
+      setPageLoading(false);
+    });
+  }, []);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setLoading(true);
+    const data = {
+      submit_before: formatToISO(date, time),
+    };
+    updateRevision(id, data).then((data) => {
+      setLoading(false);
+    });
+  };
 
   return (
-    <form className="pt-5 w-[58%] pb-14">
+    <form onSubmit={handleSubmit} className="pt-5 w-[58%] pb-14">
       <div>
         <label className="text-base text-neutral-500 dark:text-darkMode-gray">
           Work
@@ -34,7 +63,7 @@ const ChangeRevisionForm = () => {
             type="text"
             className=" h-10 w-full rounded-md border border-gray-300 bg-transparent hidden
              px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1
-              focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+              focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 "
             name="work"
             value={work}
             onChange={(e) => setWork(e.target.value)}
@@ -47,17 +76,18 @@ const ChangeRevisionForm = () => {
               type="text"
               className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent
             px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1
-            focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+            focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-80"
               name="work_code"
               value={workCode}
               onChange={(e) => setWorkCode(e.target.value)}
+              disabled
             />
           </div>
           <div className="flex gap-2">
             <Button
               type="button"
               onClick={() => setShowChooseWorkModal(true)}
-              className={` dark:text-darkMode-cardText dark:hover:text-darkMode-cardTextHover py-1
+              className={` dark:text-darkMode-cardText dark:hover:text-darkMode-cardTextHover py-1 hidden
               text-white bg-blue-500 dark:bg-darkMode-cardButton
               hover:bg-darkMode-cardButtonHover hover:text-white
               px-4 transition-colors duration-300`}
@@ -70,7 +100,7 @@ const ChangeRevisionForm = () => {
                 setWork(null);
                 setWorkCode("");
               }}
-              className={` dark:text-darkMode-cardText dark:hover:text-darkMode-cardTextHover py-1
+              className={` dark:text-darkMode-cardText dark:hover:text-darkMode-cardTextHover py-1 hidden
               bg-red-500 ext-white  hover:bg-red-600 text-white
               px-4 transition-colors duration-300`}
             >
@@ -123,11 +153,10 @@ const ChangeRevisionForm = () => {
         </div>
       </div>
       <input
-        onClick={() => {}}
         className="bg-green-700 hover:bg-green-800 mt-3 rounded-lg text-white flex items-center 
       } p-[0.6rem] cursor-pointer transition-colors duration-300"
         type="submit"
-        value={loading ? "Creating..." : "Create"}
+        value={loading ? "Saving..." : "Save"}
         disabled={loading}
       />
     </form>

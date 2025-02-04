@@ -1,10 +1,18 @@
 import { X } from "lucide-react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useAdminContext } from "../../../Context/AdminContext";
 import SubmittedWorkListCard from "./SubmittedWorkListCard";
+import getSubmittedWork from "../api/getSubmittedWork";
 
 const SubmittedWorkList = () => {
   const { setShowChooseWorkModal } = useAdminContext();
+  const [submittedWork, setSubmittedWork] = useState([]);
+
+  useEffect(() => {
+    getSubmittedWork().then((data) => {
+      setSubmittedWork(data);
+    });
+  }, []);
   return (
     <div
       className="absolute w-full md:w-[46%] h-[34rem] rounded-lg  md:px-2 left-[50%]
@@ -24,7 +32,10 @@ const SubmittedWorkList = () => {
         </button>
       </div>
       <div>
-        <SubmittedWorkListCard id={1} firstName="Samuel" lastName="Maiko" />
+        {submittedWork &&
+          submittedWork.map((item, index) => (
+            <SubmittedWorkListCard key={index} {...item} />
+          ))}
       </div>
     </div>
   );

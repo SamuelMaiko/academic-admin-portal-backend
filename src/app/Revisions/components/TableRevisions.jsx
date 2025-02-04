@@ -29,7 +29,7 @@ const TableRevisions = () => {
     getRevisions().then((data) => {
       setRevisions(data);
       setLoading(false);
-      console.log(data);
+      // console.log(data);
     });
   }, []);
 
