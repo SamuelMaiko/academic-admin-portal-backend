@@ -12,7 +12,7 @@ const Revisions = () => {
         }
       />
 
-      <div>
+      <div className="relative">
         <TableRevisions />
       </div>
     </div>

@@ -32,7 +32,6 @@ const TableManageUsers = () => {
     getAccounts().then((data) => {
       setAccounts(data);
       setLoading(false);
-      console.log(data);
     });
   }, []);
   return (

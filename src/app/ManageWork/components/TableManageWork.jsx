@@ -27,12 +27,11 @@ const TableManageWork = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    setLoading(true)
-    getWork()
-     .then((data) => {
-        setWork(data);
-        setLoading(false)
-      })
+    setLoading(true);
+    getWork().then((data) => {
+      setWork(data);
+      setLoading(false);
+    });
   }, []);
 
   return (
@@ -92,7 +91,7 @@ const TableManageWork = () => {
                   isSubmitted={work.is_submitted}
                 />
               );
-            })} 
+            })}
         </TableBody>
       </Table>
       {/* <div className="">
@@ -114,9 +113,12 @@ const TableManageWork = () => {
           Any work in the platform will appear here.
         </p>
       </div>
-      <div className={`absolute bg-[rgba(255,255,255,0.5)] inset-0 h-[80vh] bottom-0 flex flex-col items-center justify-center
-        ${loading?"":"hidden"}
-        `}>
+      {/* page loader */}
+      <div
+        className={`absolute bg-[rgba(255,255,255,0.5)] inset-0 h-[80vh] bottom-0 flex flex-col items-center justify-center
+        ${loading ? "" : "hidden"}
+        `}
+      >
         <Loader loading={loading} />
         <h1 className="font-semibold">Loading ...</h1>
       </div>

@@ -36,7 +36,6 @@ const PersonalInfo = ({
           name="first_name"
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
-          required
         />
       </div>
       <div className="mb-5">
@@ -53,7 +52,6 @@ const PersonalInfo = ({
             name="last_name"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
-            required
           />
         </div>
       </div>
@@ -71,7 +69,6 @@ const PersonalInfo = ({
             name="last_name"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            required
           />
         </div>
       </div>
@@ -89,7 +86,6 @@ const PersonalInfo = ({
             name="last_name"
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
-            required
           />
         </div>
       </div>

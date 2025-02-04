@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PersonalInfo from "./PersonalInfo";
-import { Divider } from "keep-react";
+import { Badge, Divider } from "keep-react";
 import ImportantDates from "./ImportantDates";
 import { Time, parseAbsoluteToLocal } from "@internationalized/date";
 import { useAdminContext } from "../../../Context/AdminContext";
@@ -9,10 +9,18 @@ import getAccountDetails from "../api/getAccountDetails";
 import { useParams } from "react-router-dom";
 import updateAccountDetails from "../api/updateAccountDetails";
 import resetUserPassword from "../api/resetUserPassword";
+import activateAccount from "../api/activateAccount";
+import AccountStatus from "./AccountStatus";
 
-const ChangeUserForm = () => {
-  const { setShowDeleteUserModal, setShowDeactivateUserModal } =
-    useAdminContext();
+const ChangeUserForm = ({ onSetLoading }) => {
+  const {
+    setShowDeleteUserModal,
+    setShowDeactivateUserModal,
+    setAccountToDelete,
+    setAccountToDeactivate,
+    isActive,
+    setIsActive,
+  } = useAdminContext();
   const [regNo, setRegNo] = useState("");
   const [changePassLoading, setChangePassLoading] = useState(false);
   const [firstName, setFirstName] = useState("");
@@ -23,10 +31,15 @@ const ChangeUserForm = () => {
   const [role, setRole] = useState("");
   const [lastLoginDate, setLastLoginDate] = useState(null);
   const [dateJoinedDate, setDateJoinedDate] = useState(null);
+  // loading when saving new details
   const [loading, setLoading] = useState(false);
+  const [loadingActivate, setLoadingActivate] = useState(false);
   const { id } = useParams();
 
   useEffect(() => {
+    // loading state for the page Loader
+    onSetLoading(true);
+
     getAccountDetails(id).then((data) => {
       // console.log(data);
       setRegNo(data.registration_number);
@@ -38,6 +51,9 @@ const ChangeUserForm = () => {
       setEmailVerified(data.is_verified);
       setDateJoinedDate(data.date_joined);
       setLastLoginDate(data.last_login);
+      setIsActive(data.is_active);
+      // loading state for the page loader
+      onSetLoading(false);
     });
   }, []);
 
@@ -51,9 +67,12 @@ const ChangeUserForm = () => {
       role,
       is_verified: emailVerified,
     };
+
+    setLoading(true);
     //  api request
     updateAccountDetails(id, data).then((data) => {
-      console.log(data);
+      // console.log(data);
+      setLoading(false);
     });
   };
 
@@ -64,14 +83,23 @@ const ChangeUserForm = () => {
     });
   };
 
+  const handleActivate = () => {
+    setLoadingActivate(true);
+    activateAccount(id).then((data) => {
+      setIsActive(true);
+      setLoadingActivate(false);
+    });
+  };
+
   return (
     <form onSubmit={handleSubmit} className="pt-5 w-[58%] pb-14">
-      <div className="mt-1 mb-5">
+      <AccountStatus isActive={isActive} />
+      <div className="mt-[3rem] mb-5">
         <label className="text-base text-neutral-500 dark:text-darkMode-gray">
           Reg no.
         </label>
         <input
-          placeholder="Regitration number"
+          placeholder="Registration number"
           type="text"
           className="flex mt-2 h-10 w-full rounded-md border border-gray-300 bg-transparent px-3
                 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1
@@ -134,20 +162,37 @@ const ChangeUserForm = () => {
         />
         <div className="flex gap-4">
           <input
-            onClick={() => setShowDeactivateUserModal(true)}
-            className="bg-orange-500 hover:bg-orange-600 mt-3 rounded-lg text-white flex items-center 
-            } p-[0.6rem] cursor-pointer transition-colors duration-300"
+            onClick={handleActivate}
+            className={`bg-blue-500 hover:bg-blue-600 mt-3 rounded-lg text-white flex items-center 
+            } p-[0.6rem] cursor-pointer transition-colors duration-300 ${
+              isActive ? "hidden" : ""
+            }`}
+            type="button"
+            value={loadingActivate ? "Activating..." : "Activate"}
+            disabled={loadingActivate}
+          />
+          <input
+            onClick={() => {
+              setShowDeactivateUserModal(true);
+              setAccountToDeactivate(id);
+            }}
+            className={`bg-orange-500 hover:bg-orange-600 mt-3 rounded-lg text-white flex items-center 
+            } p-[0.6rem] cursor-pointer transition-colors duration-300 ${
+              isActive ? "" : "hidden"
+            }`}
             type="button"
             value={loading ? "Deactivating..." : "Deactivate"}
             disabled={loading}
           />
           <input
-            onClick={() => setShowDeleteUserModal(true)}
+            onClick={() => {
+              setShowDeleteUserModal(true);
+              setAccountToDelete(id);
+            }}
             className="bg-red-700 hover:bg-red-800 mt-3 rounded-lg text-white flex items-center 
           } p-[0.6rem] cursor-pointer transition-colors duration-300"
             type="button"
-            value={loading ? "Deleting..." : "Delete"}
-            disabled={loading}
+            value={"Delete"}
           />
         </div>
       </div>

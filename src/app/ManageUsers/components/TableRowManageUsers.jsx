@@ -46,11 +46,11 @@ const TableRowManageUsers = ({
         <p className="whitespace-nowrap">{last_name}</p>
       </TableCell>
       <TableCell>
-        <p>{email}</p>
+        <p className="lowercase">{email}</p>
       </TableCell>
       <TableCell
         className={`whitespace-nowrap ${
-          role == "Admin" ? "text-[#4caf50]" : ""
+          role == "Admin" ? "text-green-500" : ""
         }`}
       >
         {role}

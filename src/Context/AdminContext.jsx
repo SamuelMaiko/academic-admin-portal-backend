@@ -24,6 +24,10 @@ const AdminContext = ({ children }) => {
   const [images, setImages] = useState(null);
   const [showDeleteWorkModal, setShowDeleteWorkModal] = useState(false);
   const [workToDelete, setWorkToDelete] = useState(null);
+  const [accountToDelete, setAccountToDelete] = useState(null);
+  const [accountToDeactivate, setAccountToDeactivate] = useState(null);
+  // used in the editing user page
+  const [isActive, setIsActive] = useState(null);
 
   return (
     <createdAdminContext.Provider
@@ -62,6 +66,12 @@ const AdminContext = ({ children }) => {
         setShowDeleteWorkModal,
         workToDelete,
         setWorkToDelete,
+        accountToDelete,
+        setAccountToDelete,
+        accountToDeactivate,
+        setAccountToDeactivate,
+        isActive,
+        setIsActive,
       }}
     >
       {children}

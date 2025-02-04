@@ -13,44 +13,24 @@ import TableRowRevisions from "./TableRowRevisions";
 import UnavailableDark from "../../../assets/UnavailableDark.png";
 import UnavailableLight from "../../../assets/UnavailableLight.png";
 import { useStateShareContext } from "../../../Context/StateContext";
-import { toast } from "react-toastify";
-import instance from "../../../axios/instance";
 import { useProgressBarContext } from "../../../Context/ProgressBarContext";
-import { useNotificationContext } from "../../../Context/NotificationContext";
 import { useNavigate } from "react-router-dom";
+import Loader from "../../../SharedComponents/Loader";
+import getRevisions from "../api/getRevisions";
 
 const TableRevisions = () => {
   const { darkMode } = useStateShareContext();
   const [loading, setLoading] = useState(false);
   const { revisions, setRevisions } = useProgressBarContext();
-  const { setNotificationsCount } = useNotificationContext();
   const navigate = useNavigate();
 
-  const fetchRevisions = async () => {
-    setLoading(true);
-    try {
-      const response = await instance.get("/revisions/writer-revisions/");
-      setRevisions(response.data);
-    } catch (error) {
-      if (error.response && error.response.status) {
-        const status = error.response.status;
-        const message = error.response.data;
-
-        switch (status) {
-          case 500:
-            toast.error(`Internal server error`);
-            break;
-        }
-      } else {
-        toast.error("An unexpected error occurred. Please try again later.");
-      }
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
-    // fetchRevisions();
+    setLoading(true);
+    getRevisions().then((data) => {
+      setRevisions(data);
+      setLoading(false);
+      console.log(data);
+    });
   }, []);
 
   return (
@@ -92,39 +72,14 @@ const TableRevisions = () => {
         <TableBody
           className={`divide-gray-25 divide-y ${loading ? "hidden" : ""} `}
         >
-          {/* {revisions &&
+          {revisions &&
             revisions.map((revision, index) => {
-              return (
-                <TableRowRevisions
-                  key={index}
-                  id={revision.id}
-                  reviewer={revision.reviewer}
-                  status={revision.status}
-                  timeReviewed={revision.created_at}
-                  work={revision.work}
-                  submitBefore={revision.submit_before}
-                  read={revision.is_read}
-                  revisions={revisions}
-                  setRevisions={setRevisions}
-                />
-                );
-                })} */}
-          <TableRowRevisions
-          // key={index}
-          // id={revision.id}
-          // reviewer={revision.reviewer}
-          // status={revision.status}
-          // timeReviewed={revision.created_at}
-          // work={revision.work}
-          // submitBefore={revision.submit_before}
-          // read={revision.is_read}
-          // revisions={revisions}
-          // setRevisions={setRevisions}
-          />
+              return <TableRowRevisions key={index} {...revision} />;
+            })}
         </TableBody>
       </Table>
       <div
-        className={`pb-[8rem] ${
+        className={`pb-[8rem] pt-[6rem] ${
           revisions.length !== 0 || loading ? "hidden" : ""
         } `}
       >
@@ -135,8 +90,17 @@ const TableRevisions = () => {
         />
         <p className="font-bold text-2xl text-center">No revisions yet!</p>
         <p className="font-medium text-sm text-center mt-2">
-          Any revisions for your work will appear here.
+          The revisions you make for work will appear here.
         </p>
+      </div>
+      {/* page loader */}
+      <div
+        className={`absolute bg-[rgba(255,255,255,0.5)] inset-0 h-[80vh] bottom-0 flex flex-col items-center justify-center
+        ${loading ? "" : "hidden"}
+        `}
+      >
+        <Loader loading={loading} />
+        <h1 className="font-semibold">Loading ...</h1>
       </div>
     </>
   );

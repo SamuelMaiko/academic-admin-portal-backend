@@ -13,12 +13,10 @@ const Submissions = () => {
       } dark:bg-darkMode-body min-h-screen `}
     >
       <PageHeader
-        title="Manage Users"
-        subTitle={
-          "Create, edit, delete, or deactivate users. Oversee all user accounts here."
-        }
+        title="Submissions"
+        subTitle={"Review and manage submitted work from writers"}
       />
-      <div>
+      <div className="relative">
         <TableSubmissions />
       </div>
     </div>
