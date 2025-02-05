@@ -16,10 +16,22 @@ import { useProgressBarContext } from "../../../Context/ProgressBarContext";
 import { useNotificationContext } from "../../../Context/NotificationContext";
 import { useNavigate } from "react-router-dom";
 import TableRowWriterProficiency from "./TableRowWriterProficiency";
+import getUsersPerformance from "../api/getUsersPerformance";
+import Loader from "../../../SharedComponents/Loader";
 
-const TableWriterProficiency = () => {
+const TableWriterProficiency = ({ loading, setLoading }) => {
   const { darkMode } = useStateShareContext();
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(true);
+  const [writersProficiency, setWritersProficiency] = useState([]);
+
+  useEffect(() => {
+    setLoading(true);
+    getUsersPerformance().then((data) => {
+      // console.log(data);
+      setWritersProficiency(data);
+      setLoading(false);
+    });
+  }, []);
 
   return (
     <>
@@ -49,8 +61,10 @@ const TableWriterProficiency = () => {
         <TableBody
           className={`divide-gray-25 divide-y ${loading ? "hidden" : ""} `}
         >
-          <TableRowWriterProficiency />
-          <TableRowWriterProficiency />
+          {writersProficiency &&
+            writersProficiency.map((writersProficiency, index) => (
+              <TableRowWriterProficiency key={index} {...writersProficiency} />
+            ))}
         </TableBody>
       </Table>
       <div className={`pb-[8rem] hidden`}>

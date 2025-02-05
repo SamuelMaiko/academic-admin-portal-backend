@@ -20,9 +20,8 @@ const SubmissionsDetail = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    // getSubmissionDetails();
+    setLoading(true);
     getSubmissionDetails(id).then((data) => {
-      setLoading(true);
       setComment(data.message);
       setFile({
         file_name: data.file,
@@ -43,12 +42,12 @@ const SubmissionsDetail = () => {
       <div>
         {/* comment form */}
         <p className="my-2 font-semibold text-lg">
-          {submissionDetails.work.work_code}
+          {submissionDetails.work && submissionDetails.work.work_code}
         </p>
         <CommentForm
           comment={comment}
           setComment={setComment}
-          work={submissionDetails.work}
+          work={submissionDetails && submissionDetails.work}
         />
         <div className="flex flex-col gap-5 mt-[3rem] ">
           <h3 className="font-medium ">File</h3>
