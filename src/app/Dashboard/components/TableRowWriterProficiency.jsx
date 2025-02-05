@@ -9,8 +9,8 @@ const TableRowWriterProficiency = ({}) => {
   return (
     <TableRow
       onClick={() => {}}
-      className={` dark:text-white cursor-pointer 
-      bg-blue-100 hover:bg-blue-200 dark:bg-blue-700 hover:dark:bg-blue-800 h-[4rem]`}
+      // bg-blue-100 hover:bg-blue-200 dark:bg-blue-700 hover:dark:bg-blue-800
+      className={` dark:text-white cursor-pointer h-[4rem]`}
     >
       <TableCell>
         <div className="flex items-center gap-3">

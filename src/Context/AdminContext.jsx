@@ -29,6 +29,8 @@ const AdminContext = ({ children }) => {
   const [accountToDeactivate, setAccountToDeactivate] = useState(null);
   // used in the editing user page
   const [isActive, setIsActive] = useState(null);
+  const [showNavBar, setShowNavBar] = useState(true);
+  const [workBeingRevised, setWorkBeingRevised] = useState({});
 
   return (
     <createdAdminContext.Provider
@@ -73,6 +75,10 @@ const AdminContext = ({ children }) => {
         setAccountToDeactivate,
         isActive,
         setIsActive,
+        showNavBar,
+        setShowNavBar,
+        workBeingRevised,
+        setWorkBeingRevised,
       }}
     >
       {children}

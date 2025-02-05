@@ -133,16 +133,20 @@ const Dashboard = () => {
         /> */}
       </div>
       <div
-        className="flex flex-col md:flex-row justify-between gap-4 pt-[2rem] md:pt-[3rem]
+        // className="flex flex-col md:flex-row justify-between gap-4 pt-[2rem] md:pt-[3rem]
+        className="hidden flex-col md:flex-row justify-between gap-4 pt-[2rem] md:pt-[3rem]
        bg-gray-100 dark:bg-darkMode-bars px-[1rem] md:px-[2rem] pb-[3rem]"
       >
         {/* left square with trophy */}
         <OverallWritersScore />
-        {/* right square with graph*/}
+        right square with graph
         <WorkCompletedGraph />
       </div>
-      <h1 className="font-semibold text-xl pl-[2rem]">Writers Proficiency</h1>
-      <div className="p-5 w-full bg-transparent ">
+      <h1 className="font-semibold text-xl pl-[2rem] mt-[3rem]">
+        Writers Proficiency
+      </h1>
+      {/* <div className="p-5 w-full bg-transparent "> */}
+      <div className="p-5 w-full bg-transparent">
         <TableWriterProficiency />
       </div>
     </div>

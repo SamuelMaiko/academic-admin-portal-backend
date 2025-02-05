@@ -16,6 +16,7 @@ const SubmitMessage = ({
   setRevisionMessages,
   messageEndRef,
   setDeleting,
+  markMessagesAsRead,
 }) => {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
@@ -56,6 +57,8 @@ const SubmitMessage = ({
         );
       });
       // navigate(-1);
+      // marking messages as read
+      markMessagesAsRead();
     } catch (error) {
       if (error.response && error.response.status) {
         const status = error.response.status;

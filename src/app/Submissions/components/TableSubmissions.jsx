@@ -20,12 +20,12 @@ const TableSubmissions = () => {
   const { darkMode } = useStateShareContext();
   const [loading, setLoading] = useState(false);
   const [submittedWork, setSubmittedWork] = useState([]);
-  const [isClaimed, setIsClaimed] = useState(false);
 
   useEffect(() => {
     setLoading(true);
     getSubmissions().then((data) => {
       setSubmittedWork(data);
+      // console.log(data);
       setLoading(false);
     });
   }, []);

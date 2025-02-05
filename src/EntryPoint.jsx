@@ -56,12 +56,13 @@ import ChangeRevision from "./app/ChangeRevision/page";
 import EditImagesModal from "./app/ChangeWork/components/EditImagesModal";
 import EditFilesModal from "./app/ChangeWork/components/EditFilesModal";
 import Dashboard from "./app/Dashboard/page";
+import { useAdminContext } from "./Context/AdminContext";
+import RevisionChatBar from "./app/RevisionsDetails/components/RevisionChatBar";
 
 const EntryPoint = () => {
-  const { showEditInfoModal, darkMode, showEditPFPModal } =
+  const { showEditInfoModal, darkMode, showEditPFPModal, setFilters } =
     useStateShareContext();
-  const { pathname } = useLocation();
-  const { setFilters } = useStateShareContext();
+  const { showNavBar, setShowNavBar } = useAdminContext();
   // storing the filters in local storage if none during app launch
   useEffect(() => {
     const filterAvailable = JSON.parse(localStorage.getItem("filters"));
@@ -104,7 +105,8 @@ const EntryPoint = () => {
           className=" w-full h-full flex-1 overflow-y-scroll scrollble"
         >
           <ScrollToTop scrollableRef={scrollableRef} />
-          <NavBar />
+          {showNavBar ? <NavBar /> : <RevisionChatBar />}
+
           <Routes>
             <Route path="/home" element={<Home />} />
             <Route path="/assigned-work" element={<AssignedWork />} />

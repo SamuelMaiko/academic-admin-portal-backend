@@ -5,6 +5,7 @@ import React from "react";
 const Block = ({ title, value, icon }) => {
   return (
     <div
+      onClick={() => alert("coming soon ...")}
       className={`w-full flex flex-col gap-4 h-[9.3rem] rounded-xl p-4 
     shadow-[2px_2px_10px_rgba(0,0,0,0.08)] bg-white dark:bg-darkMode-cardBg
     border-[2.3px] transition-colors duration-300

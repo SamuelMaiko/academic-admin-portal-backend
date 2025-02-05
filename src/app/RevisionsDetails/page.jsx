@@ -8,9 +8,11 @@ import { toast } from "react-toastify";
 import { File, X } from "lucide-react";
 import { useProgressBarContext } from "../../Context/ProgressBarContext";
 import getRevisionDetails from "./api/getRevisionDetails";
+import { useAdminContext } from "../../Context/AdminContext";
+import NoMessagesIcon from "./components/NoMessagesIcon";
 
 const RevisionsDetails = () => {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [revisionMessages, setRevisionMessages] = useState([]);
   const [deleting, setDeleting] = useState(false);
   const [file, setFile] = useState(null);
@@ -20,39 +22,7 @@ const RevisionsDetails = () => {
   const unReadMessagesRef = useRef(null);
   const { id } = useParams();
   const { revisions } = useProgressBarContext();
-
-  // const getRevisionDetails = async () => {
-  //   setLoading(true);
-  //   try {
-  //     const response = await instance.get(`/revisions/${id}/`);
-  //     setRevisionMessages(response.data.messages);
-  //     console.log(response.data);
-
-  //     // mark all messages as read
-  //     markMessagesAsRead();
-  //   } catch (error) {
-  //     if (error.response && error.response.status) {
-  //       const status = error.response.status;
-  //       const message = error.response.data.error;
-
-  //       switch (status) {
-  //         case 404:
-  //           console.log(message);
-  //           break;
-  //         case 500:
-  //           toast.error(`Internal server error`);
-  //           break;
-  //         default:
-  //           toast.error(`Error: ${message}`);
-  //           break;
-  //       }
-  //     } else {
-  //       toast.error("An unexpected error occurred. Please try again later.");
-  //     }
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
+  const { setWorkBeingRevised, setShowNavBar } = useAdminContext();
 
   const markMessagesAsRead = async () => {
     try {
@@ -91,10 +61,18 @@ const RevisionsDetails = () => {
   useEffect(() => {
     setLoading(true);
     getRevisionDetails(id).then((data) => {
+      setWorkBeingRevised(data.work);
+      setShowNavBar(false);
       setRevisionMessages(data.messages);
-      console.log(data);
+      // console.log(data);
       setLoading(false);
     });
+
+    const timer = setTimeout(() => {
+      markMessagesAsRead();
+    }, 1000);
+
+    return () => clearTimeout(timer);
   }, []);
 
   const unReadMessages = revisionMessages.filter(
@@ -107,14 +85,20 @@ const RevisionsDetails = () => {
        flex flex-col justify-between bg-purple-50
      dark:bg-darkMode-bars dark:text-black md:gap-0 overflow-hidden"
     >
-      <div className="relative h-[80%] ">
+      <div className="relative h-[88%] overflow-hidden">
         <div
           className={` scrollble h-full w-full pt-2 ${
             file === null && image === null
               ? "overflow-y-scroll"
               : "overflow-hidden"
-          }`}
+          } `}
         >
+          {/* shown when no messages are available */}
+          <NoMessagesIcon
+            revisionMessages={revisionMessages}
+            loading={loading}
+          />
+
           <div ref={messageRef}></div>
           {revisionMessages.map((message, index) => {
             if ((!message.is_mine && message.is_read) || message.is_mine)
@@ -125,6 +109,7 @@ const RevisionsDetails = () => {
                   revisionMessages={revisionMessages}
                   setRevisionMessages={setRevisionMessages}
                   setDeleting={setDeleting}
+                  markMessagesAsRead={markMessagesAsRead}
                 />
               );
           })}
@@ -152,6 +137,7 @@ const RevisionsDetails = () => {
                   revisionMessages={revisionMessages}
                   setRevisionMessages={setRevisionMessages}
                   setDeleting={setDeleting}
+                  markMessagesAsRead={markMessagesAsRead}
                 />
               );
           })}
@@ -243,6 +229,7 @@ const RevisionsDetails = () => {
           setRevisionMessages={setRevisionMessages}
           messageEndRef={messageEndRef}
           setDeleting={setDeleting}
+          markMessagesAsRead={markMessagesAsRead}
         />
       </div>
     </div>

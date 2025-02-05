@@ -26,6 +26,7 @@ const RevisionComment = ({
   revisionMessages,
   setRevisionMessages,
   setDeleting,
+  markMessagesAsRead,
 }) => {
   const [openDropDown, setOpenDropDown] = useState(false);
   const [showChevronDown, setShowChevronDown] = useState(false);
@@ -85,7 +86,12 @@ const RevisionComment = ({
   }, []);
 
   return (
-    <div className={`flex ${is_mine ? "justify-end" : "justify-start"} `}>
+    <div
+      onClick={() => {
+        markMessagesAsRead().then((data) => {});
+      }}
+      className={`flex ${is_mine ? "justify-end" : "justify-start"} `}
+    >
       {" "}
       {/* container of the single message - WIDTH fits the WHOLE PAGE  */}
       {/* container of the single message - WIDTH FITS THE MESSAGE */}

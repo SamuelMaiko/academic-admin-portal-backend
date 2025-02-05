@@ -39,8 +39,14 @@ const TableRowSubmissions = ({
       onClick={() => {
         navigate(`/submissions/${id}`);
       }}
-      className={`bg-white dark:bg-darkMode-cardBg dark:text-white cursor-pointer
-         hover:bg-lightmode-cardBgHover h-[4rem]`}
+      // bg-white dark:bg-darkMode-cardBg dark:text-white
+      className={`
+        ${
+          !isClaimed
+            ? "bg-blue-100 hover:bg-blue-200 dark:bg-blue-700 hover:dark:bg-blue-800"
+            : "hover:bg-lightmode-cardBgHover"
+        }
+        cursor-pointerhover:bg-lightmode-cardBgHover h-[4rem]`}
     >
       <TableCell>
         <div className="flex items-center gap-3">
@@ -84,7 +90,7 @@ const TableRowSubmissions = ({
                  text-white ${
                    isClaimed
                      ? "bg-gray-400 hover:bg-gray-400 text-white cursor-not-allowed px-4"
-                     : "bg-blue-500 dark:bg-darkMode-cardButton hover:bg-darkMode-cardButtonHover px-7"
+                     : "bg-blue-500 dark:bg-darkMode-cardButton hover:bg-blue-400 px-7"
                  } transition-colors duration-300`}
             // disabled={isClaimed}
           >

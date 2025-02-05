@@ -7,13 +7,27 @@ import { useProgressBarContext } from "../../../Context/ProgressBarContext";
 import CountdownToDate from "../../Home/components/CountdownToDate";
 import { Minus } from "lucide-react";
 
-const TableRowRevisions = ({ id, status, writer, submit_before, work }) => {
+const TableRowRevisions = ({
+  id,
+  status,
+  writer,
+  submit_before,
+  work,
+  is_read,
+}) => {
   const navigate = useNavigate();
 
   return (
     <TableRow
+      // bg-white dark:bg-darkMode-cardBg dark:text-white
       onClick={() => navigate(`/revisions/${id}`)}
-      className={`bg-white dark:bg-darkMode-cardBg dark:text-white cursor-pointer h-[4rem]`}
+      className={`
+        ${
+          !is_read
+            ? "bg-blue-100 hover:bg-blue-200 dark:bg-blue-700 hover:dark:bg-blue-800"
+            : "hover:bg-lightmode-cardBgHover"
+        }
+        cursor-pointer h-[4rem]`}
     >
       <TableCell>
         <div className="flex items-center gap-3">
@@ -85,11 +99,11 @@ const TableRowRevisions = ({ id, status, writer, submit_before, work }) => {
           <Button
             onClick={(e) => {
               e.stopPropagation();
-              navigate("/revisions/1/change");
+              navigate(`/revisions/${id}/change`);
             }}
             className={` dark:text-darkMode-cardText
                dark:hover:text-darkMode-cardTextHover py-2 bg-blue-500
-                dark:bg-darkMode-cardButton hover:bg-darkMode-cardButtonHover px-7
+                dark:bg-darkMode-cardButton hover:bg-blue-400 px-7
                  text-white  transition-colors duration-300`}
           >
             Edit
