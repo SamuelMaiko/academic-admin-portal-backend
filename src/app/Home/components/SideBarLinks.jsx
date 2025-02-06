@@ -55,25 +55,6 @@ const SideBarLinks = () => {
           } w-full`}
         />
       </div>
-      {/* work management section button */}
-      <div>
-        <Button
-          onClick={() => navigate("/manage-work")}
-          icon={
-            /^\/manage-work(\/|$)/.test(pathname) ? (
-              <FileText size={20} />
-            ) : (
-              <FileText size={20} weight="fill" />
-            )
-          }
-          title={"Work"}
-          className={`${
-            /^\/manage-work(\/|$)/.test(pathname)
-              ? " dark:text-white text-black"
-              : "dark:text-neutral-400 text-neutral-400"
-          } w-full`}
-        />
-      </div>
       {/* user management section button */}
       <div>
         <Button
@@ -97,27 +78,26 @@ const SideBarLinks = () => {
           } w-full`}
         />
       </div>
-      {/* registration codes section button */}
-      {/* <div>
+      {/* work management section button */}
+      <div>
         <Button
-          onClick={() => navigate("/reg-codes")}
+          onClick={() => navigate("/manage-work")}
           icon={
-            /^\/reg-codes(\/|$)/.test(pathname) ? (
-              <LayoutDashboard
-                size={20}
-                weight="fill"
-                style={{ fill: "currentColor", stroke: "none" }}
-              />
+            /^\/manage-work(\/|$)/.test(pathname) ? (
+              <FileText size={20} />
             ) : (
-              <LayoutDashboard size={20} weight="fill" />
+              <FileText size={20} weight="fill" />
             )
           }
-          title={"Registration Codes"}
+          title={"Work"}
           className={`${
-            /^\/reg-codes(\/|$)/.test(pathname) ? "text-neutral-500" : ""
-          } w-full whitespace-nowrap`}
+            /^\/manage-work(\/|$)/.test(pathname)
+              ? " dark:text-white text-black"
+              : "dark:text-neutral-400 text-neutral-400"
+          } w-full`}
         />
-      </div> */}
+      </div>
+
       {/* revisions section button */}
       <div className="relative">
         <Button

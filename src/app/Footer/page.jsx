@@ -37,7 +37,7 @@ const Footer = ({ side = false }) => {
         className={` bg-neutral-200 dark:bg-darkMode-bars text-gray-500 dark:text-darkMode-gray
            py-5 h-screen w-full px-[2rem]`}
       >
-        <div className="grid grid-cols-2 px-2 gap-y-1 text-xs font-semibold pt-4">
+        <div className="grid grid-cols-2 px-2 gap-y-1 text-[11px] lg:text-[12px] font-semibold pt-4">
           {FOOTER_LINKS.map((footer_link, index) => {
             return (
               <p key={index}>
@@ -52,7 +52,9 @@ const Footer = ({ side = false }) => {
             );
           })}
         </div>
-        <p className=" text-[12px] mt-4 pl-2">Techwave Writers &copy; 2024</p>
+        <p className=" text-[11px] lg:text-[12px] mt-4 pl-2">
+          Techwave Writers &copy; 2024
+        </p>
       </div>
     );
   }
@@ -71,7 +73,7 @@ const Footer = ({ side = false }) => {
         } bg-neutral-200 dark:bg-darkMode-bars text-gray-500 dark:text-darkMode-gray
          md:h-[5rem] w-full md:px-[2rem] pb-4 md:pb-0`}
       >
-        <div className="md:flex grid grid-cols-3 justify-around px-8 text-xs font-semibold pt-4">
+        <div className="md:flex grid grid-cols-3 justify-around px-8 text-[11px] lg:text-[12px] font-semibold pt-4">
           {FOOTER_LINKS.map((footer_link, index) => {
             return (
               <p key={index}>

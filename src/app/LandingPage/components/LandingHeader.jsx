@@ -18,28 +18,28 @@ const LandingHeader = () => {
         pt-[34vh] lg:pt-[12vh] md:pt-0 mt-[8.5rem] md:mt-[16rem] lg:mt-0 w-[100%] mx-auto md:w-[48rem] md:bg-transparent
          flex-wrap lg:flex-nowrap lg:m-0 lg:left-24 -top-[8.5rem] lg:top-80  lg:w-[45%] px-[2rem] md:px-0 "
         >
-          <p className="md:text-[2.5rem] text-[30px] font-bold font-opensans lg:font-opensans text-chocolate">
+          <p className="md:text-[2.5rem] text-[20px] font-bold font-opensans lg:font-opensans text-chocolate">
             Welcome to Techwave writers self-Service Portal
           </p>
-          <small className="text-[1rem] leading-9">
+          <small className="md:text-[1rem] text-[14px] leading-9">
             Manage your work effortlessly—track assignments, submit tasks, and
             stay updated in real-time.
           </small>
           <div className="md:ml-20 lg:ml-0 flex flex-col items md:block">
             <button
               onClick={() => navigate("/login")}
-              className="rounded-3xl lg:hidden px-5 py-2 mt-4 bg-green-600 text-white text-[19px]
+              className="rounded-3xl lg:hidden px-5 py-2 mt-4 bg-green-600 text-white text-[15px] md:text-[19px]
              hover:bg-green-700 transition-colors duration-300"
             >
               Login
             </button>
-            <button
+            {/* <button
               onClick={handleCreateAccount}
               className="md:ml-7 rounded-3xl px-5 py-2 mt-4 border-chocolate border-[1px] text-chocolate
                font-semibold text-[19px] lg:text-[1.05rem] hover:bg-gray-200 transition-colors duration-300"
             >
               Create account
-            </button>
+            </button> */}
           </div>
         </section>
 

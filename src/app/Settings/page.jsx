@@ -28,7 +28,7 @@ const Settings = () => {
       ref={settingsRef}
       className={`${
         settingsOpen ? "" : "translate-x-[22rem] "
-      }  transition-transform duration-500 bg-white w-[20rem] shadow-[-2px_-2px_11px_rgba(0,0,0,0.3)]
+      }  transition-transform duration-500 bg-white w-[80%] lg:w-[20rem] shadow-[-2px_-2px_11px_rgba(0,0,0,0.3)]
      dark:shadow-gray-500 pt-[5rem] p-2 h-screen fixed right-0 top-0 bottom-0 z-40
      dark:bg-darkMode-bars
      `}

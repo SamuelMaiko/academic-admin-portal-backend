@@ -53,28 +53,6 @@ const ButtonLinks = () => {
           } w-full text-[12px] `}
         />
       </div>
-      {/* work management section button */}
-      <div>
-        <Button
-          onClick={() => {
-            navigate("/manage-work");
-            setShowMobileSideBar(false);
-          }}
-          icon={
-            /^\/manage-work(\/|$)/.test(pathname) ? (
-              <FileText size={18} />
-            ) : (
-              <FileText size={18} weight="fill" />
-            )
-          }
-          title={"Work"}
-          className={`${
-            /^\/manage-work(\/|$)/.test(pathname)
-              ? " dark:text-white text-black"
-              : "dark:text-neutral-400 text-neutral-400"
-          } w-full text-[12px]`}
-        />
-      </div>
       {/* user management section button */}
       <div>
         <Button
@@ -101,27 +79,29 @@ const ButtonLinks = () => {
           } w-full text-[12px]`}
         />
       </div>
-      {/* registration codes section button */}
-      {/* <div>
+      {/* work management section button */}
+      <div>
         <Button
-          onClick={() => navigate("/reg-codes")}
+          onClick={() => {
+            navigate("/manage-work");
+            setShowMobileSideBar(false);
+          }}
           icon={
-            /^\/reg-codes(\/|$)/.test(pathname) ? (
-              <LayoutDashboard
-                size={18}
-                weight="fill"
-                style={{ fill: "currentColor", stroke: "none" }}
-              />
+            /^\/manage-work(\/|$)/.test(pathname) ? (
+              <FileText size={18} />
             ) : (
-              <LayoutDashboard size={18} weight="fill" />
+              <FileText size={18} weight="fill" />
             )
           }
-          title={"Registration Codes"}
+          title={"Work"}
           className={`${
-            /^\/reg-codes(\/|$)/.test(pathname) ? "text-neutral-500" : ""
-          } w-full text-[12px] whitespace-nowrap`}
+            /^\/manage-work(\/|$)/.test(pathname)
+              ? " dark:text-white text-black"
+              : "dark:text-neutral-400 text-neutral-400"
+          } w-full text-[12px]`}
         />
-      </div> */}
+      </div>
+
       {/* revisions section button */}
       <div className="relative">
         <Button

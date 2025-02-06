@@ -46,20 +46,11 @@ const NavBar = () => {
       className={`w-full h-[5rem] px-[1rem] md:px-[2rem] flex items-center justify-between sticky
          top-0 z-40 bg-white dark:bg-darkMode-bars dark:text-darkMode-text`}
     >
-      <p className="text-[14px] lg:text-xl ">
+      <p className="text-[14px] lg:text-[17px] ">
         <span className="font-normal">{greeting}</span>{" "}
         <span className="uppercase font-bold">{firstName}!</span>
       </p>
       <div className="flex items-center gap-2 lg:gap-4">
-        {/* settings button */}
-        <Button
-          onClick={() => setSettingsOpen(true)}
-          buttonType="roundedIconBtn"
-          className="dark:hover:bg-gray-600 dark:hover:text-white"
-        >
-          <Gear size={22} className="hidden lg:block" />
-          <Gear size={19} className="lg:hidden block" />
-        </Button>
         {/* sidebar toggle button -- mobile view */}
         <Button
           onClick={() => setShowMobileSideBar(true)}
@@ -68,6 +59,15 @@ const NavBar = () => {
         >
           <List size={22} className="hidden lg:block" />
           <List size={19} className="lg:hidden block" />
+        </Button>
+        {/* settings button */}
+        <Button
+          onClick={() => setSettingsOpen(true)}
+          buttonType="roundedIconBtn"
+          className="dark:hover:bg-gray-600 dark:hover:text-white"
+        >
+          <Gear size={22} className="hidden lg:block" />
+          <Gear size={19} className="lg:hidden block" />
         </Button>
 
         {/* notifications icon */}

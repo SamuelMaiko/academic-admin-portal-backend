@@ -88,7 +88,11 @@ const App = () => {
                 </div>
                 {/* <MobileNavBar /> */}
                 {/* <EntryPoint /> */}
-                <ToastContainer position="bottom-left" hideProgressBar />
+                <ToastContainer
+                  position="bottom-left"
+                  hideProgressBar
+                  autoClose={1000}
+                />
               </AdminContext>
             </NotificationContext>
           </ProgressBarContext>

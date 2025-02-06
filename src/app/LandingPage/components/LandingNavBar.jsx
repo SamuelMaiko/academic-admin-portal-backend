@@ -35,7 +35,7 @@ const LandingNavBar = () => {
 
   return (
     <div
-      className=" z-10 w-full h-[5.7rem] md:bg-secondary text-tcolor 
+      className=" z-10 w-full h-[4.3rem] lg:h-[5rem] md:bg-secondary text-tcolor 
     shadow-[0_2px_8px_rgba(0,0,0,0.1)] lg:shadow-[0_0_4px_rgba(0,0,0,0.2)]"
     >
       <div className="w-full md:w-[90%] h-full mx-auto flex justify-between items-center lg:pr-6 ">
@@ -87,7 +87,8 @@ const LandingNavBar = () => {
           {/* nav menu icon */}
           {/* show during forgot password process */}
           <button className={`${AreasToHideMobileNavBar ? "hidden" : ""} p-1`}>
-            <List size={32} />
+            {/* <List size={32} /> */}
+            <List size={25} className="lg:hidden block" />
           </button>
           {/* show during forgot password process */}
           <button
