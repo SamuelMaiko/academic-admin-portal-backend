@@ -8,12 +8,12 @@ const NoMessagesIcon = ({ revisionMessages, loading }) => {
         revisionMessages.length == 0 && !loading ? "" : "hidden"
       }`}
     >
-      <div className="h-[25rem] w-[35rem] opacity-[0.5]">
+      <div className="h-auto md:h-[25rem] w-full md:w-[35rem] opacity-[0.5]">
         <img src={noMessages} alt="no messages png" className="h-full w-full" />
       </div>
       <div className="text-center">
-        <p className="text-2xl font-bold ">No messages yet</p>
-        <p className="text-[17px]">
+        <p className="text-[18px] md:text-2xl font-bold ">No messages yet</p>
+        <p className="text-[14px] md:text-[17px]">
           Any messages related to the revision will appear here. Start
           messaging.
         </p>

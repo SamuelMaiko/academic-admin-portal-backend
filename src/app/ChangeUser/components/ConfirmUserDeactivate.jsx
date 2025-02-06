@@ -21,7 +21,7 @@ const ConfirmUserDeactivate = () => {
 
   return (
     <div
-      className="absolute w-[31rem]  px-2 left-[50%] translate-x-[-50%] top-[30%] rounded-lg
+      className="absolute w-full md:w-[31rem] px-2 left-[50%] translate-x-[-50%] top-[21%] md:top-[30%] md:rounded-lg
      bg-bgcolor dark:bg-darkMode-body"
     >
       <div className="text-[1.3rem]  px-4 flex items-center justify-center py-3 ">
@@ -36,17 +36,17 @@ const ConfirmUserDeactivate = () => {
       </div>
       <Divider className="dark:hidden" color="primary" />
       <Divider className="hidden dark:block" color="secondary" />
-      <div className="flex justify-center mt-2 pt-[2rem]">
+      <div className="flex justify-center mt-2 md:pt-[2rem]">
         <div className="size-[3.5rem] rounded-full bg-orange-100 grid place-items-center text-orange-500">
           <TriangleAlert size={27} />
         </div>
       </div>
       {/* central section*/}
-      <div className="p-3 h-[10rem]">
-        <p className="text-lg md:text-xl font-semibold text-center dark:text-white text-gray-700">
+      <div className="p-3 h-[7rem] md:h-[10rem]">
+        <p className="text-[18px] md:text-xl font-semibold text-center dark:text-white text-gray-700">
           Are you sure ?
         </p>
-        <p className="text-center dark:text-white text-gray-700 text-md">
+        <p className="text-center dark:text-white text-gray-700 text-[14px] md:text-md">
           This will temporarily disable the user's access. They won't be able to
           log in until reactivated.
         </p>

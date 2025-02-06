@@ -92,7 +92,7 @@ const ChangeUserForm = ({ onSetLoading }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="pt-5 w-[58%] pb-14">
+    <form onSubmit={handleSubmit} className="pt-5 w-full md:w-[58%] pb-14">
       <AccountStatus isActive={isActive} />
       <div className="mt-[3rem] mb-5">
         <label className="text-base text-neutral-500 dark:text-darkMode-gray">
@@ -181,7 +181,8 @@ const ChangeUserForm = ({ onSetLoading }) => {
               isActive ? "" : "hidden"
             }`}
             type="button"
-            value={loading ? "Deactivating..." : "Deactivate"}
+            // value={loading ? "Deactivating..." : "Deactivate"}
+            value="Deactivate"
             disabled={loading}
           />
           <input

@@ -143,7 +143,7 @@ const ChangeWorkForm = ({ setLoading }) => {
   }, []);
 
   return (
-    <form onSubmit={handleSubmit} className="pt-5 w-[58%] pb-14">
+    <form onSubmit={handleSubmit} className="pt-5 w-full md:w-[58%] pb-14">
       <div className="mt-1 mb-10">
         <label className="text-base text-neutral-500 dark:text-darkMode-gray">
           Work code
@@ -181,7 +181,7 @@ const ChangeWorkForm = ({ setLoading }) => {
           Words*
         </label>
 
-        <div className="mt-1 flex items-center gap-10 ">
+        <div className="mt-1 flex items-center gap-x-10 gap-y-2 flex-wrap">
           <div className="flex gap-2 text-neutral-500">
             <input
               type="radio"
@@ -375,7 +375,7 @@ const ChangeWorkForm = ({ setLoading }) => {
             Status
           </label>
 
-          <div className="mt-1 flex items-center gap-10 ">
+          <div className="mt-1 flex items-center gap-x-10 gap-y-2 flex-wrap ">
             <div className="flex gap-2 text-neutral-500">
               <input
                 type="radio"

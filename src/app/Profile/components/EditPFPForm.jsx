@@ -77,7 +77,7 @@ const EditPFPForm = () => {
 
   return (
     <div
-      className="absolute w-full md:w-[56%] h-[25rem] md:h-[30rem] rounded-lg  px-2 left-[50%]
+      className="absolute w-full md:w-[43%] h-[25rem] md:h-[30rem] md:rounded-lg  px-2 left-[50%]
  translate-x-[-50%] top-[5%] bg-bgcolor dark:bg-darkMode-body
   dark:text-darkMode-text     
  "
@@ -85,7 +85,7 @@ const EditPFPForm = () => {
       <div>
         {/* header */}
         <div className="flex justify-between items-center py-3 px-4 ">
-          <p className="text-xl font-semibold">Profile photo</p>
+          <p className="text-[18px] lg:text-xl font-semibold">Profile photo</p>
           {/* cancel button */}
           <button
             onClick={() => setShowEditPFPModal(false)}
@@ -125,7 +125,10 @@ const EditPFPForm = () => {
             />
             <button
               onClick={() => document.getElementById("fileInput").click()}
-              className="h-full px-2 flex flex-col items-center justify-center hover:bg-neutral-200 dark:hover:bg-gray-600 font-medium py-1"
+              className={`h-full px-2 flex flex-col items-center justify-center hover:bg-neutral-200
+               dark:hover:bg-gray-600 font-medium py-1 ${
+                 selectedFile ? "hidden" : ""
+               }`}
             >
               <span>
                 <ImageSquare size={25} weight="fill" />

@@ -13,7 +13,7 @@ const RevisionChatBar = () => {
       className={`w-full h-[5rem] px-[1rem] md:px-[2rem] flex  items-center justify-between sticky
          top-0 z-40 bg-white dark:bg-darkMode-bars dark:text-darkMode-text`}
     >
-      <div className="flex items-center gap-3">
+      <div className="flex items-center justify-between md:justify-normal gap-3">
         <Button
           onClick={() => {}}
           buttonType="roundedIconBtn"
@@ -25,7 +25,9 @@ const RevisionChatBar = () => {
             alt=""
           />
         </Button>
-        <p className="font-medium text-2xl">Revision Chat</p>
+        <p className="font-medium text-lg md:text-2xl whitespace-nowrap">
+          Revision Chat
+        </p>
       </div>
       <div
         onClick={() => {
@@ -34,14 +36,14 @@ const RevisionChatBar = () => {
           );
           setShowNavBar(true);
         }}
-        className="flex flex-col items-center cursor-pointer mr-[20%]"
+        className="flex flex-col items-end md:items-center cursor-pointer md:mr-[20%]"
       >
-        <p className="font-bold text-lg">
+        <p className="font-bold text-[15px] md:text-lg">
           {workBeingRevised && workBeingRevised.work_code}
         </p>
-        <p className="text-[15px]">Tap here for work info</p>
+        <p className="text-[13px] md:text-[15px]">Tap here for work info</p>
       </div>
-      <div></div>
+      <div className="hidden md:block"></div>
     </div>
   );
 };

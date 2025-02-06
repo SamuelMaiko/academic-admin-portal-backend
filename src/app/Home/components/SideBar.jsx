@@ -18,7 +18,7 @@ const SideBar = () => {
       ${shrinkSideBar ? "w-[5rem]" : "w-[17vw]"} ${
         darkMode ? "sidebar" : ""
       } transition-width duration-500 pt-[2rem] dark:bg-darkMode-bars
-       dark:text-darkMode-text hidden md:block h-full`}
+       dark:text-darkMode-text hidden md:block h-[calc(100vh-10rem)]`}
     >
       <div
         className={`flex ${
@@ -38,11 +38,12 @@ const SideBar = () => {
           </div>
         </div>
 
-        {/* sidebar toggle button */}
+        {/* sidebar toggle button  */}
+        {/* HIDDEN FOR NOW */}
         <Button
           onClick={() => setShrinkSideBar((current) => !current)}
           buttonType="roundedIconBtn"
-          className={`dark:text-white dark:hover:text-white dark:hover:bg-gray-600 `}
+          className={`dark:text-white dark:hover:text-white dark:hover:bg-gray-600 hidden `}
         >
           <List size={24} />
         </Button>

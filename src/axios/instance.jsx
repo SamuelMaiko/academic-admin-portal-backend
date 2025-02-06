@@ -2,12 +2,14 @@ import axios from "axios";
 import { getCookie, createNewCookie, deleteCookie } from "../Cookies/Cookie";
 
 const instance = axios.create({
-  baseURL: "http://localhost:8000/api",
+  // baseURL: "http://localhost:8000/api",
+  baseURL: "http://10.6.1.123:8000/api",
   // baseURL: "https://techwavewriters.pythonanywhere.com/api/",
   timeout: 10000,
   headers: {
     "Content-Type": "application/json",
-    Authorization: `Bearer ${getCookie("access_token")}`,
+    // Authorization: `Bearer ${getCookie("access_token")}`,
+    Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MTA2NDI1LCJpYXQiOjE3Mzg3NTk5MjUsImp0aSI6IjY4OGQyNzVmYjAyNzQ3MWY4MDg2MzdmMjdhN2RiZDI4IiwidXNlcl9pZCI6M30.E2cey_tiM2KhELqcioV30TcSJYqv9Gl_OJ6CO0LE_JQ`,
   },
 });
 

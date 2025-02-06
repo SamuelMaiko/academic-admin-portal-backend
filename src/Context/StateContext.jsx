@@ -15,7 +15,6 @@ const StateContext = ({ children }) => {
   const [showDeactivateModal, setShowDeactivateModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showDeleteWorkModal, setShowDeleteWorkModal] = useState(false);
-  const [showEditInfoModal, setShowEditInfoModal] = useState(false);
   const [darkMode, setDarkMode] = useLocalStorage("darkMode", false);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [showEditPFPModal, setShowEditPFPModal] = useState(false);
@@ -105,8 +104,6 @@ const StateContext = ({ children }) => {
         setShowDeleteModal,
         showDeleteWorkModal,
         setShowDeleteWorkModal,
-        showEditInfoModal,
-        setShowEditInfoModal,
         darkMode,
         setDarkMode,
         settingsOpen,

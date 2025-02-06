@@ -3,14 +3,13 @@ import { toast } from "react-toastify";
 import instance from "../../../axios/instance";
 import { useProgressBarContext } from "../../../Context/ProgressBarContext";
 import { useStateShareContext } from "../../../Context/StateContext";
+import updateDetails from "../api/updateDetails";
 
 const SaveButton = ({
   firstName,
   lastName,
-  bio,
   phoneNumber,
   email,
-  linkedIn,
   county,
   country,
 }) => {
@@ -19,56 +18,34 @@ const SaveButton = ({
   const { setShowEditInfoModal, setFirstName, setLastName } =
     useStateShareContext();
 
-  const handleUpdateDetails = async () => {
+  const handleUpdate = () => {
     setLoading(true);
-    try {
-      const response = await instance.put("/profile/update/", {
-        first_name: firstName,
-        last_name: lastName,
-        bio,
-        phone_number: phoneNumber,
-        email,
-        linkedin: linkedIn,
-        country,
-        county,
-      });
-      setProfile((current) => ({ ...current, ...response.data }));
-      setContactInfo((current) => ({ ...current, ...response.data }));
-      setFirstName(response.data.first_name);
-      setLastName(response.data.last_name);
-      toast.success("Details saved.");
-      setShowEditInfoModal(false);
-    } catch (error) {
-      if (error.response && error.response.status) {
-        const status = error.response.status;
-        const message = error.response.data;
+    const updatedData = {
+      first_name: firstName,
+      last_name: lastName,
+      phone_number: phoneNumber,
+      email,
+      country,
+      county,
+    };
+    updateDetails(updatedData).then((data) => {
+      setProfile((current) => ({ ...current, ...data }));
+      setContactInfo((current) => ({ ...current, ...data }));
+      setFirstName(data.first_name);
+      setLastName(data.last_name);
+      toast.success("Details saved.", { autoClose: 2000 });
 
-        switch (status) {
-          case 400:
-            console.log(message);
-            break;
-          case 500:
-            toast.error(`Internal server error`);
-            break;
-        }
-      } else {
-        toast.error(
-          "An unexpected error occurred. Please try again later.",
-          error
-        );
-      }
-    } finally {
       setLoading(false);
-    }
+    });
   };
   return (
     <button
-      onClick={handleUpdateDetails}
+      onClick={handleUpdate}
       type="button"
       className="bg-blue-500 hover:bg-blue-400 transition-colors duration-300
          dark:bg-darkMode-cardButton dark:hover:bg-darkMode-cardButtonHover
           dark:text-darkMode-cardButtonT dark:hover:text-darkMode-cardButtonTHov
-           rounded-2xl font-semibold  py-1 px-5 text-white"
+           font-semibold  py-2 lg:py-4 px-7 lg:px-10 text-white uppercase mt-14"
       disabled={loading}
     >
       {loading ? "Saving..." : "Save"}

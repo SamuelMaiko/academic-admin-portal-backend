@@ -60,9 +60,9 @@ const RevisionsDetails = () => {
 
   useEffect(() => {
     setLoading(true);
+    setShowNavBar(false);
     getRevisionDetails(id).then((data) => {
       setWorkBeingRevised(data.work);
-      setShowNavBar(false);
       setRevisionMessages(data.messages);
       // console.log(data);
       setLoading(false);

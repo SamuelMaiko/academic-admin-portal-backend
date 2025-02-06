@@ -6,15 +6,14 @@ import getWriters from "../api/getWriters";
 
 const WritersList = () => {
   const { setShowChooseWriterModal } = useAdminContext();
-  const [writersList, setWritersList]=useState()
+  const [writersList, setWritersList] = useState();
 
-  useEffect(()=>{
-    getWriters()
-    .then(data => setWritersList(data))
-  },[])
+  useEffect(() => {
+    getWriters().then((data) => setWritersList(data));
+  }, []);
   return (
     <div
-      className="absolute w-full md:w-[46%] h-[34rem] rounded-lg  md:px-2 left-[50%]
+      className="absolute w-full md:w-[46%] h-[34rem] md:rounded-lg  md:px-2 left-[50%]
  translate-x-[-50%] top-[50%] translate-y-[-50%] bg-bgcolor dark:bg-darkMode-body
   dark:text-darkMode-text     
  "
@@ -31,12 +30,10 @@ const WritersList = () => {
         </button>
       </div>
       <div>
-        {
-          writersList && writersList.map((writer, index)=>{
-            return <WriterListCard key={index} writer={writer} />
-          })
-        }
-        
+        {writersList &&
+          writersList.map((writer, index) => {
+            return <WriterListCard key={index} writer={writer} />;
+          })}
       </div>
     </div>
   );

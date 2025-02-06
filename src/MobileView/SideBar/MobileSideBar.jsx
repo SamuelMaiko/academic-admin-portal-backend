@@ -18,8 +18,6 @@ import ButtonLinks from "./ButtonLinks";
 const MobileSideBar = () => {
   const { showMobileSideBar, setShowMobileSideBar, darkMode } =
     useStateShareContext();
-  const navigate = useNavigate();
-  const { pathname } = useLocation();
 
   const sideBarRef = useRef(null);
 
@@ -50,18 +48,18 @@ const MobileSideBar = () => {
         buttonType="roundedIconBtn"
         className={`dark:text-white dark:hover:text-white dark:hover:bg-gray-600 absolute right-4 top-2`}
       >
-        <X size={24} />
+        <X size={20} />
       </Button>
       {/* logo */}
       <div className="h-[2.5rem] ml-2 mt-[3.7rem] ">
         <img
-          className="w-[10rem] h-full object-cover object-center"
+          className="w-[9rem] h-full object-cover object-center"
           src={darkMode ? LogoDark : LogoLight}
           alt=""
         />
       </div>
       {/* profile preview */}
-      <ProfilePreview />
+      {/* <ProfilePreview /> */}
       {/* button links */}
       <ButtonLinks />
     </div>

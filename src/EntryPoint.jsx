@@ -1,25 +1,21 @@
 import React, { useEffect, useRef } from "react";
-import { Route, Routes, Outlet, useLocation } from "react-router-dom";
+import {
+  Route,
+  Routes,
+  Outlet,
+  useLocation,
+  useParams,
+} from "react-router-dom";
 import Home from "./app/Home/page";
 import NotFound from "./app/NotFound/page";
 import AssignedWork from "./app/AssignedWork/page";
 import NavBar from "./app/Home/components/NavBar";
 import SideBar from "./app/Home/components/SideBar";
 import UptakenWork from "./app/UptakenWork/page";
-import UserManagement from "./app/Admin/UserManagement/page";
-import WorkManagement from "./app/Admin/WorkManagement/page";
-import CreateUsers from "./app/Admin/CreateUsers/page";
-// import CreateWork from "./app/Admin/CreateWork/page";
-import SpecificUserDetails from "./app/Admin/SpecificUserDetails/page";
-import EditUsers from "./app/Admin/EditUsers/page";
-import EditWork from "./app/Admin/EditWork/page";
-// import DeactivateUserModal from "./app/Admin/UserManagement/components/DeactivateUserModal";
 import DeleteWorkModal from "./app/ChangeWork/components/DeleteWorkModal";
 import RevisionsDetails from "./app/RevisionsDetails/page";
-// import Revisions from "./app/Revisions/page";
 import SubmitWork from "./app/SubmitWork/page";
 import Profile from "./app/Profile/page";
-import EditInfoModal from "./app/Profile/components/EditInfoModal";
 import { useStateShareContext } from "./Context/StateContext";
 import WorkDetail from "./app/WorkDetail/page";
 import Settings from "./app/Settings/page";
@@ -32,7 +28,6 @@ import SideBarModal from "./MobileView/SideBar/SideBarModal";
 import TransparentModal from "./MobileView/SideBar/TransparentModal";
 import ChangePassword from "./app/ChangePassword/page";
 import SubmissionsDetail from "./app/SubmissionsDetail/page";
-// import Analytics from "./app/Analytics/page";
 import DeleteAccountModal from "./app/Settings/components/DeleteAccountModal";
 import DeactivateAccountModal from "./app/Settings/components/DeactivateAccountModal";
 import ScrollToTop from "./SharedComponents/ScrollToTop ";
@@ -60,8 +55,7 @@ import { useAdminContext } from "./Context/AdminContext";
 import RevisionChatBar from "./app/RevisionsDetails/components/RevisionChatBar";
 
 const EntryPoint = () => {
-  const { showEditInfoModal, darkMode, showEditPFPModal, setFilters } =
-    useStateShareContext();
+  const { darkMode, showEditPFPModal, setFilters } = useStateShareContext();
   const { showNavBar, setShowNavBar } = useAdminContext();
   // storing the filters in local storage if none during app launch
   useEffect(() => {
@@ -87,15 +81,17 @@ const EntryPoint = () => {
   }, []);
 
   const scrollableRef = useRef(null);
+  // const regex = /^\/revisions\/\d+$/;
+  // const { pathname } = useParams();
   return (
     <div className={``}>
       <div
         // preventing scrolling on modal open
         className={`${
-          showEditInfoModal | showEditPFPModal ? " overflow-hidden" : ""
+          showEditPFPModal ? " overflow-hidden" : ""
         }  flex justify-between gap-0 font-opensans ${
           darkMode ? "dark" : ""
-        } dark:bg-darkMode-bars h-[calc(100vh-0.5rem)] w-full overflow-hidden`}
+        } dark:bg-darkMode-bars h-[calc(100vh-0.0rem)] w-full overflow-hidden`}
       >
         <SideBar />
         {/* <div className=" w-fit overflow-x-hidden"></div> */}
@@ -105,6 +101,9 @@ const EntryPoint = () => {
         >
           <ScrollToTop scrollableRef={scrollableRef} />
           {showNavBar ? <NavBar /> : <RevisionChatBar />}
+          {/* <RevisionChatBar /> */}
+          {/* <NavBar /> */}
+          {/* {regex.test(pathname) ? <NavBar /> : <RevisionChatBar />} */}
 
           <Routes>
             <Route path="/home" element={<Home />} />
@@ -163,7 +162,6 @@ const EntryPoint = () => {
         {/* <DeactivateUserModal /> */}
         {/* <DeleteUserModal /> */}
         <DeleteWorkModal />
-        <EditInfoModal />
         <Settings />
         <EditPFPModal />
         <DeleteProfilePhotoModal />

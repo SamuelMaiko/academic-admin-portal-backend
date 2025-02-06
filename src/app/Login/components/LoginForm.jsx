@@ -41,6 +41,7 @@ const LoginForm = () => {
 
       createNewCookie("access_token", response.data.access);
       createNewCookie("refresh_token", response.data.refresh);
+      // alert("access_token", response.data.access);
 
       // setting first name, last name and imageURL in LOCAL STORAGE
       setFirstName(response.data.user.first_name);

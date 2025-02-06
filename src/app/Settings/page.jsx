@@ -41,7 +41,7 @@ const Settings = () => {
       >
         <X size={22} />
       </button>
-      <ProfileInformation />
+      {/* <ProfileInformation /> */}
       <DarkModeSetting />
       <AccountManagement />
     </div>

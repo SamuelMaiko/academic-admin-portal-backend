@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useStateShareContext } from "../../../Context/StateContext";
 import Vini from "../../../assets/Default_pfp.jpg";
 import { useNotificationContext } from "../../../Context/NotificationContext";
+import { Bell } from "lucide-react";
 
 const NavBar = () => {
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ const NavBar = () => {
     imageURL,
     firstName,
     lastName,
+
     getDetails,
   } = useStateShareContext();
   const { notificationsCount, getNotificationsCount } =
@@ -34,9 +36,9 @@ const NavBar = () => {
     // getNotificationsCount();
 
     // getting details if cleared from LOCAL STORAGE
-    if (firstName === "" || lastName === "") {
-      // getDetails();
-    }
+    getDetails();
+    // if (firstName === "" || lastName === "") {
+    // }
   }, []);
 
   return (
@@ -44,17 +46,18 @@ const NavBar = () => {
       className={`w-full h-[5rem] px-[1rem] md:px-[2rem] flex  items-center justify-between sticky
          top-0 z-40 bg-white dark:bg-darkMode-bars dark:text-darkMode-text`}
     >
-      <p className="text-xl font-bold">
+      <p className="text-[17px] lg:text-xl font-bold">
         {greeting} {firstName}!
       </p>
-      <div className="flex items-center gap-2">
+      <div className="flex items-center  lg:gap-2">
         {/* settings button */}
         <Button
           onClick={() => setSettingsOpen(true)}
           buttonType="roundedIconBtn"
           className="dark:hover:bg-gray-600 dark:hover:text-white"
         >
-          <Gear size={22} />
+          <Gear size={22} className="hidden lg:block" />
+          <Gear size={18} className="lg:hidden block" />
         </Button>
         {/* sidebar toggle button -- mobile view */}
         <Button
@@ -62,13 +65,15 @@ const NavBar = () => {
           buttonType="roundedIconBtn"
           className="dark:hover:bg-gray-600 dark:hover:text-white md:hidden"
         >
-          <List size={22} />
+          <List size={22} className="hidden lg:block" />
+          <List size={18} className="lg:hidden block" />
         </Button>
 
         {/* notifications icon */}
+        {/* desktop */}
         <div
           onClick={() => navigate("/notifications")}
-          className="notification"
+          className="notification hidden lg:block"
         >
           <div className="relative bell-container">
             <div className="bell border-[2.17px] border-black dark:border-white before:bg-black after:bg-black dark:before:bg-white dark:after:bg-white"></div>
@@ -80,11 +85,26 @@ const NavBar = () => {
             </div>
           </div>
         </div>
+        {/* mobile notification icon */}
+        <Button
+          onClick={() => navigate("/notifications")}
+          buttonType="roundedIconBtn"
+          className="relative dark:hover:bg-gray-600 dark:hover:text-white md:hidden"
+        >
+          <Bell size={19} className="lg:hidden block" />
+          <div
+            className="absolute top-[0.3rem] right-[0.3rem] size-[13px] flex items-center
+              justify-center font-semibold bg-red-500 text-white rounded-full text-[10px]"
+          >
+            <span>{notificationsCount.notifications}2</span>
+          </div>
+        </Button>
+
         {/* user profile button */}
         <Button
-          // onClick={() => navigate("/profile")}
+          onClick={() => navigate("/profile")}
           buttonType="roundedIconBtn"
-          className="dark:hover:bg-gray-600 size-[2.1rem] ml-1 p-0 overflow-hidden bg-black dark:hover:text-white hidden"
+          className="dark:hover:bg-gray-600 size-[1.8rem] md:size-[2.1rem] ml-1 p-0 overflow-hidden bg-black dark:hover:text-white "
         >
           <img
             className="w-full h-full object-cover object-top"

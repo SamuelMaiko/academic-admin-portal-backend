@@ -37,8 +37,8 @@ const CreateUserForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="pt-5 w-[58%]">
-      <div className="mt-1 mb-5">
+    <form onSubmit={handleSubmit} className="pt-5 w-full md:w-[58%]">
+      <div className="mt-1 mb-5 ">
         <label className="text-base text-neutral-500 dark:text-darkMode-gray">
           First name*
         </label>
@@ -137,7 +137,7 @@ const CreateUserForm = () => {
           </div>
         </div>
       </div>
-      <p className="text-red-500 mb-4 font-medium text-[15px]">
+      <p className="text-red-500 mb-4 font-medium text-[13px] md:text-[15px]">
         The registration number is assigned automatically after creation.
       </p>
 
