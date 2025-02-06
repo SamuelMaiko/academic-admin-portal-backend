@@ -102,10 +102,10 @@ const CreateWorkForm = () => {
   return (
     <form onSubmit={handleSubmit} className="pt-5 w-full md:w-[58%] pb-14">
       <div className="mt-1 mb-10">
-        <label className="text-base text-neutral-500 dark:text-darkMode-gray">
+        <label className="text-[14px] lg:text-[15px] text-neutral-500 dark:text-darkMode-gray">
           Type*
         </label>
-        <div className="mt-1 flex items-center gap-x-10 gap-y-2 flex-wrap ">
+        <div className="mt-1 flex items-center gap-x-10 gap-y-2 flex-wrap text-[14px] lg:text-[15px] ">
           {storedTypes &&
             storedTypes.map((type) => (
               <WorkTypeCard
@@ -118,11 +118,11 @@ const CreateWorkForm = () => {
         </div>
       </div>
       <div className="mb-10 ">
-        <label className="text-base text-neutral-500 dark:text-darkMode-gray ">
+        <label className="text-[14px] lg:text-[15px] text-neutral-500 dark:text-darkMode-gray ">
           Words*
         </label>
 
-        <div className="mt-1 flex items-center gap-x-10 gap-y-2 flex-wrap ">
+        <div className="mt-1 flex items-center gap-x-10 gap-y-2 flex-wrap text-[14px] lg:text-[15px]">
           <div className="flex gap-2 text-neutral-500">
             <input
               type="radio"
@@ -189,13 +189,13 @@ const CreateWorkForm = () => {
         </div>
       </div>
       <div className="mb-10">
-        <label className="text-base text-neutral-500 dark:text-darkMode-gray">
+        <label className="text-[14px] lg:text-[15px] text-neutral-500 dark:text-darkMode-gray">
           Comment
         </label>
         <div className="mt-1">
           <Textarea
             className="bg-transparent rounded-md border dark:bg-transparent border-gray-300 dark:border-gray-300 
-             px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1
+             px-3 py-2 text-[14px] lg:text-[15px] placeholder:text-gray-400 focus:outline-none focus:ring-1
              focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
             id="comment"
             placeholder="Comment"
@@ -207,16 +207,16 @@ const CreateWorkForm = () => {
         </div>
       </div>
       <div className="mb-10">
-        <label className="text-base text-neutral-500 dark:text-darkMode-gray">
+        <label className="text-[14px] lg:text-[15px] text-neutral-500 dark:text-darkMode-gray">
           Deadline
         </label>
-        <div className="mt-1 flex flex-row gap-10">
+        <div className="mt-1 flex flex-row gap-5 md:gap-10">
           <div>
             <Popover showArrow={false} placement="bottom-start">
               <PopoverTrigger asChild>
                 <Button
-                  className="py-4 justify-start gap-2 rounded-xl border border-metal-50 px-4
-                    text-left text-body-4 font-normal text-metal-600 hover:bg-white active:focus:scale-100
+                  className="py-4 justify-start gap-2 rounded-xl border border-metal-50 whitespace-nowrap px-4
+                    text-left text-[13px] lg:text-[15px] font-normal text-metal-600 hover:bg-white active:focus:scale-100
                       dark:border-metal-900 dark:bg-metal-900 dark:text-white dark:hover:bg-metal-800"
                   variant="outline"
                   color="secondary"
@@ -233,7 +233,7 @@ const CreateWorkForm = () => {
                   )}
                 </Button>
               </PopoverTrigger>
-              <PopoverContent className="z-50 max-w-min">
+              <PopoverContent className="z-50 max-w-min text-[14px] lg:text-[15px]">
                 <DatePicker
                   mode="single"
                   selected={date}
@@ -243,13 +243,18 @@ const CreateWorkForm = () => {
               </PopoverContent>
             </Popover>
           </div>
-          <div className="flex flex-wrap gap-4">
-            <TimeInput value={time} onChange={setTime} label="Time" />
+          <div className="flex flex-wrap gap-4 ">
+            <TimeInput
+              value={time}
+              onChange={setTime}
+              label="Time"
+              className="text-[14px] lg:text-[15px]"
+            />
           </div>
         </div>
       </div>
       <div className="mb-10">
-        <label className="text-base text-neutral-500 dark:text-darkMode-gray">
+        <label className="text-[14px] lg:text-[15px] text-neutral-500 dark:text-darkMode-gray">
           Writer
         </label>
         <div className="mt-1">
@@ -258,7 +263,7 @@ const CreateWorkForm = () => {
             placeholder="Writer"
             type="text"
             className=" h-10 w-full rounded-md border border-gray-300 bg-transparent hidden
-             px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1
+             px-3 py-2 text-[14px] lg:text-[15px] placeholder:text-gray-400 focus:outline-none focus:ring-1
               focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
             name="writer"
             value={writer}
@@ -285,7 +290,7 @@ const CreateWorkForm = () => {
               className={` dark:text-darkMode-cardText dark:hover:text-darkMode-cardTextHover py-1
               text-white bg-blue-500 dark:bg-darkMode-cardButton
               hover:bg-darkMode-cardButtonHover hover:text-white
-              px-4 transition-colors duration-300`}
+              px-4 transition-colors duration-300 text-[14px] lg:text-[15px]`}
             >
               Change
             </Button>
@@ -296,8 +301,8 @@ const CreateWorkForm = () => {
                 setWriterName("");
               }}
               className={` dark:text-darkMode-cardText dark:hover:text-darkMode-cardTextHover py-1
-              bg-orange-500 ext-white  hover:bg-orange-600 text-white
-              px-4 transition-colors duration-300`}
+              bg-orange-500  hover:bg-orange-600 text-white
+              px-4 transition-colors duration-300 text-[14px] lg:text-[15px]`}
             >
               Remove
             </Button>
@@ -325,16 +330,16 @@ const CreateWorkForm = () => {
           className={`py-1
             text-neutral-600 bg-transparent bg-neutral-200 hover:bg-neutral-300
             hover:text-neutral-600 border-none
-            px-4 transition-colors duration-300 flex items-center gap-3`}
+            px-4 transition-colors duration-300 flex items-center gap-3 text-[14px] lg:text-[15px]`}
         >
           Upload images
         </Button>
-        <p className="italic text-gray-500 font-normal text-sm ">
+        <p className="italic text-gray-500 font-normal text-[13px] lg:text-[14px] ">
           {images?.length ?? 0} images uploaded
         </p>
       </div>
 
-      <div className="flex items-center gap-5">
+      <div className="flex items-center gap-5 ">
         <input
           id="upload_files_input"
           multiple
@@ -353,11 +358,11 @@ const CreateWorkForm = () => {
           className={`py-1
             text-neutral-600 bg-transparent bg-neutral-200 hover:bg-neutral-300
             hover:text-neutral-600 border-none
-            px-4 transition-colors duration-300 mt-5 flex items-center gap-3`}
+            px-4 transition-colors duration-300 mt-5 flex items-center gap-3 text-[14px] lg:text-[15px]`}
         >
           Upload files
         </Button>
-        <p className="italic text-gray-500 font-normal text-sm ">
+        <p className="italic text-gray-500 font-normal text-[13px] lg:text-[14px]">
           {files?.length ?? 0} files uploaded
         </p>
       </div>
@@ -365,7 +370,7 @@ const CreateWorkForm = () => {
       <input
         // onClick={() => {}}
         className="bg-green-700 hover:bg-green-800 mt-10 rounded-lg text-white flex items-center 
-      } p-[0.6rem] cursor-pointer transition-colors duration-300"
+      } p-[0.6rem] cursor-pointer transition-colors duration-300 text-[14px] lg:text-[15px]"
         type="submit"
         value={loading ? "Creating..." : "Create"}
         disabled={loading}

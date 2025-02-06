@@ -103,9 +103,14 @@ const RevisionComment = ({
         className=" relative"
       >
         <div className="mb-8">
-          <p className="text-sm text-neutral-500 dark:text-sidebartext-hover mb-1">
-            {is_mine ? "You" : sender.first_name} {relativeTime(created_at)}{" "}
-            <span className="text-xs">{hourMinute(created_at)}</span>
+          <p className="text-[13px] text-neutral-500 dark:text-sidebartext-hover mb-1">
+            {is_mine ? "You" : sender.first_name} &middot;{" "}
+            <span className="text-[12px] lg:text-[13px]">
+              {relativeTime(created_at)}
+            </span>{" "}
+            <span className="text-[12px] lg:text-[13px]">
+              {hourMinute(created_at)}
+            </span>
           </p>
           <div
             ref={ref}

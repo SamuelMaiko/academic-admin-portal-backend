@@ -7,7 +7,7 @@ const SideBarModal = () => {
     <div
       className={`${
         showMobileSideBar ? "" : "hidden"
-      } bg-[rgba(0,0,0,0.4)] dark:bg-[rgba(0,0,0,0.3)] fixed z-40 inset-0 md:hidden transition-transform duration-500`}
+      } bg-[rgba(0,0,0,0.4)] dark:bg-[rgba(0,0,0,0.3)] fixed z-90 inset-0 md:hidden transition-transform duration-500`}
     ></div>
   );
 };

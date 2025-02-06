@@ -45,15 +45,19 @@ const TableWriterProficiency = ({ loading, setLoading }) => {
               #Reg. no
             </p>
           </TableHead>
-          <TableHead className="min-w-[122px] text-center">Full name</TableHead>
-          <TableHead className="min-w-[200px] text-center">
+          <TableHead className="min-w-[122px] text-center text-[13px] lg:text-[15px]">
+            Full name
+          </TableHead>
+          <TableHead className="min-w-[200px] text-center text-[13px] lg:text-[15px]">
             Assigned work
           </TableHead>
-          <TableHead className="min-w-[150px] text-center">
+          <TableHead className="min-w-[150px] text-center text-[13px] lg:text-[15px]">
             Uptaken work
           </TableHead>
-          <TableHead className="min-w-[200px] text-center">Poor work</TableHead>
-          <TableHead className="min-w-[200px] text-center">
+          <TableHead className="min-w-[200px] text-center text-[13px] lg:text-[15px]">
+            Poor work
+          </TableHead>
+          <TableHead className="min-w-[200px] text-center text-[13px] lg:text-[15px]">
             Average score
           </TableHead>
           {/* <TableHead className="min-w-[100px]" /> */}

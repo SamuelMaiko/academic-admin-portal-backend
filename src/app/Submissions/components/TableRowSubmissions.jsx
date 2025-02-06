@@ -54,7 +54,7 @@ const TableRowSubmissions = ({
             <div className="flex items-center gap-2">
               <div>
                 {/* <p className="-mb-0.5 text-body-4 font-medium text-metal-600 dark:text-sidebartext-hover"> */}
-                <p className="-mb-0.5 text-body-4 text-metal-600 dark:text-sidebartext-hover font-bold text-[15px]">
+                <p className="-mb-0.5 text-[12px] lg:text-[15px] text-metal-600 dark:text-sidebartext-hover font-bold ">
                   {work.work_code}
                 </p>
               </div>
@@ -62,16 +62,16 @@ const TableRowSubmissions = ({
           </div>
         </div>
       </TableCell>
-      <TableCell className="whitespace-nowrap">
+      <TableCell className="whitespace-nowrap text-[12px] lg:text-[15px]">
         <p className="whitespace-nowrap lowercase">{formatDate(created_at)}</p>
       </TableCell>
 
       <TableCell>
-        <p className="whitespace-nowrap">
+        <p className="whitespace-nowrap text-[12px] lg:text-[15px]">
           {sender.first_name} {sender.last_name}
         </p>
       </TableCell>
-      <TableCell className="">
+      <TableCell className="text-[12px] lg:text-[15px] whitespace-nowrap">
         <p>
           {isClaimed ? (
             `${claimed_by.first_name} ${claimed_by.last_name}`
@@ -91,7 +91,7 @@ const TableRowSubmissions = ({
                    isClaimed
                      ? "bg-gray-400 hover:bg-gray-400 text-white cursor-not-allowed px-4"
                      : "bg-blue-500 dark:bg-darkMode-cardButton hover:bg-blue-400 px-7"
-                 } transition-colors duration-300`}
+                 } transition-colors duration-300 text-[12px] lg:text-[15px]`}
             // disabled={isClaimed}
           >
             {isClaimed ? "Claimed" : "Claim"}

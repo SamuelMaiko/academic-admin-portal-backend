@@ -14,9 +14,7 @@ const ManageUsers = () => {
     >
       <PageHeader
         title="Manage Users"
-        subTitle={
-          "Create, edit, delete, or deactivate users. Oversee all user accounts here."
-        }
+        subTitle={"Create, edit, delete, or deactivate users. "}
       />
       <div className="relative">
         <TableManageUsers />

@@ -39,10 +39,14 @@ const TableRevisions = () => {
         <TableCaption>
           <div className="my-5 flex items-center justify-between px-6">
             <div className="flex items-center gap-5">
-              <p className="text-body-1 font-semibold text-metal-600 dark:text-white">
+              <p className="text-[16px] lg:text-xl font-semibold text-metal-600 dark:text-white">
                 Revisions
               </p>
-              <Badge size="sm" color="secondary" className="dark:text-black">
+              <Badge
+                size="sm"
+                color="secondary"
+                className="dark:text-black text-[12px] md:text-sm"
+              >
                 {revisions.length} revisions
               </Badge>
             </div>
@@ -51,7 +55,7 @@ const TableRevisions = () => {
               className={` dark:text-darkMode-cardText dark:hover:text-darkMode-cardTextHover py-2
                  text-blue-500 border-[1px] bg-transparent  border-blue-500 dark:border-darkMode-cardButton
                   hover:bg-darkMode-cardButtonHover hover:text-white
-                  px-7 transition-colors duration-300`}
+                  px-7 transition-colors duration-300 text-[12px] lg:text-[15px]`}
             >
               Create revision
             </Button>
@@ -59,14 +63,22 @@ const TableRevisions = () => {
         </TableCaption>
         <TableHeader>
           <TableHead className="min-w-[100px]">
-            <p className="text-body-5 font-medium text-metal-400 dark:text-sidebartext-hover">
+            <p className="text-[13px] lg:text-[15px] font-medium text-metal-400 dark:text-sidebartext-hover">
               #work
             </p>
           </TableHead>
-          <TableHead className="min-w-[122px]">Writer</TableHead>
-          <TableHead className="min-w-[200px]">Submit before</TableHead>
-          <TableHead className="min-w-[150px]">Timer</TableHead>
-          <TableHead className="min-w-[200px]">Status</TableHead>
+          <TableHead className="min-w-[122px] text-[13px] lg:text-[15px]">
+            Writer
+          </TableHead>
+          <TableHead className="min-w-[200px] text-[13px] lg:text-[15px]">
+            Submit before
+          </TableHead>
+          <TableHead className="min-w-[150px] text-[13px] lg:text-[15px]">
+            Timer
+          </TableHead>
+          <TableHead className="min-w-[200px] text-[13px] lg:text-[15px]">
+            Status
+          </TableHead>
           <TableHead className="min-w-[100px]" />
         </TableHeader>
         <TableBody

@@ -25,7 +25,7 @@ const RevisionChatBar = () => {
             alt=""
           />
         </Button>
-        <p className="font-medium text-lg md:text-2xl whitespace-nowrap">
+        <p className="md:font-medium text-[17px] md:text-2xl whitespace-nowrap">
           Revision Chat
         </p>
       </div>

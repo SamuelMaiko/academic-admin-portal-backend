@@ -30,7 +30,7 @@ const TableRowManageUsers = ({
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2">
               <div>
-                <p className="-mb-0.5 text-body-4 text-metal-600 dark:text-sidebartext-hover font-bold text-[15px]">
+                <p className="-mb-0.5 text-metal-600 dark:text-sidebartext-hover font-bold text-[12px] lg:text-[15px]">
                   {registration_number}
                 </p>
               </div>
@@ -39,23 +39,25 @@ const TableRowManageUsers = ({
         </div>
       </TableCell>
 
-      <TableCell>
+      <TableCell className="text-[12px] lg:text-[15px]">
         <p>{first_name} </p>
       </TableCell>
-      <TableCell className="whitespace-nowrap">
+      <TableCell className="whitespace-nowrap text-[12px] lg:text-[15px]">
         <p className="whitespace-nowrap">{last_name}</p>
       </TableCell>
       <TableCell>
-        <p className="lowercase">{email}</p>
+        <p className="lowercase text-[12px] lg:text-[15px]">{email}</p>
       </TableCell>
       <TableCell
-        className={`whitespace-nowrap ${
+        className={`whitespace-nowrap text-[12px] lg:text-[15px] ${
           role == "Admin" ? "text-green-500" : ""
         }`}
       >
         {role}
       </TableCell>
-      <TableCell className="lowercase whitespace-nowrap">80%</TableCell>
+      <TableCell className="lowercase whitespace-nowrap text-[12px] lg:text-[15px]">
+        80%
+      </TableCell>
       <TableCell>
         <>
           {/* for when inactive */}
@@ -64,7 +66,7 @@ const TableRowManageUsers = ({
             className={`${
               !is_active ? "" : "hidden"
             } bg-[#e0e0e0] dark:bg-[#2c2c2c] text-[#333] dark:text-[#ccc] 
-                    hover:bg-[#d0d0d0] dark:hover:bg-[#3c3c3c] transition-colors duration-300 whitespace-nowrap`}
+                    hover:bg-[#d0d0d0] dark:hover:bg-[#3c3c3c] transition-colors duration-300 whitespace-nowrap text-[12px] lg:text-[14px]`}
           >
             {is_active ? "" : "Inactive"}
           </Badge>
@@ -74,7 +76,7 @@ const TableRowManageUsers = ({
             className={`${
               is_active ? "" : "hidden"
             } bg-[#ffeb3b] dark:bg-[#fdd835] text-[#333] dark:text-[#000] 
-                    hover:bg-[#fdd835] dark:hover:bg-[#e0c020] transition-colors duration-300 whitespace-nowrap`}
+                    hover:bg-[#fdd835] dark:hover:bg-[#e0c020] transition-colors duration-300 whitespace-nowrap text-[12px] lg:text-[14px]`}
           >
             {is_active ? "Active" : ""}
           </Badge>

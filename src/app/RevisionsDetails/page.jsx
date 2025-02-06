@@ -53,7 +53,9 @@ const RevisionsDetails = () => {
       if (unReadMessages > 0) {
         unReadMessagesRef.current.scrollIntoView({ behavior: "smooth" });
       } else {
-        messageEndRef.current.scrollIntoView({ behavior: "smooth" });
+        if (revisionMessages.length > 0) {
+          messageEndRef.current.scrollIntoView({ behavior: "smooth" });
+        }
       }
     }
   }, [revisionMessages]);
@@ -100,19 +102,20 @@ const RevisionsDetails = () => {
           />
 
           <div ref={messageRef}></div>
-          {revisionMessages.map((message, index) => {
-            if ((!message.is_mine && message.is_read) || message.is_mine)
-              return (
-                <RevisionComment
-                  key={index}
-                  {...message}
-                  revisionMessages={revisionMessages}
-                  setRevisionMessages={setRevisionMessages}
-                  setDeleting={setDeleting}
-                  markMessagesAsRead={markMessagesAsRead}
-                />
-              );
-          })}
+          {revisionMessages &&
+            revisionMessages.map((message, index) => {
+              if ((!message.is_mine && message.is_read) || message.is_mine)
+                return (
+                  <RevisionComment
+                    key={index}
+                    {...message}
+                    revisionMessages={revisionMessages}
+                    setRevisionMessages={setRevisionMessages}
+                    setDeleting={setDeleting}
+                    markMessagesAsRead={markMessagesAsRead}
+                  />
+                );
+            })}
           <div
             ref={unReadMessagesRef}
             className={`${
@@ -219,7 +222,7 @@ const RevisionsDetails = () => {
           </div>
         </div>
       </div>
-      <div className=" h-[20%]">
+      <div className=" relative h-[20%]">
         <SubmitMessage
           file={file}
           setFile={setFile}

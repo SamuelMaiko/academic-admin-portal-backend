@@ -99,7 +99,11 @@ const SubmitMessage = ({
   };
 
   return (
-    <div className="flex justify-between gap-4 items-end h-full pb-2">
+    <div
+      className={`absolute lg:static ${
+        revisionMessages.length > 0 ? "bottom-[2%]" : "bottom-[6%]"
+      } flex justify-between items-center gap-2 lg:gap-4 lg:items-end h-full pb-2 px-0 lg:px-0`}
+    >
       <div
         className={`${
           file != null ? "hidden" : ""
@@ -151,8 +155,8 @@ const SubmitMessage = ({
         <TextareaAutosize
           id="message"
           placeholder="Write your message here."
-          className="w-full p-3 border border-gray-300 rounded-md focus:outline-none
-           focus:ring-2  resize-none"
+          className="w-full p-3 border border-gray-300 rounded-md focus:outline-none text-[15px]
+           focus:ring-2 resize-none"
           minRows={1}
           value={message}
           onChange={(e) => setMessage(e.target.value)}
@@ -164,12 +168,13 @@ const SubmitMessage = ({
           message === "" && file === null && image === null
             ? "bg-gray-500"
             : "bg-blue-700"
-        }  rounded-full text-white flex items-center cursor-pointer p-4`}
+        }  rounded-full text-white flex items-center cursor-pointer p-3 lg:p-4`}
         disabled={
           loading || (message === "" && file === null && image === null)
         }
       >
-        <SendHorizontal size={25} />
+        <SendHorizontal size={20} className="lg:hidden block" />
+        <SendHorizontal size={25} className="hidden lg:block" />
       </button>
     </div>
     // </div>

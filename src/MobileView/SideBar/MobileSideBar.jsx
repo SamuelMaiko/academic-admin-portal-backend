@@ -40,7 +40,7 @@ const MobileSideBar = () => {
       className={`${
         showMobileSideBar ? "delay-75 translate-x-[27rem]" : ""
       } absolute left-[5%]  bg-white dark:bg-darkMode-bars w-[60%] h-[96%]
-       top-1/2 -translate-y-1/2 rounded-3xl transition-transform duration-500  z-[50] md:hidden `}
+       top-1/2 -translate-y-1/2 rounded-3xl transition-transform duration-500 z-100 md:hidden `}
     >
       {/* close button */}
       <Button

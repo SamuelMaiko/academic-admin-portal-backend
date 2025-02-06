@@ -14,9 +14,7 @@ const ManageWork = () => {
     >
       <PageHeader
         title="Manage Work"
-        subTitle={
-          "Create, assign, edit, or delete work. Manage all tasks effectively from here."
-        }
+        subTitle={"Create, assign, edit, or delete work."}
       />{" "}
       <div className="relative">
         <TableManageWork />
