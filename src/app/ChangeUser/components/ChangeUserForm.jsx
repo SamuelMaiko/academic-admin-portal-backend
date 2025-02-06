@@ -95,14 +95,14 @@ const ChangeUserForm = ({ onSetLoading }) => {
     <form onSubmit={handleSubmit} className="pt-5 w-full md:w-[58%] pb-14">
       <AccountStatus isActive={isActive} />
       <div className="mt-[3rem] mb-5">
-        <label className="text-base text-neutral-500 dark:text-darkMode-gray">
+        <label className=" text-neutral-500 dark:text-darkMode-gray text-[14px] lg:text-[15px]">
           Reg no.
         </label>
         <input
           placeholder="Registration number"
           type="text"
           className="flex mt-2 h-10 w-full rounded-md border border-gray-300 bg-transparent px-3
-                py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1
+                py-2 text-[13px] lg:text-[15px] placeholder:text-gray-400 focus:outline-none focus:ring-1
                     focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
           name="type"
           value={regNo}
@@ -112,18 +112,19 @@ const ChangeUserForm = ({ onSetLoading }) => {
       </div>
       {/* resetting the user password */}
       <div className="mt-8">
-        <p>
+        <p className="text-[13px] lg:text-[14px]">
           Click the button below to send the updated password to the user's
           email.
         </p>
         <button
           onClick={handlePasswordReset}
           className="bg-green-700 hover:bg-green-800 mt-3 rounded-3xl text-white flex items-center gap-1
-        } p-[0.6rem] cursor-pointer transition-colors duration-300 px-4 mb-8"
+        } p-[0.6rem] cursor-pointer transition-colors duration-300 px-4 mb-8 text-[14px] lg:text-[15px]"
           type="button"
           disabled={changePassLoading}
         >
-          <Key size={20} />
+          <Key size={20} className="hidden lg:block " />
+          <Key size={18} className="lg:hidden block " />
           {changePassLoading ? "Resetting..." : "Reset Password"}
         </button>
       </div>
@@ -155,7 +156,7 @@ const ChangeUserForm = ({ onSetLoading }) => {
         <input
           onClick={() => {}}
           className="bg-green-700 hover:bg-green-800 mt-3 rounded-lg text-white flex items-center 
-            } p-[0.6rem] cursor-pointer transition-colors duration-300"
+            } p-[0.6rem] cursor-pointer transition-colors duration-300 text-[14px] lg:text-[15px]"
           type="submit"
           value={loading ? "Saving..." : "Save"}
           disabled={loading}
@@ -164,7 +165,7 @@ const ChangeUserForm = ({ onSetLoading }) => {
           <input
             onClick={handleActivate}
             className={`bg-blue-500 hover:bg-blue-600 mt-3 rounded-lg text-white flex items-center 
-            } p-[0.6rem] cursor-pointer transition-colors duration-300 ${
+            } p-[0.6rem] cursor-pointer transition-colors duration-300 text-[14px] lg:text-[15px] ${
               isActive ? "hidden" : ""
             }`}
             type="button"
@@ -177,7 +178,7 @@ const ChangeUserForm = ({ onSetLoading }) => {
               setAccountToDeactivate(id);
             }}
             className={`bg-orange-500 hover:bg-orange-600 mt-3 rounded-lg text-white flex items-center 
-            } p-[0.6rem] cursor-pointer transition-colors duration-300 ${
+            } p-[0.6rem] cursor-pointer transition-colors duration-300 text-[14px] lg:text-[15px] ${
               isActive ? "" : "hidden"
             }`}
             type="button"
@@ -191,7 +192,7 @@ const ChangeUserForm = ({ onSetLoading }) => {
               setAccountToDelete(id);
             }}
             className="bg-red-700 hover:bg-red-800 mt-3 rounded-lg text-white flex items-center 
-          } p-[0.6rem] cursor-pointer transition-colors duration-300"
+          } p-[0.6rem] cursor-pointer transition-colors duration-300 text-[14px] lg:text-[15px] "
             type="button"
             value={"Delete"}
           />

@@ -20,18 +20,18 @@ const PersonalInfo = ({
 
   return (
     <>
-      <h1 className="mt-8 bg-blue-500 text-white py-2 px-1 text-md">
+      <h1 className="mt-8 bg-blue-500 text-white py-2 px-1 text-[15px] lg:text-[16px]">
         Personal Info
       </h1>
       <div className="mt-5 mb-5">
-        <label className="text-base text-neutral-500 dark:text-darkMode-gray">
+        <label className="text-[14px] lg:text-[15px] text-neutral-500 dark:text-darkMode-gray">
           First name*
         </label>
         <input
           placeholder="First name"
           type="text"
           className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3
-           py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1
+           py-2 text-[14px] lg:text-[15px] placeholder:text-gray-400 focus:outline-none focus:ring-1
             focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
           name="first_name"
           value={firstName}
@@ -39,7 +39,7 @@ const PersonalInfo = ({
         />
       </div>
       <div className="mb-5">
-        <label className="text-base text-neutral-500 dark:text-darkMode-gray">
+        <label className="text-[14px] lg:text-[15px] text-neutral-500 dark:text-darkMode-gray">
           Last name*
         </label>
         <div className="mt-1">
@@ -47,7 +47,7 @@ const PersonalInfo = ({
             placeholder="Last name"
             type="text"
             className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent
-             px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1
+             px-3 py-2 text-[14px] lg:text-[15px] placeholder:text-gray-400 focus:outline-none focus:ring-1
               focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
             name="last_name"
             value={lastName}
@@ -56,7 +56,7 @@ const PersonalInfo = ({
         </div>
       </div>
       <div className="mb-5">
-        <label className="text-base text-neutral-500 dark:text-darkMode-gray">
+        <label className="text-[14px] lg:text-[15px] text-neutral-500 dark:text-darkMode-gray">
           Email*
         </label>
         <div className="mt-1">
@@ -64,7 +64,7 @@ const PersonalInfo = ({
             placeholder="Email"
             type="text"
             className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent
-             px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1
+             px-3 py-2 text-[14px] lg:text-[15px] placeholder:text-gray-400 focus:outline-none focus:ring-1
               focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
             name="last_name"
             value={email}
@@ -73,7 +73,7 @@ const PersonalInfo = ({
         </div>
       </div>
       <div className="mb-8">
-        <label className="text-base text-neutral-500 dark:text-darkMode-gray">
+        <label className="text-[14px] lg:text-[15px] text-neutral-500 dark:text-darkMode-gray">
           Phone number*
         </label>
         <div className="mt-1">
@@ -81,7 +81,7 @@ const PersonalInfo = ({
             placeholder="Phone number"
             type="text"
             className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent
-             px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1
+             px-3 py-2 text-[14px] lg:text-[15px] placeholder:text-gray-400 focus:outline-none focus:ring-1
               focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
             name="last_name"
             value={phoneNumber}
@@ -99,18 +99,18 @@ const PersonalInfo = ({
         />
         <label
           htmlFor="submitted"
-          className="text-base text-neutral-500 dark:text-darkMode-gray "
+          className="text-[14px] lg:text-[15px] text-neutral-500 dark:text-darkMode-gray "
         >
           email verified
         </label>
       </div>
 
       <div className="mb-8">
-        <label className="text-base text-neutral-500 dark:text-darkMode-gray">
+        <label className="text-[14px] lg:text-[15px] text-neutral-500 dark:text-darkMode-gray">
           Role
         </label>
         <div className="flex gap-8">
-          <div className="flex gap-2 text-neutral-500">
+          <div className="flex gap-2 text-neutral-500 text-[14px] lg:text-[15px]">
             <input
               type="radio"
               name="role"
@@ -121,7 +121,7 @@ const PersonalInfo = ({
             />
             <label htmlFor="Admin">Admin</label>
           </div>
-          <div className="flex gap-2 text-neutral-500">
+          <div className="flex gap-2 text-neutral-500 text-[14px] lg:text-[15px]">
             <input
               type="radio"
               name="role"

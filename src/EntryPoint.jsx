@@ -100,7 +100,7 @@ const EntryPoint = () => {
           className=" w-full h-full flex-1 overflow-y-scroll scrollble"
         >
           <ScrollToTop scrollableRef={scrollableRef} />
-          <div className="sticky top-0 z-70">
+          <div className="sticky top-0 z-70 ">
             {showNavBar ? <NavBar /> : <RevisionChatBar />}
           </div>
           {/* <RevisionChatBar /> */}

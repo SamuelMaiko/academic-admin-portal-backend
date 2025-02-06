@@ -145,14 +145,14 @@ const ChangeWorkForm = ({ setLoading }) => {
   return (
     <form onSubmit={handleSubmit} className="pt-5 w-full md:w-[58%] pb-14">
       <div className="mt-1 mb-10">
-        <label className="text-base text-neutral-500 dark:text-darkMode-gray">
+        <label className="text-[14px] lg:text-[15px] text-neutral-500 dark:text-darkMode-gray">
           Work code
         </label>
         <input
           placeholder="Work code"
           type="text"
           className="flex mt-2 h-10 w-full rounded-md border border-gray-300 bg-transparent px-3
-                py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1
+                py-2 text-[14px] lg:text-[15px] placeholder:text-gray-400 focus:outline-none focus:ring-1
                     focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
           name="work code"
           value={workCode}
@@ -161,10 +161,10 @@ const ChangeWorkForm = ({ setLoading }) => {
         />
       </div>
       <div className="mt-1 mb-10">
-        <label className="text-base text-neutral-500 dark:text-darkMode-gray">
+        <label className="text-[14px] lg:text-[15px] text-neutral-500 dark:text-darkMode-gray">
           Type*
         </label>
-        <div className="mt-1 flex items-center gap-x-10 gap-y-3 flex-wrap">
+        <div className="mt-1 flex items-center gap-x-10 gap-y-3 flex-wrap text-[14px] lg:text-[15px]">
           {storedTypes &&
             storedTypes.map((type) => (
               <WorkTypeCard
@@ -177,11 +177,11 @@ const ChangeWorkForm = ({ setLoading }) => {
         </div>
       </div>
       <div className="mb-10 ">
-        <label className="text-base text-neutral-500 dark:text-darkMode-gray ">
+        <label className="text-[14px] lg:text-[15px] text-neutral-500 dark:text-darkMode-gray ">
           Words*
         </label>
 
-        <div className="mt-1 flex items-center gap-x-10 gap-y-2 flex-wrap">
+        <div className="mt-1 flex items-center gap-x-10 gap-y-2 flex-wrap text-[14px] lg:text-[15px]">
           <div className="flex gap-2 text-neutral-500">
             <input
               type="radio"
@@ -243,7 +243,7 @@ const ChangeWorkForm = ({ setLoading }) => {
             placeholder="Words"
             type="text"
             className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent
-                    px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1
+                    px-3 py-2 text-[14px] lg:text-[15px] placeholder:text-gray-400 focus:outline-none focus:ring-1
                     focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
             name="words"
             value={words}
@@ -252,13 +252,13 @@ const ChangeWorkForm = ({ setLoading }) => {
         </div>
       </div>
       <div className="mb-10">
-        <label className="text-base text-neutral-500 dark:text-darkMode-gray">
+        <label className="text-[14px] lg:text-[15px] text-neutral-500 dark:text-darkMode-gray">
           Comment
         </label>
         <div className="mt-1">
           <Textarea
             className="bg-transparent rounded-md border dark:bg-transparent border-gray-300 dark:border-gray-300 
-                    px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1
+                    px-3 py-2 text-[14px] lg:text-[15px] placeholder:text-gray-400 focus:outline-none focus:ring-1
                     focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
             id="comment"
             placeholder="Comment"
@@ -270,7 +270,7 @@ const ChangeWorkForm = ({ setLoading }) => {
         </div>
       </div>
       <div className="mb-10">
-        <label className="text-base text-neutral-500 dark:text-darkMode-gray">
+        <label className="text-[14px] lg:text-[15px] text-neutral-500 dark:text-darkMode-gray">
           Deadline
         </label>
         <div className="mt-1 flex flex-row gap-10">
@@ -317,7 +317,7 @@ const ChangeWorkForm = ({ setLoading }) => {
         </div>
       </div>
       <div className="mb-10">
-        <label className="text-base text-neutral-500 dark:text-darkMode-gray">
+        <label className="text-[14px] lg:text-[15px] text-neutral-500 dark:text-darkMode-gray">
           Writer
         </label>
         <div className="mt-1">
@@ -325,7 +325,7 @@ const ChangeWorkForm = ({ setLoading }) => {
             placeholder="Writer"
             type="text"
             className=" h-10 w-full rounded-md border border-gray-300 bg-transparent hidden
-                    px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1
+                    px-3 py-2 text-[14px] lg:text-[15px] placeholder:text-gray-400 focus:outline-none focus:ring-1
                     focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
             name="writer"
             value={writer}
@@ -338,7 +338,7 @@ const ChangeWorkForm = ({ setLoading }) => {
               placeholder="Writer"
               type="text"
               className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent
-                    px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1
+                    px-3 py-2 text-[14px] lg:text-[15px] placeholder:text-gray-400 focus:outline-none focus:ring-1
                     focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
               name="writer_name"
               value={writerName}
@@ -352,7 +352,7 @@ const ChangeWorkForm = ({ setLoading }) => {
               className={` dark:text-darkMode-cardText dark:hover:text-darkMode-cardTextHover py-1
                     text-white bg-blue-500 dark:bg-darkMode-cardButton
                     hover:bg-darkMode-cardButtonHover hover:text-white
-                    px-4 transition-colors duration-300`}
+                    px-4 transition-colors duration- text-[14px] lg:text-[15px]`}
             >
               Change
             </Button>
@@ -363,20 +363,20 @@ const ChangeWorkForm = ({ setLoading }) => {
                 setWriterName("");
               }}
               className={` dark:text-darkMode-cardText dark:hover:text-darkMode-cardTextHover py-1
-                    bg-orange-500 ext-white  hover:bg-orange  -600 text-white
-                    px-4 transition-colors duration-300`}
+                    bg-orange-500  hover:bg-orange-600 text-white
+                    px-4 transition-colors duration-300 text-[14px] lg:text-[15px]`}
             >
               Remove
             </Button>
           </div>
         </div>
         <div className="mb-10 mt-10 ">
-          <label className="text-base text-neutral-500 dark:text-darkMode-gray ">
+          <label className="text-[14px] lg:text-[15px] text-neutral-500 dark:text-darkMode-gray ">
             Status
           </label>
 
           <div className="mt-1 flex items-center gap-x-10 gap-y-2 flex-wrap ">
-            <div className="flex gap-2 text-neutral-500">
+            <div className="flex gap-2 text-neutral-500 text-[14px] lg:text-[15px]">
               <input
                 type="radio"
                 name="status"
@@ -387,7 +387,7 @@ const ChangeWorkForm = ({ setLoading }) => {
               />
               <label htmlFor="Not started">Not started</label>
             </div>
-            <div className="flex gap-2 text-neutral-500">
+            <div className="flex gap-2 text-neutral-500 text-[14px] lg:text-[15px]">
               <input
                 type="radio"
                 name="status"
@@ -398,7 +398,7 @@ const ChangeWorkForm = ({ setLoading }) => {
               />
               <label htmlFor="In Progress">In progress</label>
             </div>
-            <div className="flex gap-2 text-neutral-500">
+            <div className="flex gap-2 text-neutral-500 text-[14px] lg:text-[15px]">
               <input
                 type="radio"
                 name="status"
@@ -421,7 +421,7 @@ const ChangeWorkForm = ({ setLoading }) => {
           />
           <label
             htmlFor="submitted"
-            className="text-base text-neutral-500 dark:text-darkMode-gray "
+            className="text-[14px] lg:text-[15px] text-neutral-500 dark:text-darkMode-gray "
           >
             is submitted
           </label>
@@ -441,7 +441,7 @@ const ChangeWorkForm = ({ setLoading }) => {
         }}
         className={`py-1
             text-neutral-600 bg-transparent bg-neutral-200 hover:bg-neutral-300
-            hover:text-neutral-600 border-none
+            hover:text-neutral-600 border-none text-[14px] lg:text-[15px]
             px-4 transition-colors duration-300 flex items-center gap-3 `}
       >
         <PencilLine size={18} />
@@ -456,7 +456,7 @@ const ChangeWorkForm = ({ setLoading }) => {
         }}
         className={`py-1
             text-neutral-600 bg-transparent bg-neutral-200 hover:bg-neutral-300
-            hover:text-neutral-600 border-none
+            hover:text-neutral-600 border-none text-[14px] lg:text-[15px]
             px-4 transition-colors duration-300 mt-5 flex items-center gap-3 `}
       >
         <PencilLine size={18} />
@@ -466,7 +466,7 @@ const ChangeWorkForm = ({ setLoading }) => {
         <input
           // onClick={() => {}}
           className="bg-green-700 hover:bg-green-800 rounded-lg text-white flex items-center 
-              } p-[0.6rem] cursor-pointer transition-colors duration-300"
+              } p-[0.6rem] cursor-pointer transition-colors duration-300 text-[14px] lg:text-[15px]"
           type="submit"
           value={isLoading ? "Saving..." : "Save"}
           disabled={isLoading}
@@ -479,7 +479,7 @@ const ChangeWorkForm = ({ setLoading }) => {
           }}
           className={` dark:text-darkMode-cardText dark:hover:text-darkMode-cardTextHover py-[0.6rem]
                     bg-red-500 hover:bg-red-600 text-white h-full
-                    px-4 transition-colors duration-300`}
+                    px-4 transition-colors duration-300 text-[14px] lg:text-[15px]`}
         >
           Delete work
         </Button>

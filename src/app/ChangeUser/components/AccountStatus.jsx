@@ -9,8 +9,8 @@ const AccountStatus = ({ isActive }) => {
         showIcon={true}
         className={`${
           !isActive ? "" : "hidden"
-        } bg-[#e0e0e0] dark:bg-[#2c2c2c] text-[#333] dark:text-[#ccc] 
-                    hover:bg-[#d0d0d0] dark:hover:bg-[#3c3c3c] transition-colors duration-300 whitespace-nowrap`}
+        } bg-[#e0e0e0] dark:bg-[#2c2c2c] text-[#333] dark:text-[#ccc] text-[13px] lg:text-[14px]
+                    hover:bg-[#d0d0d0] dark:hover:bg-[#3c3c3c] transition-colors duration-300 whitespace-nowrap `}
       >
         {isActive ? "" : "Inactive"}
       </Badge>
@@ -19,7 +19,7 @@ const AccountStatus = ({ isActive }) => {
         showIcon={true}
         className={`${
           isActive ? "" : "hidden"
-        } bg-[#ffeb3b] dark:bg-[#fdd835] text-[#333] dark:text-[#000] 
+        } bg-[#ffeb3b] dark:bg-[#fdd835] text-[#333] dark:text-[#000] text-[13px] lg:text-[14px]
                     hover:bg-[#fdd835] dark:hover:bg-[#e0c020] transition-colors duration-300 whitespace-nowrap`}
       >
         {isActive ? "Active" : ""}
