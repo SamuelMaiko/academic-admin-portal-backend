@@ -46,8 +46,9 @@ const NavBar = () => {
       className={`w-full h-[5rem] px-[1rem] md:px-[2rem] flex  items-center justify-between sticky
          top-0 z-40 bg-white dark:bg-darkMode-bars dark:text-darkMode-text`}
     >
-      <p className="text-[17px] lg:text-xl font-bold">
-        {greeting} {firstName}!
+      <p className="text-[14px] lg:text-xl ">
+        <span className="font-normal">{greeting}</span>{" "}
+        <span className="uppercase font-bold">{firstName}!</span>
       </p>
       <div className="flex items-center  lg:gap-2">
         {/* settings button */}

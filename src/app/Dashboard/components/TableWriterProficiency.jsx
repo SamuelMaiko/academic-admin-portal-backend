@@ -39,7 +39,7 @@ const TableWriterProficiency = ({ loading, setLoading }) => {
         {/* <TableCaption>
           <div className="my-5 flex items-center justify-between px-6"></div>
         </TableCaption> */}
-        <TableHeader>
+        <TableHeader className="">
           <TableHead className="min-w-[100px]">
             <p className="text-body-5 font-medium text-metal-400 dark:text-sidebartext-hover text-center">
               #Reg. no

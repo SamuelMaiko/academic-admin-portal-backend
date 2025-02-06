@@ -37,12 +37,12 @@ const ButtonLinks = () => {
           icon={
             /^\/dashboard(\/|$)/.test(pathname) ? (
               <LayoutDashboard
-                size={20}
+                size={18}
                 weight="fill"
                 // style={{ fill: "currentColor", stroke: "none" }}
               />
             ) : (
-              <LayoutDashboard size={20} weight="fill" />
+              <LayoutDashboard size={18} weight="fill" />
             )
           }
           title={"Dashboard"}
@@ -50,7 +50,7 @@ const ButtonLinks = () => {
             /^\/dashboard(\/|$)/.test(pathname)
               ? " dark:text-white text-black"
               : "dark:text-neutral-400 text-neutral-400"
-          } w-full`}
+          } w-full text-[12px] `}
         />
       </div>
       {/* work management section button */}
@@ -62,9 +62,9 @@ const ButtonLinks = () => {
           }}
           icon={
             /^\/manage-work(\/|$)/.test(pathname) ? (
-              <FileText size={20} />
+              <FileText size={18} />
             ) : (
-              <FileText size={20} weight="fill" />
+              <FileText size={18} weight="fill" />
             )
           }
           title={"Work"}
@@ -72,7 +72,7 @@ const ButtonLinks = () => {
             /^\/manage-work(\/|$)/.test(pathname)
               ? " dark:text-white text-black"
               : "dark:text-neutral-400 text-neutral-400"
-          } w-full`}
+          } w-full text-[12px]`}
         />
       </div>
       {/* user management section button */}
@@ -85,12 +85,12 @@ const ButtonLinks = () => {
           icon={
             /^\/manage-users(\/|$)/.test(pathname) ? (
               <UserCircle
-                size={20}
+                size={18}
                 weight="fill"
                 // style={{ fill: "currentColor", stroke: "none" }}
               />
             ) : (
-              <UserCircle size={20} weight="fill" />
+              <UserCircle size={18} weight="fill" />
             )
           }
           title={"Users"}
@@ -98,7 +98,7 @@ const ButtonLinks = () => {
             /^\/manage-users(\/|$)/.test(pathname)
               ? " dark:text-white text-black"
               : "dark:text-neutral-400 text-neutral-400"
-          } w-full`}
+          } w-full text-[12px]`}
         />
       </div>
       {/* registration codes section button */}
@@ -108,18 +108,18 @@ const ButtonLinks = () => {
           icon={
             /^\/reg-codes(\/|$)/.test(pathname) ? (
               <LayoutDashboard
-                size={20}
+                size={18}
                 weight="fill"
                 style={{ fill: "currentColor", stroke: "none" }}
               />
             ) : (
-              <LayoutDashboard size={20} weight="fill" />
+              <LayoutDashboard size={18} weight="fill" />
             )
           }
           title={"Registration Codes"}
           className={`${
             /^\/reg-codes(\/|$)/.test(pathname) ? "text-neutral-500" : ""
-          } w-full whitespace-nowrap`}
+          } w-full text-[12px] whitespace-nowrap`}
         />
       </div> */}
       {/* revisions section button */}
@@ -131,9 +131,9 @@ const ButtonLinks = () => {
           }}
           icon={
             /^\/revisions(\/|$)/.test(pathname) ? (
-              <FileEdit size={20} weight="fill" />
+              <FileEdit size={18} weight="fill" />
             ) : (
-              <FileEdit size={20} weight="fill" />
+              <FileEdit size={18} weight="fill" />
             )
           }
           title={"Revisions"}
@@ -141,7 +141,7 @@ const ButtonLinks = () => {
             /^\/revisions(\/|$)/.test(pathname)
               ? " dark:text-white text-black"
               : "dark:text-neutral-400 text-neutral-400"
-          } w-full`}
+          } w-full text-[12px]`}
         />
         {/* counter */}
         <div
@@ -160,9 +160,9 @@ const ButtonLinks = () => {
           }}
           icon={
             /^\/submissions(\/|$)/.test(pathname) ? (
-              <Inbox size={20} weight="fill" />
+              <Inbox size={18} weight="fill" />
             ) : (
-              <Inbox size={20} weight="fill" />
+              <Inbox size={18} weight="fill" />
             )
           }
           title={"Submissions"}
@@ -170,7 +170,7 @@ const ButtonLinks = () => {
             /^\/submissions(\/|$)/.test(pathname)
               ? " dark:text-white text-black"
               : "dark:text-neutral-400 text-neutral-400"
-          } w-full`}
+          } w-full text-[12px]`}
         />
         {/* counter */}
         <div

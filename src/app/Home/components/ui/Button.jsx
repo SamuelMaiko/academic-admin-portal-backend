@@ -4,27 +4,30 @@ import { useStateShareContext } from "../../../../Context/StateContext";
 import { cva } from "class-variance-authority";
 import { twMerge } from "tailwind-merge";
 
-const ButtonStyles = cva(["transition-colors duration-300 hover:text-black"], {
-  variants: {
-    variant: {
-      default: [""],
-    },
-    buttonType: {
-      iconTextBtn: [
-        `flex items-center 
+const ButtonStyles = cva(
+  ["transition-colors duration-300 hover:text-black text-sm"],
+  {
+    variants: {
+      variant: {
+        default: [""],
+      },
+      buttonType: {
+        iconTextBtn: [
+          `flex items-center 
       } mb-2 p-[0.6rem]`,
-      ],
-      roundedIconBtn: [
-        "hover:text-black hover:bg-neutral-100",
-        "rounded-full p-2 ",
-      ],
+        ],
+        roundedIconBtn: [
+          "hover:text-black hover:bg-neutral-100",
+          "rounded-full p-2 ",
+        ],
+      },
     },
-  },
-  defaultVariants: {
-    variant: "default",
-    // buttonType: "iconTextBtn",
-  },
-});
+    defaultVariants: {
+      variant: "default",
+      // buttonType: "iconTextBtn",
+    },
+  }
+);
 
 const Button = ({
   children,
@@ -52,9 +55,7 @@ const Button = ({
         <>
           <span>{icon}</span>
           <span
-            className={`${
-              shrinkSideBar ? "hidden" : ""
-            } ml-4 text-sm font-medium `}
+            className={`${shrinkSideBar ? "hidden" : ""} ml-4 font-medium `}
           >
             {title}
           </span>

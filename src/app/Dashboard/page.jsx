@@ -86,7 +86,7 @@ const Dashboard = () => {
         right square with graph
         <WorkCompletedGraph />
       </div>
-      <h1 className="font-semibold text-xl pl-[2rem] mt-[3rem]">
+      <h1 className="font-semibold text-[16px] lg:text-xl pl-[2rem] mt-[3rem]">
         Writers Proficiency
       </h1>
       {/* <div className="p-5 w-full bg-transparent "> */}

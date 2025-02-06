@@ -25,7 +25,7 @@ const TableRowWriterProficiency = ({
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2">
               <div>
-                <p className="-mb-0.5 text-body-4 text-metal-600 dark:text-sidebartext-hover font-bold text-[15px]">
+                <p className="-mb-0.5 text-metal-600 dark:text-sidebartext-hover font-bold text-[12px] lg:text-[15px]">
                   {registration_number}
                 </p>
               </div>
@@ -35,19 +35,29 @@ const TableRowWriterProficiency = ({
       </TableCell>
 
       <TableCell>
-        <p className="whitespace-nowrap text-center">{full_name}</p>
+        <p className="whitespace-nowrap text-center text-[12px] lg:text-[15px]">
+          {full_name}
+        </p>
       </TableCell>
       <TableCell>
-        <p className="whitespace-nowrap text-center">{assigned_work}</p>
+        <p className="whitespace-nowrap text-center text-[12px] lg:text-[15px]">
+          {assigned_work}
+        </p>
       </TableCell>
       <TableCell>
-        <p className="whitespace-nowrap text-center">{uptaken_work}</p>
+        <p className="whitespace-nowrap text-center text-[12px] lg:text-[15px]">
+          {uptaken_work}
+        </p>
       </TableCell>
       <TableCell>
-        <p className="whitespace-nowrap text-center">{poor_work}</p>
+        <p className="whitespace-nowrap text-center text-[12px] lg:text-[15px]">
+          {poor_work}
+        </p>
       </TableCell>
       <TableCell>
-        <p className="whitespace-nowrap text-center">{average_score}%</p>
+        <p className="whitespace-nowrap text-center text-[12px] lg:text-[15px]">
+          {average_score}%
+        </p>
       </TableCell>
     </TableRow>
   );
