@@ -79,7 +79,7 @@ const LoginForm = () => {
           break;
         default:
           toast.success("Logged in successfully.");
-          navigate("/home");
+          navigate("/manage-work");
       }
       // i;
       // navigate("/home");
@@ -111,10 +111,7 @@ const LoginForm = () => {
   };
   return (
     // <form onSubmit={handleUserLogin} className="lg:w-[35rem] w-full px-5">
-    <form
-      onSubmit={handleUserLogin}
-      className="lg:w-[35rem] w-full px-5"
-    >
+    <form onSubmit={handleUserLogin} className="lg:w-[35rem] w-full px-5">
       {success && <p className="text-green-500">{success}</p>}
       {error && <p className="text-red-500">{error}</p>}
       <h1 className="text-center text-[2.5rem] font-prompt">Login</h1>
@@ -163,13 +160,13 @@ const LoginForm = () => {
         >
           Forgot Password?
         </NavLink>
-        <a
+        {/* <a
           onClick={() => navigate("/signup")}
           className="text-[1rem] underline hover:text-blue-700 transition-colors duration-300 "
           href="#"
         >
           Create An Account
-        </a>
+        </a> */}
       </div>
     </form>
   );

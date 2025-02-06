@@ -48,7 +48,7 @@ const Dashboard = () => {
       </div>
       <div
         className="grid grid-cols-2 gap-[0.6rem] md:flex md:gap-4 pt-6 bg-gray-100
-       dark:bg-darkMode-bars px-[1rem] md:px-[2rem]"
+       dark:bg-darkMode-bars px-[1rem] md:px-[2rem] pb-6"
       >
         <Block
           icon={<XCircle size={21} weight="fill" />}

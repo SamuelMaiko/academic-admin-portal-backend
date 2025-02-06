@@ -11,7 +11,7 @@ const EditContactInfo = ({
   return (
     <div className="mt-10">
       <h1 className="text-xl md:text-2xl font-semibold">Contact info</h1>
-      <div className="mb-8">
+      <div className="mb-4 mt-4">
         <label className="text-base text-neutral-500 dark:text-darkMode-gray">
           Phone number*
         </label>
@@ -42,7 +42,7 @@ const EditContactInfo = ({
           />
         </div>
       </div>
-      <div className="mb-8">
+      {/* <div className="mb-8">
         <label className="text-base text-neutral-500 dark:text-darkMode-gray">
           Linked In
         </label>
@@ -56,7 +56,7 @@ const EditContactInfo = ({
             onChange={(e) => setLinkedIn(e.target.value)}
           />
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

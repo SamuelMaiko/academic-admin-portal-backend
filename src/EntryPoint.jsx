@@ -97,9 +97,8 @@ const EntryPoint = () => {
           darkMode ? "dark" : ""
         } dark:bg-darkMode-bars h-[calc(100vh-0.5rem)] w-full overflow-hidden`}
       >
-        <div className=" h-full w-fit overflow-y-scroll  overflow-x-hidden">
-          <SideBar />
-        </div>
+        <SideBar />
+        {/* <div className=" w-fit overflow-x-hidden"></div> */}
         <div
           ref={scrollableRef}
           className=" w-full h-full flex-1 overflow-y-scroll scrollble"

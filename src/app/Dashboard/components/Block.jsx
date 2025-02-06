@@ -7,7 +7,7 @@ const Block = ({ title, value, icon }) => {
     <div
       onClick={() => alert("coming soon ...")}
       className={`w-full flex flex-col gap-4 h-[9.3rem] rounded-xl p-4 
-    shadow-[2px_2px_10px_rgba(0,0,0,0.08)] bg-white dark:bg-darkMode-cardBg
+    shadow-[2px_2px_10px_rgba(0,0,0,0.08)] dark:shadow-[2px_2px_10px_rgba(255,255,255,0.18)] bg-white dark:bg-darkMode-cardBg
     border-[2.3px] transition-colors duration-300
       ${
         title == "Words written"
@@ -39,10 +39,10 @@ const Block = ({ title, value, icon }) => {
           {icon}
         </span>
         <div className="flex flex-col">
-          <span className="font-opensans font-bold text-xl md:text-2xl text-black">
+          <span className="font-opensans font-bold text-xl md:text-2xl text-black dark:text-white">
             {value}
           </span>
-          <span className="text-xs md:text-sm font-semibold text-neutral-500">
+          <span className="text-xs md:text-sm font-semibold text-neutral-500 dark:text-neutral-400">
             {title}
           </span>
         </div>

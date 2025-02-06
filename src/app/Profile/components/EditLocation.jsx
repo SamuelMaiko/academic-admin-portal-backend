@@ -4,7 +4,7 @@ const EditLocation = ({ country, setCountry, county, setCounty }) => {
   return (
     <div className="mt-10">
       <h1 className="text-xl md:text-2xl font-semibold">Location</h1>
-      <div className="mb-8">
+      <div className="mb-4 mt-4">
         <label className="text-base text-neutral-500 dark:text-darkMode-gray">
           Country*
         </label>

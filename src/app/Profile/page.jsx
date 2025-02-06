@@ -7,6 +7,7 @@ import Analytics from "./components/Analytics";
 import instance from "../../axios/instance";
 import { toast } from "react-toastify";
 import { useProgressBarContext } from "../../Context/ProgressBarContext";
+import EditInfoForm from "./components/EditInfoForm";
 
 const Profile = () => {
   const [loading, setLoading] = useState(false);
@@ -50,9 +51,10 @@ const Profile = () => {
           role={profile.role}
         />
       </div>
-      <Bio bio={profile.bio_with_emojis} />
-      <Analytics />
+      {/* <Bio bio={profile.bio_with_emojis} /> */}
+      {/* <Analytics /> */}
       <ContactInfo />
+      {/* <EditInfoForm /> */}
     </div>
   );
 };

@@ -12,7 +12,10 @@ const EditBasicInfo = ({
   return (
     <div>
       <h1 className="text-xl md:text-2xl font-semibold">Basic info</h1>
-      <div className="mt-1">
+      <div className="mt-4">
+        <label className="text-base text-neutral-500 dark:text-darkMode-gray">
+          First name*
+        </label>
         <input
           placeholder="First name"
           type="text"
@@ -24,7 +27,7 @@ const EditBasicInfo = ({
           onChange={(e) => setFirstName(e.target.value)}
         />
       </div>
-      <div className="mb-8">
+      <div className="mt-4 mb-8">
         <label className="text-base text-neutral-500 dark:text-darkMode-gray">
           Last name*
         </label>
@@ -41,7 +44,7 @@ const EditBasicInfo = ({
           />
         </div>
       </div>
-      <div>
+      {/* <div>
         <label className="text-base text-neutral-500 dark:text-darkMode-gray">
           Bio
         </label>
@@ -58,7 +61,7 @@ const EditBasicInfo = ({
             onChange={(e) => setBio(e.target.value)}
           />
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

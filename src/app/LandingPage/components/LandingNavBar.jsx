@@ -9,14 +9,14 @@ const NAV_LINKS = [
     linkName: "Home",
     link: "/",
   },
-  {
-    linkName: "Services",
-    link: "#",
-  },
-  {
-    linkName: "Contact",
-    link: "#",
-  },
+  // {
+  //   linkName: "Services",
+  //   link: "#",
+  // },
+  // {
+  //   linkName: "Contact",
+  //   link: "#",
+  // },
   {
     linkName: "FAQs",
     link: "#",

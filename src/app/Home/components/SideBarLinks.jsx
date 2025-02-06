@@ -2,15 +2,22 @@ import React from "react";
 import { useStateShareContext } from "../../../Context/StateContext";
 import { useLocation, useNavigate } from "react-router-dom";
 import Button from "./ui/Button";
+// import {
+//   Binoculars,
+//   BookmarkSimple,
+//   Briefcase,
+//   FileDoc,
+//   House,
+//   Pen,
+// } from "phosphor-react";
 import {
-  Binoculars,
-  BookmarkSimple,
-  Briefcase,
-  FileDoc,
-  House,
-  Pen,
-} from "phosphor-react";
-import { LayoutDashboard } from "lucide-react";
+  FileEdit,
+  FileText,
+  Inbox,
+  LayoutDashboard,
+  PenSquare,
+  UserCircle,
+} from "lucide-react";
 import { useNotificationContext } from "../../../Context/NotificationContext";
 // import { FileCheck } from "lucide-react";
 
@@ -23,7 +30,7 @@ const SideBarLinks = () => {
     <div
       className={`${
         shrinkSideBar ? "flex items-center flex-col" : ""
-      } w-full h-full px-[2rem] mt-8 `}
+      } w-full h-full px-[2rem] mt-8 pt-[1rem]`}
     >
       {/* writer dashboard  button */}
       <div>
@@ -34,7 +41,7 @@ const SideBarLinks = () => {
               <LayoutDashboard
                 size={20}
                 weight="fill"
-                style={{ fill: "currentColor", stroke: "none" }}
+                // style={{ fill: "currentColor", stroke: "none" }}
               />
             ) : (
               <LayoutDashboard size={20} weight="fill" />
@@ -42,7 +49,9 @@ const SideBarLinks = () => {
           }
           title={"Dashboard"}
           className={`${
-            /^\/dashboard(\/|$)/.test(pathname) ? "text-black" : ""
+            /^\/dashboard(\/|$)/.test(pathname)
+              ? " dark:text-white text-black"
+              : "dark:text-neutral-400 text-neutral-400"
           } w-full`}
         />
       </div>
@@ -52,18 +61,16 @@ const SideBarLinks = () => {
           onClick={() => navigate("/manage-work")}
           icon={
             /^\/manage-work(\/|$)/.test(pathname) ? (
-              <LayoutDashboard
-                size={20}
-                weight="fill"
-                style={{ fill: "currentColor", stroke: "none" }}
-              />
+              <FileText size={20} />
             ) : (
-              <LayoutDashboard size={20} weight="fill" />
+              <FileText size={20} weight="fill" />
             )
           }
           title={"Work"}
           className={`${
-            /^\/manage-work(\/|$)/.test(pathname) ? "text-black " : ""
+            /^\/manage-work(\/|$)/.test(pathname)
+              ? " dark:text-white text-black"
+              : "dark:text-neutral-400 text-neutral-400"
           } w-full`}
         />
       </div>
@@ -73,23 +80,25 @@ const SideBarLinks = () => {
           onClick={() => navigate("/manage-users")}
           icon={
             /^\/manage-users(\/|$)/.test(pathname) ? (
-              <LayoutDashboard
+              <UserCircle
                 size={20}
                 weight="fill"
-                style={{ fill: "currentColor", stroke: "none" }}
+                // style={{ fill: "currentColor", stroke: "none" }}
               />
             ) : (
-              <LayoutDashboard size={20} weight="fill" />
+              <UserCircle size={20} weight="fill" />
             )
           }
           title={"Users"}
           className={`${
-            /^\/manage-users(\/|$)/.test(pathname) ? "text-black" : ""
+            /^\/manage-users(\/|$)/.test(pathname)
+              ? " dark:text-white text-black"
+              : "dark:text-neutral-400 text-neutral-400"
           } w-full`}
         />
       </div>
       {/* registration codes section button */}
-      <div>
+      {/* <div>
         <Button
           onClick={() => navigate("/reg-codes")}
           icon={
@@ -105,28 +114,26 @@ const SideBarLinks = () => {
           }
           title={"Registration Codes"}
           className={`${
-            /^\/reg-codes(\/|$)/.test(pathname) ? "text-black" : ""
+            /^\/reg-codes(\/|$)/.test(pathname) ? "text-neutral-500" : ""
           } w-full whitespace-nowrap`}
         />
-      </div>
+      </div> */}
       {/* revisions section button */}
       <div className="relative">
         <Button
           onClick={() => navigate("/revisions")}
           icon={
             /^\/revisions(\/|$)/.test(pathname) ? (
-              <LayoutDashboard
-                size={20}
-                weight="fill"
-                style={{ fill: "currentColor", stroke: "none" }}
-              />
+              <FileEdit size={20} weight="fill" />
             ) : (
-              <LayoutDashboard size={20} weight="fill" />
+              <FileEdit size={20} weight="fill" />
             )
           }
           title={"Revisions"}
           className={`${
-            /^\/revisions(\/|$)/.test(pathname) ? "text-black" : ""
+            /^\/revisions(\/|$)/.test(pathname)
+              ? " dark:text-white text-black"
+              : "dark:text-neutral-400 text-neutral-400"
           } w-full`}
         />
         {/* counter */}
@@ -143,18 +150,16 @@ const SideBarLinks = () => {
           onClick={() => navigate("/submissions")}
           icon={
             /^\/submissions(\/|$)/.test(pathname) ? (
-              <LayoutDashboard
-                size={20}
-                weight="fill"
-                style={{ fill: "currentColor", stroke: "none" }}
-              />
+              <Inbox size={20} weight="fill" />
             ) : (
-              <LayoutDashboard size={20} weight="fill" />
+              <Inbox size={20} weight="fill" />
             )
           }
           title={"Submissions"}
           className={`${
-            /^\/submissions(\/|$)/.test(pathname) ? "text-black" : ""
+            /^\/submissions(\/|$)/.test(pathname)
+              ? " dark:text-white text-black"
+              : "dark:text-neutral-400 text-neutral-400"
           } w-full`}
         />
         {/* counter */}

@@ -14,7 +14,7 @@ const ProfileInformation = () => {
           setShowEditInfoModal(true);
           setSettingsOpen(false);
         }}
-        title="Name, location"
+        title="Name, location, contact"
       />
     </div>
   );

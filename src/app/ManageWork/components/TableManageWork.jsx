@@ -22,7 +22,7 @@ import getWork from "../api/getWork";
 
 const TableManageWork = () => {
   const { darkMode } = useStateShareContext();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [work, setWork] = useState([]);
   const navigate = useNavigate();
 

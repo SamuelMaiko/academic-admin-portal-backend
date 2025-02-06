@@ -18,7 +18,7 @@ import getSubmissions from "../api/getSubmissions";
 
 const TableSubmissions = () => {
   const { darkMode } = useStateShareContext();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [submittedWork, setSubmittedWork] = useState([]);
 
   useEffect(() => {

@@ -82,9 +82,9 @@ const NavBar = () => {
         </div>
         {/* user profile button */}
         <Button
-          onClick={() => navigate("/profile")}
+          // onClick={() => navigate("/profile")}
           buttonType="roundedIconBtn"
-          className="dark:hover:bg-gray-600 size-[2.1rem] ml-1 p-0 overflow-hidden bg-black dark:hover:text-white"
+          className="dark:hover:bg-gray-600 size-[2.1rem] ml-1 p-0 overflow-hidden bg-black dark:hover:text-white hidden"
         >
           <img
             className="w-full h-full object-cover object-top"

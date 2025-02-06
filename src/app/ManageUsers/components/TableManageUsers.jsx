@@ -22,8 +22,7 @@ import getAccounts from "../api/getAccounts";
 
 const TableManageUsers = () => {
   const { darkMode } = useStateShareContext();
-  const [loading, setLoading] = useState(false);
-  const { assignedWork, setAssignedWork } = useProgressBarContext();
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const [accounts, setAccounts] = useState([]);
 

@@ -10,15 +10,15 @@ import SideBarLinks from "./SideBarLinks";
 
 const SideBar = () => {
   const { shrinkSideBar, setShrinkSideBar, darkMode } = useStateShareContext();
-  
 
   return (
     <div
+      // ${shrinkSideBar ? "w-[5rem]" : "w-[20vw]"} ${
       className={`
-      ${shrinkSideBar ? "w-[5rem]" : "w-[20vw]"} border-r border-[#f5f4f4] ${
+      ${shrinkSideBar ? "w-[5rem]" : "w-[17vw]"} ${
         darkMode ? "sidebar" : ""
       } transition-width duration-500 pt-[2rem] dark:bg-darkMode-bars
-       dark:text-darkMode-text hidden md:block pb-[2rem]`}
+       dark:text-darkMode-text hidden md:block h-full`}
     >
       <div
         className={`flex ${
@@ -49,7 +49,7 @@ const SideBar = () => {
       </div>
 
       {/* profile preview */}
-      <ProfilePreview />
+      {/* <ProfilePreview /> */}
 
       {/* button links */}
       <SideBarLinks />
