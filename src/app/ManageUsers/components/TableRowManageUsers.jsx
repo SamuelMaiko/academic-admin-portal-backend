@@ -23,7 +23,7 @@ const TableRowManageUsers = ({
     <TableRow
       onClick={() => navigate(`/manage-users/${id}/change`)}
       className={`bg-white dark:bg-darkMode-cardBg dark:text-white cursor-pointer 
-        hover:bg-lightmode-cardBgHover h-[4rem]`}
+         h-[4rem]`}
     >
       <TableCell>
         <div className="flex items-center gap-3">

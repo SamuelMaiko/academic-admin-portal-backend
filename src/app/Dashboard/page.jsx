@@ -24,10 +24,16 @@ import OverallWritersScore from "./components/OverallWritersScore";
 import TableWriterProficiency from "./components/TableWriterProficiency";
 import getGeneralAnalytics from "./api/getGeneralAnalytics";
 import Loader from "../../SharedComponents/Loader";
+import { useAdminContext } from "../../Context/AdminContext";
 
 const Dashboard = () => {
   const [loading, setLoading] = useState(false);
   const [generalAnalytics, setGeneralAnalytics] = useState({});
+  const { setShowNavBar } = useAdminContext();
+
+  useEffect(() => {
+    setShowNavBar(true);
+  }, []);
 
   useEffect(() => {
     setLoading(true);

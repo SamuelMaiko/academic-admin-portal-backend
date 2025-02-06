@@ -222,7 +222,7 @@ const RevisionsDetails = () => {
           </div>
         </div>
       </div>
-      <div className=" relative h-[20%]">
+      <div className=" relative w-full h-[20%]">
         <SubmitMessage
           file={file}
           setFile={setFile}

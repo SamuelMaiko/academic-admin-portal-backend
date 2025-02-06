@@ -102,7 +102,7 @@ const SubmitMessage = ({
     <div
       className={`absolute lg:static ${
         revisionMessages.length > 0 ? "bottom-[2%]" : "bottom-[6%]"
-      } flex justify-between items-center gap-2 lg:gap-4 lg:items-end h-full pb-2 px-0 lg:px-0`}
+      } flex justify-between items-center gap-2 lg:gap-4 lg:items-end h-full w-full pb-2 `}
     >
       <div
         className={`${
@@ -154,8 +154,8 @@ const SubmitMessage = ({
         {/* <label htmlFor="message">Message</label> */}
         <TextareaAutosize
           id="message"
-          placeholder="Write your message here."
-          className="w-full p-3 border border-gray-300 rounded-md focus:outline-none text-[15px]
+          placeholder="Write message here."
+          className="w-full p-2 lg:p-3 border border-gray-300 rounded-md focus:outline-none text-[14px] lg:text-[15px]
            focus:ring-2 resize-none"
           minRows={1}
           value={message}

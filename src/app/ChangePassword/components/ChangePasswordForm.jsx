@@ -77,7 +77,7 @@ const ChangePasswordForm = () => {
       {error && <p className="text-red-500 hidden mb-5">{error}</p>}
       {success && <p className="text-green-500 hidden mb-5">{success}</p>}
       <div className="mb-8">
-        <label className="text-sm text-neutral-500 dark:text-darkMode-gray">
+        <label className="text-[14px] lg:text-[15px] text-neutral-500 dark:text-darkMode-gray">
           Type your current password*
         </label>
         <div className="mt-1">
@@ -85,7 +85,7 @@ const ChangePasswordForm = () => {
             placeholder="Current password"
             type="password"
             className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3
-             py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1
+             py-2 text-[14px] lg:text-[15px] placeholder:text-gray-400 focus:outline-none focus:ring-1
               focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
             name="current_password"
             // Step 3: Bind state to input
@@ -96,7 +96,7 @@ const ChangePasswordForm = () => {
         </div>
       </div>
       <div className="mb-8">
-        <label className="text-sm text-neutral-500 dark:text-darkMode-gray">
+        <label className="text-[14px] lg:text-[15px] text-neutral-500 dark:text-darkMode-gray">
           Type your new password*
         </label>
         <div className="mt-1">
@@ -104,7 +104,7 @@ const ChangePasswordForm = () => {
             placeholder="New password"
             type="password"
             className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3
-             py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1
+             py-2 text-[14px] lg:text-[15px] placeholder:text-gray-400 focus:outline-none focus:ring-1
               focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
             name="new_password"
             // Step 3: Bind state to input
@@ -115,7 +115,7 @@ const ChangePasswordForm = () => {
         </div>
       </div>
       <div className="mb-8">
-        <label className="text-sm text-neutral-500 dark:text-darkMode-gray">
+        <label className="text-[14px] lg:text-[15px] text-neutral-500 dark:text-darkMode-gray">
           Retype your new password*
         </label>
         <div className="mt-1">
@@ -123,7 +123,7 @@ const ChangePasswordForm = () => {
             placeholder="Retype password"
             type="password"
             className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3
-             py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1
+             py-2 text-[14px] lg:text-[15px] placeholder:text-gray-400 focus:outline-none focus:ring-1
               focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
             name="retype_password"
             // Step 3: Bind state to input
@@ -136,7 +136,7 @@ const ChangePasswordForm = () => {
       <button
         type="submit"
         className="transition-colors duration-300 hover:bg-green-600
-         bg-green-500 text-white py-2 px-3 rounded-3xl text-[15px]"
+         bg-green-500 text-white py-2 px-3 rounded-3xl text-[13px] lg:text-[14px]"
         disabled={loading}
       >
         {" "}
@@ -145,9 +145,9 @@ const ChangePasswordForm = () => {
       <button
         onClick={() => navigate("/forgot-password")}
         className="text-gray-400 mt-5 hover:text-gray-500 transition-colors block duration-300
-        w-fit cursor-pointer"
+        w-fit cursor-pointer text-[13px] lg:text-[14px]"
       >
-        Forgot password
+        Forgot password?
       </button>
     </form>
   );

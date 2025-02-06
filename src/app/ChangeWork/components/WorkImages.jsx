@@ -45,7 +45,9 @@ const WorkImages = ({ setLoading }) => {
   return (
     <div className="">
       <div className="flex justify-between pr-2 md:pr-5 mb-8">
-        <h1 className="text-lg font-semibold ">Images {`(${imagesCount})`}</h1>
+        <h1 className="text-[16px] lg:text-[17px] font-semibold ">
+          Images {`(${imagesCount})`}
+        </h1>
         <div className="flex gap-2">
           <a
             href={zipDetails && zipDetails.zipDownloadLink}
@@ -54,22 +56,24 @@ const WorkImages = ({ setLoading }) => {
           >
             <button
               className="text-sm flex items-center gap-2 bg-yellow-300 hover:bg-yellow-400
-            transition-colors duration-300 text-black py-1 px-4  font-medium"
+            transition-colors duration-300 text-black py-1 px-4  font-medium text-[13px] lg:text-[14px]"
             >
               <span>
-                <CloudArrowDown size={20} />{" "}
+                <CloudArrowDown size={20} className="hidden lg:block" />
+                <CloudArrowDown size={18} className="lg:hidden block" />{" "}
               </span>
               <span>Download all images</span>
             </button>
           </a>
           <button
-            className={`text-sm flex items-center gap-2 bg-gray-300 cursor-default
-              transition-colors duration-300 text-black py-1 px-4  font-medium 
+            className={`text-sm flex items-center gap-2 bg-gray-200 cursor-default
+              transition-colors duration-300 text-black py-1 px-4  font-medium text-[13px] lg:text-[14px]
               ${imagesCount == 0 ? "" : "hidden"}
               `}
           >
             <span>
-              <CloudArrowDown size={20} />{" "}
+              <CloudArrowDown size={20} className="hidden lg:block" />
+              <CloudArrowDown size={18} className="lg:hidden block" />{" "}
             </span>
             <span className="lg:hidden block">Download images</span>
             <span className="hidden lg:block">Download all images</span>
@@ -107,17 +111,10 @@ const WorkImages = ({ setLoading }) => {
             }}
             className="hidden"
           />
-          <Plus size={34} />
+          <Plus size={34} className="hidden lg:block" />
+          <Plus size={30} className="lg:hidden block" />
         </div>
       </div>
-      {/* <button
-        onClick={() => setShowChangeImagesModal(false)}
-        className="absolute bottom-8 right-[10%] bg-green-700 hover:bg-green-600 transition-colors duration-300
-          dark:text-darkMode-cardButtonT dark:hover:text-darkMode-cardButtonTHov
-           rounded-lg font-semibold  py-1 px-5 text-white"
-      >
-        Close
-      </button> */}
     </div>
   );
 };

@@ -39,7 +39,8 @@ const Settings = () => {
         className="absolute top-3 right-3 p-2 border-blue-500 border-[2px] hover:bg-gray-100
          dark:hover:bg-gray-600 dark:text-darkMode-text rounded-lg transition-colors duration-300"
       >
-        <X size={22} />
+        <X size={24} className="hidden lg:block" />
+        <X size={20} className="lg:hidden block" />
       </button>
       {/* <ProfileInformation /> */}
       <DarkModeSetting />

@@ -25,7 +25,7 @@ const EditImages = () => {
       </div>
       {/* header */}
       <div className=" flex justify-between items-center py-3 px-4 border-b-neutral-300 border-b-[1px]">
-        <p className="text-xl font-semibold">Edit Images</p>
+        <p className="text-[16px] lg:text-[17px] font-semibold">Edit Images</p>
         {/* close button */}
         <button
           onClick={() => {
@@ -34,7 +34,8 @@ const EditImages = () => {
           }}
           className="rounded-full hover:bg-neutral-200 dark:hover:bg-gray-600 p-2"
         >
-          <X size={24} />
+          <X size={24} className="hidden lg:block" />
+          <X size={20} className="lg:hidden block" />
         </button>
       </div>
       {/* body */}

@@ -44,9 +44,9 @@ const TableRowSubmissions = ({
         ${
           !isClaimed
             ? "bg-blue-100 hover:bg-blue-200 dark:bg-blue-700 hover:dark:bg-blue-800"
-            : "hover:bg-lightmode-cardBgHover "
+            : " "
         }
-        cursor-pointer hover:bg-lightmode-cardBgHover h-[4rem]`}
+        cursor-pointer h-[4rem]`}
     >
       <TableCell>
         <div className="flex items-center gap-3">

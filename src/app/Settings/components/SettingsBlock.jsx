@@ -8,11 +8,11 @@ const SettingsBlock = ({ title, onClick = () => {} }) => {
       <div
         onClick={onClick}
         className="flex justify-between items-center p-3 cursor-pointer hover:bg-neutral-200
-         transition-colors duration-300 dark:hover:bg-darkMode-cardHover"
+         transition-colors duration-300 dark:hover:bg-darkMode-cardHover text-[14px] lg:text-[15px]"
       >
         <p
           className={`${
-            title == "Sign Out" ? "text-red-500 dark:text-red-400" : ""
+            title == "Sign out" ? "text-red-500 dark:text-red-400" : ""
           }`}
         >
           {title}

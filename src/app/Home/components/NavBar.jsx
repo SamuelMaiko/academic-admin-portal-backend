@@ -43,14 +43,14 @@ const NavBar = () => {
 
   return (
     <div
-      className={`w-full h-[5rem] px-[1rem] md:px-[2rem] flex  items-center justify-between sticky
+      className={`w-full h-[5rem] px-[1rem] md:px-[2rem] flex items-center justify-between sticky
          top-0 z-40 bg-white dark:bg-darkMode-bars dark:text-darkMode-text`}
     >
       <p className="text-[14px] lg:text-xl ">
         <span className="font-normal">{greeting}</span>{" "}
         <span className="uppercase font-bold">{firstName}!</span>
       </p>
-      <div className="flex items-center  lg:gap-2">
+      <div className="flex items-center gap-2 lg:gap-4">
         {/* settings button */}
         <Button
           onClick={() => setSettingsOpen(true)}
@@ -58,7 +58,7 @@ const NavBar = () => {
           className="dark:hover:bg-gray-600 dark:hover:text-white"
         >
           <Gear size={22} className="hidden lg:block" />
-          <Gear size={18} className="lg:hidden block" />
+          <Gear size={19} className="lg:hidden block" />
         </Button>
         {/* sidebar toggle button -- mobile view */}
         <Button
@@ -67,7 +67,7 @@ const NavBar = () => {
           className="dark:hover:bg-gray-600 dark:hover:text-white md:hidden"
         >
           <List size={22} className="hidden lg:block" />
-          <List size={18} className="lg:hidden block" />
+          <List size={19} className="lg:hidden block" />
         </Button>
 
         {/* notifications icon */}

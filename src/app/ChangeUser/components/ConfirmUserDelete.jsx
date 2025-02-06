@@ -27,7 +27,10 @@ const ConfirmUserDelete = () => {
      bg-bgcolor dark:bg-darkMode-body"
     >
       <div className="text-[1.3rem]  px-4 flex items-center justify-center py-3 ">
-        <p className="text-lg md:text-xl font-semibold"> Delete account</p>
+        <p className="text-[17px] lg:text-[18px] font-semibold">
+          {" "}
+          Delete account
+        </p>
       </div>
       <Divider className="dark:hidden" color="primary" />
       <Divider className="hidden dark:block" color="secondary" />
@@ -38,10 +41,10 @@ const ConfirmUserDelete = () => {
       </div>
       {/* central section*/}
       <div className="p-3 h-[7rem] md:h-[10rem]">
-        <p className="text-[18px] md:text-xl font-semibold text-center dark:text-white text-gray-700">
+        <p className="text-[16px] lg:text-[17px] font-semibold text-center dark:text-white text-gray-700 mb-3">
           Are you sure ?
         </p>
-        <p className="text-center dark:text-white text-gray-700 mt-3 text-[14px] md:text-md">
+        <p className="text-center dark:text-white text-gray-700 mt-3 text-[14px] lg:text-[15px]">
           This action cannot be undone. All the account progress and activity
           will be lost.
         </p>
@@ -52,14 +55,14 @@ const ConfirmUserDelete = () => {
         <div className="flex items-center gap-2">
           <button
             onClick={() => setShowDeleteUserModal(false)}
-            className="border-[1px] bg-gray-500 hover:bg-gray-600 py-1 px-3 rounded-2xl
+            className="border-[1px] bg-gray-500 hover:bg-gray-600 py-1 px-3 rounded-2xl text-[13px] lg:text-[14px]
              font-medium text-white transition-background duration-300 flex items-center"
           >
             <span>Cancel</span>
           </button>
           <button
             onClick={handleDelete}
-            className={` bg-red-500 hover:bg-red-600
+            className={` bg-red-500 hover:bg-red-600 text-[13px] lg:text-[14px]
               py-1 px-3 rounded-2xl font-medium text-white transition-background duration-300 flex items-center`}
             disabled={loading}
           >

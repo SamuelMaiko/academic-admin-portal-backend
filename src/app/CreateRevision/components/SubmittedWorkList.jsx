@@ -15,23 +15,26 @@ const SubmittedWorkList = () => {
   }, []);
   return (
     <div
-      className="absolute w-full md:w-[46%] h-[34rem] md:rounded-lg  md:px-2 left-[50%]
+      className="absolute w-full md:w-[46%] h-[25rem] lg:h-[34rem] md:rounded-lg  md:px-2 left-[50%]
    translate-x-[-50%] top-[50%] translate-y-[-50%] bg-bgcolor dark:bg-darkMode-body
     dark:text-darkMode-text     
    "
     >
       {/* header */}
-      <div className="flex justify-between items-center py-3 px-4 border-b-neutral-300 border-b-[1px]">
-        <p className="text-xl font-semibold">Choose submitted work</p>
+      <div className="flex justify-between items-center py-3 px-4 border-b-neutral-300 border-b-[1px] ">
+        <p className="text-[17px] lg:text-[18px] font-semibold">
+          Choose submitted work
+        </p>
         {/* close button */}
         <button
           onClick={() => setShowChooseWorkModal(false)}
           className="rounded-full hover:bg-neutral-200 dark:hover:bg-gray-600 p-2"
         >
-          <X size={24} />
+          <X size={24} className="hidden lg:block" />
+          <X size={20} className="lg:hidden block" />
         </button>
       </div>
-      <div>
+      <div className="h-[70%] overflow-y-scroll">
         {submittedWork &&
           submittedWork.map((item, index) => (
             <SubmittedWorkListCard key={index} {...item} />

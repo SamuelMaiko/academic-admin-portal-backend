@@ -85,13 +85,16 @@ const EditPFPForm = () => {
       <div>
         {/* header */}
         <div className="flex justify-between items-center py-3 px-4 ">
-          <p className="text-[18px] lg:text-xl font-semibold">Profile photo</p>
+          <p className="text-[16px] lg:text-[17px] font-semibold">
+            Profile photo
+          </p>
           {/* cancel button */}
           <button
             onClick={() => setShowEditPFPModal(false)}
             className="rounded-full hover:bg-neutral-200 dark:hover:bg-gray-600 p-2"
           >
-            <X size={24} />
+            <X size={24} className="hidden lg:block" />
+            <X size={20} className="lg:hidden block" />
           </button>
         </div>
         {/* display the profile picture */}
@@ -126,12 +129,21 @@ const EditPFPForm = () => {
             <button
               onClick={() => document.getElementById("fileInput").click()}
               className={`h-full px-2 flex flex-col items-center justify-center hover:bg-neutral-200
-               dark:hover:bg-gray-600 font-medium py-1 ${
+               dark:hover:bg-gray-600 font-medium py-1 text-[13px] lg:text-[14px] ${
                  selectedFile ? "hidden" : ""
                }`}
             >
               <span>
-                <ImageSquare size={25} weight="fill" />
+                <ImageSquare
+                  size={24}
+                  className="hidden lg:block"
+                  weight="fill"
+                />
+                <ImageSquare
+                  size={20}
+                  className="lg:hidden block"
+                  weight="fill"
+                />
               </span>
               <span>Upload new</span>
             </button>
@@ -139,7 +151,7 @@ const EditPFPForm = () => {
               <div className="mt-2 flex gap-2">
                 <button
                   onClick={handleUpload}
-                  className="bg-blue-500 text-white py-1 px-3 rounded hover:bg-blue-600"
+                  className="bg-blue-500 text-white py-1 px-3 rounded hover:bg-blue-600 text-[13px] lg:text-[14px]"
                   disabled={uploadLoading}
                 >
                   {uploadLoading ? "Uploading..." : "Upload"}
@@ -149,7 +161,7 @@ const EditPFPForm = () => {
                     setUpload(imageURL);
                     setSelectedFile(null);
                   }}
-                  className={`bg-gray-500 text-white py-1 px-3 rounded hover:bg-gray-600 ${
+                  className={`bg-gray-500 text-white py-1 px-3 rounded hover:bg-gray-600 text-[13px] lg:text-[14px] ${
                     uploadLoading ? "hidden" : ""
                   }`}
                 >
@@ -161,10 +173,12 @@ const EditPFPForm = () => {
           <button
             onClick={() => setShowDeleteProfilePhotoModal(true)}
             className="h-full px-2 flex flex-col items-center hover:bg-neutral-200
-           dark:hover:bg-gray-600 justify-center rounded-lg font-medium  py-1"
+           dark:hover:bg-gray-600 justify-center rounded-lg font-medium text-[13px] lg:text-[14px] py-1"
           >
             <span>
-              <Trash size={25} weight="fill" />
+              {/* <Trash size={25} weight="fill" /> */}
+              <Trash size={24} className="hidden lg:block" weight="fill" />
+              <Trash size={20} className="lg:hidden block" weight="fill" />
             </span>
             <span>Delete</span>
           </button>

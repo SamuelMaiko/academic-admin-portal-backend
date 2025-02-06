@@ -46,11 +46,14 @@ const ConfirmAccountDeactivate = () => {
   };
   return (
     <div
-      className="absolute w-[21rem]  px-2 left-[50%] translate-x-[-50%] top-[30%] rounded-lg
+      className="absolute w-full lg:w-[21rem] px-2 left-[50%] translate-x-[-50%] top-[30%] lg:rounded-lg
      bg-bgcolor dark:bg-darkMode-body"
     >
       <div className="text-[1.3rem]  px-4 flex items-center justify-center py-3 ">
-        <p className=" text-lg md:text-xl font-semibold"> Deactivate account</p>
+        <p className=" text-[17px] lg:text-[18px] font-semibold">
+          {" "}
+          Deactivate account
+        </p>
         {/* close button */}
         {/* <button
           onClick={() => setShowDeactivateAccountModal(false)}
@@ -68,10 +71,10 @@ const ConfirmAccountDeactivate = () => {
       </div>
       {/* central section*/}
       <div className="p-3">
-        <p className="text-lg md:text-xl font-semibold text-center dark:text-white text-gray-700">
+        <p className="text-[16px] lg:text-[17px] font-semibold text-center dark:text-white text-gray-700">
           Are you sure ?
         </p>
-        <p className="text-center dark:text-white text-gray-700 text-md">
+        <p className="text-center dark:text-white text-gray-700 text-[14px] lg:text-[15px]">
           You can reactivate it anytime by logging back in.
         </p>
       </div>
@@ -82,13 +85,13 @@ const ConfirmAccountDeactivate = () => {
           <button
             onClick={() => setShowDeactivateAccountModal(false)}
             className="border-[1px] border-orange-500 py-1 px-3 rounded-2xl hover:bg-gray-100
-             font-medium text-orange-500 transition-background duration-300 flex items-center"
+             font-medium text-orange-500 transition-background duration-300 flex items-center text-[13px] lg:text-[14px]"
           >
             <span>Cancel</span>
           </button>
           <button
             onClick={handleDeactivateAccount}
-            className={` bg-orange-500 hover:bg-orange-600
+            className={` bg-orange-500 hover:bg-orange-600 text-[13px] lg:text-[14px]
               py-1 px-3 rounded-2xl font-medium text-white transition-background duration-300 flex items-center`}
             disabled={loading}
           >

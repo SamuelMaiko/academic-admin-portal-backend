@@ -43,9 +43,9 @@ const SaveButton = ({
       onClick={handleUpdate}
       type="button"
       className="bg-blue-500 hover:bg-blue-400 transition-colors duration-300
-         dark:bg-darkMode-cardButton dark:hover:bg-darkMode-cardButtonHover
+         dark:bg-darkMode-cardButton dark:hover:bg-darkMode-cardButtonHover text-[14px] lg:text-[15px]
           dark:text-darkMode-cardButtonT dark:hover:text-darkMode-cardButtonTHov
-           font-semibold  py-2 lg:py-4 px-7 lg:px-10 text-white uppercase mt-14"
+           font-semibold py-2 lg:py-3 px-7 lg:px-9 text-white uppercase mt-14"
       disabled={loading}
     >
       {loading ? "Saving..." : "Save"}

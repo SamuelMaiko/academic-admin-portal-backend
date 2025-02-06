@@ -6,6 +6,7 @@ import EditContactInfo from "./EditContactInfo";
 import SaveButton from "./SaveButton";
 
 const EditInfoForm = ({
+  profile,
   firstName,
   setFirstName,
   lastName,
@@ -28,7 +29,11 @@ const EditInfoForm = ({
     >
       {/* header */}
       <div className="flex justify-between items-center py-3 px-4 border-b-neutral-300 border-b-[1px]">
-        <p className="text-[18px] lg:text-xl font-semibold">Edit info</p>
+        {/* <p className="text-[16px] lg:text-[17px] font-semibold">Edit info</p> */}
+        <p className="text-[13px] lg:text-[15px] font-medium">
+          <span className="text-blue-500">{profile.registration_number}</span>{" "}
+          &middot; {profile.role}
+        </p>
       </div>
       {/* central body */}
       <form className="px-4 md:px-8 ">

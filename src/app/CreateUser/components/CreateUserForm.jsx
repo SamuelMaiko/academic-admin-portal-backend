@@ -39,14 +39,14 @@ const CreateUserForm = () => {
   return (
     <form onSubmit={handleSubmit} className="pt-5 w-full md:w-[58%]">
       <div className="mt-1 mb-5 ">
-        <label className="text-base text-neutral-500 dark:text-darkMode-gray">
+        <label className="text-[14px] lg:text-[15px] text-neutral-500 dark:text-darkMode-gray">
           First name*
         </label>
         <input
           placeholder="First name"
           type="text"
           className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3
-           py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1
+           py-2 text-[14px] lg:text-[15px] placeholder:text-gray-400 focus:outline-none focus:ring-1
             focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
           name="first_name"
           value={firstName}
@@ -55,7 +55,7 @@ const CreateUserForm = () => {
         />
       </div>
       <div className="mb-5">
-        <label className="text-base text-neutral-500 dark:text-darkMode-gray">
+        <label className="text-[14px] lg:text-[15px] text-neutral-500 dark:text-darkMode-gray">
           Last name*
         </label>
         <div className="mt-1">
@@ -63,7 +63,7 @@ const CreateUserForm = () => {
             placeholder="Last name"
             type="text"
             className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent
-             px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1
+             px-3 py-2 text-[14px] lg:text-[15px] placeholder:text-gray-400 focus:outline-none focus:ring-1
               focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
             name="last_name"
             value={lastName}
@@ -73,7 +73,7 @@ const CreateUserForm = () => {
         </div>
       </div>
       <div className="mb-5">
-        <label className="text-base text-neutral-500 dark:text-darkMode-gray">
+        <label className="text-[14px] lg:text-[15px] text-neutral-500 dark:text-darkMode-gray">
           Email*
         </label>
         <div className="mt-1">
@@ -81,7 +81,7 @@ const CreateUserForm = () => {
             placeholder="Email"
             type="email"
             className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent
-             px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1
+             px-3 py-2 text-[14px] lg:text-[15px] placeholder:text-gray-400 focus:outline-none focus:ring-1
               focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
             name="email"
             value={email}
@@ -91,7 +91,7 @@ const CreateUserForm = () => {
         </div>
       </div>
       <div className="mb-5">
-        <label className="text-base text-neutral-500 dark:text-darkMode-gray">
+        <label className="text-[14px] lg:text-[15px] text-neutral-500 dark:text-darkMode-gray">
           Password*
         </label>
         <div className="mt-1">
@@ -99,7 +99,7 @@ const CreateUserForm = () => {
             placeholder="Password"
             type="text"
             className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent
-             px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1
+             px-3 py-2 text-[14px] lg:text-[15px] placeholder:text-gray-400 focus:outline-none focus:ring-1
               focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
             name="password"
             value={password}
@@ -109,11 +109,11 @@ const CreateUserForm = () => {
         </div>
       </div>
       <div className="mb-5">
-        <label className="text-base text-neutral-500 dark:text-darkMode-gray">
+        <label className="text-[14px] lg:text-[15px] text-neutral-500 dark:text-darkMode-gray">
           Role
         </label>
         <div className="flex gap-8">
-          <div className="flex gap-2 text-neutral-500">
+          <div className="flex gap-2 text-neutral-500 text-[14px] lg:text-[15px]">
             <input
               type="radio"
               name="role"
@@ -124,7 +124,7 @@ const CreateUserForm = () => {
             />
             <label htmlFor="Admin">Admin</label>
           </div>
-          <div className="flex gap-2 text-neutral-500">
+          <div className="flex gap-2 text-neutral-500 text-[14px] lg:text-[15px]">
             <input
               type="radio"
               name="role"
@@ -137,13 +137,13 @@ const CreateUserForm = () => {
           </div>
         </div>
       </div>
-      <p className="text-red-500 mb-4 font-medium text-[13px] md:text-[15px]">
+      <p className="text-red-500 mb-4 font-medium text-[13px] md:text-[14px]">
         The registration number is assigned automatically after creation.
       </p>
 
       <input
         className="bg-green-700 mt-3 rounded-lg text-white flex items-center 
-      } p-[0.6rem] cursor-pointer"
+      } p-[0.6rem] cursor-pointer text-[13px] md:text-[14px]"
         type="submit"
         value={loading ? "Creating..." : "Create"}
         disabled={loading}

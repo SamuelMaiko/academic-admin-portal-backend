@@ -67,7 +67,7 @@ const LandingNavBar = () => {
           <button
             onClick={handleLogin}
             className="bg-chocolate text-white hover:bg-neutral-600 rounded-3xl px-5 py-2 mt-7 lg:mt-0 font-medium
-             text-[1.1rem] transition-colors duration-300 "
+             text-[13px] lg:text-[14px] transition-colors duration-300 "
           >
             Login
           </button>
@@ -95,8 +95,8 @@ const LandingNavBar = () => {
               e.stopPropagation();
               navigate("/login");
             }}
-            className={`bg-chocolate text-white hover:bg-neutral-600 rounded-3xl px-5 py-1 lg:mt-0 font-medium
-             text-[1.1rem] transition-colors duration-300 ${
+            className={`bg-chocolate text-white hover:bg-neutral-600 rounded-3xl px-5 lg:mt-0 font-medium
+             text-[13px] lg:text-[14px] transition-colors duration-300 ${
                AreasToHideMobileNavBar ? "" : "hidden"
              }`}
           >

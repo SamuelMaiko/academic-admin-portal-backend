@@ -11,7 +11,7 @@ import Loader from "../../SharedComponents/Loader";
 const ChangeWork = () => {
   const { showCarouselModal, setShowCarouselModal } = useStateShareContext();
   const { workImages } = useAdminContext();
-  const [loading, setLoading]=useState(true)
+  const [loading, setLoading] = useState(true);
 
   return (
     <div
@@ -19,7 +19,7 @@ const ChangeWork = () => {
     >
       <PageHeader title="Change work" subTitle={"Edit work details."} />
 
-      <ChangeWorkForm setLoading={setLoading}/>
+      <ChangeWorkForm setLoading={setLoading} />
 
       {/* carousel modal */}
       <div
@@ -53,9 +53,11 @@ const ChangeWork = () => {
         </div>
       </div>
 
-      <div className={`absolute bg-[rgba(255,255,255,0.9)] inset-0 bottom-0 flex flex-col items-center pt-[13rem]
-        ${loading?"":"hidden"}
-        `}>
+      <div
+        className={`absolute bg-[rgba(255,255,255,0.9)] inset-0 bottom-0 flex flex-col items-center pt-[13rem]
+        ${loading ? "" : "hidden"}
+        `}
+      >
         <Loader loading={loading} />
         <h1 className="font-semibold">Loading ...</h1>
       </div>

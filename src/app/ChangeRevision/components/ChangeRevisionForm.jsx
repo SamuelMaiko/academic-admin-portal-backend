@@ -53,7 +53,7 @@ const ChangeRevisionForm = ({ setPageLoading }) => {
   return (
     <form onSubmit={handleSubmit} className="pt-5 w-[58%] pb-14">
       <div>
-        <label className="text-base text-neutral-500 dark:text-darkMode-gray">
+        <label className="text-[14px] lg:text-[15px] text-neutral-500 dark:text-darkMode-gray">
           Work
         </label>
         <div className="mt-1">
@@ -62,7 +62,7 @@ const ChangeRevisionForm = ({ setPageLoading }) => {
             placeholder="Work"
             type="text"
             className=" h-10 w-full rounded-md border border-gray-300 bg-transparent hidden
-             px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1
+             px-3 py-2 text-[14px] lg:text-[15px] placeholder:text-gray-400 focus:outline-none focus:ring-1
               focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 "
             name="work"
             value={work}
@@ -111,17 +111,17 @@ const ChangeRevisionForm = ({ setPageLoading }) => {
       </div>
       {/* the submit before time */}
       <div className="mb-8 mt-8">
-        <label className="text-base text-neutral-500 dark:text-darkMode-gray">
+        <label className="text-[14px] lg:text-[15px] text-neutral-500 dark:text-darkMode-gray">
           Deadline
         </label>
-        <div className="mt-1 flex flex-row gap-10">
+        <div className="mt-1 flex flex-row gap-4 lg:gap-10">
           <div>
             <Popover showArrow={false} placement="bottom-start">
               <PopoverTrigger asChild>
                 <Button
                   className="py-4 justify-start gap-2 rounded-xl border border-metal-50 px-4
-                   text-left text-body-4 font-normal text-metal-600 hover:bg-white active:focus:scale-100
-                    dark:border-metal-900 dark:bg-metal-900 dark:text-white dark:hover:bg-metal-800"
+                   text-left text-[14px] lg:text-[15px]font-normal text-metal-600 hover:bg-white active:focus:scale-100
+                    dark:border-metal-900 dark:bg-metal-900 dark:text-white dark:hover:bg-metal-800 whitespace-nowrap"
                   variant="outline"
                   color="secondary"
                   type="button"
@@ -154,7 +154,7 @@ const ChangeRevisionForm = ({ setPageLoading }) => {
       </div>
       <input
         className="bg-green-700 hover:bg-green-800 mt-3 rounded-lg text-white flex items-center 
-      } p-[0.6rem] cursor-pointer transition-colors duration-300"
+      } p-[0.6rem] cursor-pointer transition-colors duration-300 text-[14px] lg:text-[15px]"
         type="submit"
         value={loading ? "Saving..." : "Save"}
         disabled={loading}

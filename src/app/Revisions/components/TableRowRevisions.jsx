@@ -25,7 +25,7 @@ const TableRowRevisions = ({
         ${
           !is_read
             ? "bg-blue-100 hover:bg-blue-200 dark:bg-blue-700 hover:dark:bg-blue-800"
-            : "hover:bg-lightmode-cardBgHover"
+            : ""
         }
         cursor-pointer h-[4rem]`}
     >

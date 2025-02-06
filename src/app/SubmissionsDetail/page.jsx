@@ -34,14 +34,14 @@ const SubmissionsDetail = () => {
   }, []);
 
   return (
-    <div className="relative w-full px-[2rem] pb-[44%] md:pb-[5rem] h-[80vh] dark:bg-darkMode-body ">
+    <div className="relative w-full px-[1rem] md:px-[2rem] pb-[44%] md:pb-[5rem] h-[80vh] dark:bg-darkMode-body ">
       <PageHeader
         title={"Submission Details"}
         subTitle={"View the details of a submission."}
       />
       <div>
         {/* comment form */}
-        <p className="my-2 font-semibold text-lg">
+        <p className="my-2 font-semibold text-[15px] lg:text-[16px]">
           {submissionDetails.work && submissionDetails.work.work_code}
         </p>
         <CommentForm
@@ -50,7 +50,7 @@ const SubmissionsDetail = () => {
           work={submissionDetails && submissionDetails.work}
         />
         <div className="flex flex-col gap-5 mt-[3rem] ">
-          <h3 className="font-medium ">File</h3>
+          <h3 className="font-medium text-[14px] lg:text-[15px] ">File</h3>
           <div
             className={`flex gap-8 ${
               file ? "" : "hidden"

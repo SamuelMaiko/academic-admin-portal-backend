@@ -11,10 +11,12 @@ const EditBasicInfo = ({
 }) => {
   return (
     <div>
-      <h1 className="text-[18px] lg:text-xl font-semibold mb-4">Basic info</h1>
+      <h1 className="text-[15px] lg:text-[16px] font-semibold mb-4">
+        Basic info
+      </h1>
       <div className="flex items-center justify-between gap-5 md:gap-10">
         <div className="w-full">
-          <label className="text-[14px] lg:text-base text-neutral-500 dark:text-darkMode-gray">
+          <label className="text-[14px] lg:text-[15px] text-neutral-500 dark:text-darkMode-gray">
             First name*
           </label>
           <div className="mt-1">
@@ -22,7 +24,7 @@ const EditBasicInfo = ({
               placeholder="First name"
               type="text"
               className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3
-            py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1
+            py-2 text-[14px] lg:text-[15px] placeholder:text-gray-400 focus:outline-none focus:ring-1
             focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
               name="first_name"
               value={firstName}
@@ -31,7 +33,7 @@ const EditBasicInfo = ({
           </div>
         </div>
         <div className="w-full">
-          <label className="text-[14px] lg:text-base text-neutral-500 dark:text-darkMode-gray">
+          <label className="text-[14px] lg:text-[15px] text-neutral-500 dark:text-darkMode-gray">
             Last name*
           </label>
           <div className="mt-1">
@@ -39,7 +41,7 @@ const EditBasicInfo = ({
               placeholder="Last name"
               type="text"
               className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent
-            px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1
+            px-3 py-2 text-[14px] lg:text-[15px] placeholder:text-gray-400 focus:outline-none focus:ring-1
               focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
               name="last_name"
               value={lastName}
@@ -48,24 +50,6 @@ const EditBasicInfo = ({
           </div>
         </div>
       </div>
-      {/* <div>
-        <label className="text-[14px] lg:text-base text-neutral-500 dark:text-darkMode-gray">
-          Bio
-        </label>
-        <div className="mt-1">
-          <Textarea
-            className="bg-transparent rounded-md border dark:bg-transparent border-gray-300 dark:border-gray-300 
-             px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1
-              focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
-            id="message"
-            placeholder="Bio"
-            rows={8}
-            name="bio"
-            value={bio}
-            onChange={(e) => setBio(e.target.value)}
-          />
-        </div>
-      </div> */}
     </div>
   );
 };

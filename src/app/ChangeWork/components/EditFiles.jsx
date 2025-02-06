@@ -26,7 +26,7 @@ const EditFiles = () => {
     >
       {/* header */}
       <div className="  flex justify-between items-center py-3 px-4 border-b-neutral-300 border-b-[1px]">
-        <p className="text-xl font-semibold">
+        <p className="text-[16px] lg:text-[17px] font-semibold">
           Edit Files {`(${workFiles && workFiles.length})`}
         </p>
         {/* close button */}
@@ -37,7 +37,8 @@ const EditFiles = () => {
           }}
           className="rounded-full hover:bg-neutral-200 dark:hover:bg-gray-600 p-2"
         >
-          <X size={24} />
+          <X size={24} className="hidden lg:block" />
+          <X size={20} className="lg:hidden block" />
         </button>
       </div>
       {/* body */}
@@ -47,7 +48,7 @@ const EditFiles = () => {
           <EditFilesBody />
         </div>
         {/* lower div */}
-        <div className="flex items-center h-[3.4rem] w-full">
+        <div className="flex items-center h-[3.4rem] w-full pl-2">
           <form className="flex items-center gap-5">
             <input
               id="upload_files"
@@ -67,11 +68,11 @@ const EditFiles = () => {
               className={`py-1
           text-neutral-600 bg-neutral-300 hover:bg-neutral-200
            hover:text-neutral-600 
-          px-4 transition-colors duration-300`}
+          px-4 transition-colors duration-300 text-[13px] lg:text-[14px]`}
             >
               select files
             </Button>
-            <p classtName="italic text-gray-500 font-normal text-sm ">
+            <p className="italic text-gray-500 font-normal text-[13px] lg:text-[14px] ">
               {files?.length ?? 0} files uploaded
             </p>
             {/* cloud upload button */}
@@ -89,14 +90,15 @@ const EditFiles = () => {
                 });
                 // setShowChangeFilesModal(false);
               }}
-              className={`  text-sm dark:hover:bg-gray-600
+              className={`  text-[13px] lg:text-[14px] dark:hover:bg-gray-600
            px-2 py-1 flex gap-2 transition-colors duration-300 rounded-lg ${
              files.length === 0
                ? "bg-neutral-300 text-metal-600"
                : "bg-blue-500 hover:bg-blue-600 text-white"
            }`}
             >
-              <CloudUpload size={20} />
+              <CloudUpload size={20} className="hidden lg:block" />
+              <CloudUpload size={18} className="lg:hidden block" />
               <span>Upload</span>
             </button>
           </form>

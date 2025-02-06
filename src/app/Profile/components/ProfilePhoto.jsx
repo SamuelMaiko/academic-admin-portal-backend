@@ -19,11 +19,13 @@ const ProfilePhoto = ({}) => {
         />
       </div>
       <div>
-        <p className="font-semibold text-gray-500 mb-2">Your Photo</p>
+        <p className="font-semibold text-gray-500 mb-2 text-[14px] lg:text-[15px]">
+          Your Photo
+        </p>
         <Button
           onClick={() => setShowEditPFPModal(true)}
           className="bg-transparent text-blue-500 border-[1px] border-blue-500 hover:text-blue-500
-         hover:bg-neutral-100 transition-colors duration-300 py-1"
+         hover:bg-neutral-100 transition-colors duration-300 py-1 text-[14px] lg:text-[15px] px-5"
         >
           Change Photo
         </Button>

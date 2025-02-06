@@ -41,7 +41,9 @@ const RevisionChatBar = () => {
         <p className="font-bold text-[15px] md:text-lg">
           {workBeingRevised && workBeingRevised.work_code}
         </p>
-        <p className="text-[13px] md:text-[15px]">Tap here for work info</p>
+        <p className="text-[13px] md:text-[15px] hidden lg:block">
+          Tap here for work info
+        </p>
       </div>
       <div className="hidden md:block"></div>
     </div>

@@ -11,13 +11,13 @@ const Revisions = () => {
   }, []);
 
   return (
-    <div className="w-full px-[1rem] md:px-[2rem] pb-[5rem] dark:bg-darkMode-body min-h-screen">
+    <div className="w-full px-[1rem] md:px-[2rem] pb-[5rem] dark:bg-darkMode-body min-h-screen bg-gray-100">
       <PageHeader
         title={"Revisions"}
         subTitle={"Create, edit and delete revisions of work here."}
       />
 
-      <div className="relative">
+      <div className="relative mt-4">
         <TableRevisions />
       </div>
     </div>

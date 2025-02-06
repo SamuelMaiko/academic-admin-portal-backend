@@ -26,11 +26,11 @@ const FileLink = ({ file_name = "", file, download_url }) => {
           <Paperclip size={20} />
         </span>
         <p
-          className={`md:whitespace-nowrap line-clamp-2 md:line-clamp-none hidden md:block`}
+          className={`md:whitespace-nowrap line-clamp-2 md:line-clamp-none hidden md:block text-[14px] lg:text-[15px]`}
         >
           {truncateFileName(file_name, 40)}
         </p>
-        <p className="md:whitespace-nowrap block md:hidden line-clamp-2 md:line-clamp-none">
+        <p className="md:whitespace-nowrap block md:hidden line-clamp-2 md:line-clamp-none text-[14px] lg:text-[15px]">
           {truncateFileName(file_name, 25)}
         </p>
         {/* <a href={file} target="blank"> */}

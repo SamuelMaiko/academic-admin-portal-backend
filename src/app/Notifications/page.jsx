@@ -7,11 +7,17 @@ import { toast } from "react-toastify";
 import instance from "../../axios/instance";
 import Loader from "../../SharedComponents/Loader";
 import { useNotificationContext } from "../../Context/NotificationContext";
+import { useAdminContext } from "../../Context/AdminContext";
 
 const Notifications = () => {
   const [loading, setLoading] = useState(false);
   const [notifications, setNotifications] = useState([]);
   const { setNotificationsCount } = useNotificationContext();
+  const { setShowNavBar } = useAdminContext();
+
+  useEffect(() => {
+    setShowNavBar(true);
+  }, []);
 
   const getNotifications = async () => {
     setLoading(true);
@@ -105,10 +111,10 @@ const Notifications = () => {
             src={notificationsPic}
             alt=""
           />
-          <p className="font-bold text-2xl text-center">
+          <p className="font-bold text-[16px] lg:text-[17px] text-center">
             No notifications yet!
           </p>
-          <p className="font-medium text-sm text-center mt-2">
+          <p className="font-medium text-[13px] lg:text-[14px] text-center mt-2">
             Any new notifications will appear here.
           </p>
         </div>

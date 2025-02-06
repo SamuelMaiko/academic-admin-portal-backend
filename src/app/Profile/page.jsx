@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Pencil } from "phosphor-react";
 import Bio from "./components/Bio";
 import ProfilePhoto from "./components/ProfilePhoto";
@@ -10,6 +10,7 @@ import { useProgressBarContext } from "../../Context/ProgressBarContext";
 import EditInfoForm from "./components/EditInfoForm";
 import profilePage from "../../assets/profilePage.png";
 import getProfile from "./api/getProfile";
+import { useAdminContext } from "../../Context/AdminContext";
 
 const Profile = () => {
   const [loading, setLoading] = useState(true);
@@ -20,10 +21,16 @@ const Profile = () => {
   const [email, setEmail] = useState("");
   const [country, setCountry] = useState("");
   const [county, setCounty] = useState("");
+  const { setShowNavBar } = useAdminContext();
+
+  useEffect(() => {
+    setShowNavBar(true);
+  }, []);
 
   useState(() => {
     setLoading(true);
     getProfile().then((data) => {
+      console.log(data);
       setProfile(data);
       setFirstName(data.first_name);
       setLastName(data.last_name);
@@ -48,6 +55,7 @@ const Profile = () => {
       <div className="flex-1 h-full ">
         <ProfilePhoto />
         <EditInfoForm
+          profile={profile}
           firstName={firstName}
           setFirstName={setFirstName}
           lastName={lastName}

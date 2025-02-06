@@ -16,7 +16,7 @@ const AccountManagement = () => {
   const navigate = useNavigate();
   return (
     <div className=" bg-neutral-100 rounded-lg mt-3 dark:bg-darkMode-body dark:text-darkMode-text">
-      <h1 className="p-2 pb-0 text-lg mb-2 font-semibold ">
+      <h1 className="p-2 pb-0 text-[15px] lg:text-[16px] mb-2 font-semibold ">
         Account management
       </h1>
       <SettingsBlock
@@ -58,7 +58,7 @@ const AccountManagement = () => {
           setSettingsOpen(false);
           navigate("/");
         }}
-        title="Sign Out"
+        title="Sign out"
       />
     </div>
   );

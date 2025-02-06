@@ -100,12 +100,7 @@ const EntryPoint = () => {
           className=" w-full h-full flex-1 overflow-y-scroll scrollble"
         >
           <ScrollToTop scrollableRef={scrollableRef} />
-          <div className="sticky top-0 z-70 ">
-            {showNavBar ? <NavBar /> : <RevisionChatBar />}
-          </div>
-          {/* <RevisionChatBar /> */}
-          {/* <NavBar /> */}
-          {/* {regex.test(pathname) ? <NavBar /> : <RevisionChatBar />} */}
+          {showNavBar ? <NavBar /> : <RevisionChatBar />}
 
           <Routes>
             <Route path="/home" element={<Home />} />
