@@ -28,8 +28,8 @@ const LandingHeader = () => {
           <div className="md:ml-20 lg:ml-0 flex flex-col items md:block">
             <button
               onClick={() => navigate("/login")}
-              className="rounded-3xl lg:hidden px-5 py-2 mt-4 bg-green-600 text-white text-[15px] md:text-[19px]
-             hover:bg-green-700 transition-colors duration-300"
+              className="rounded-3xl lg:hidden px-5 py-2 mt-4 bg-blue-500 text-white text-[15px] md:text-[19px]
+             hover:opacity-[0.9] transition-opacity duration-300"
             >
               Login
             </button>

@@ -17,10 +17,10 @@ const NAV_LINKS = [
   //   linkName: "Contact",
   //   link: "#",
   // },
-  {
-    linkName: "FAQs",
-    link: "#",
-  },
+  // {
+  //   linkName: "FAQs",
+  //   link: "#",
+  // },
 ];
 const LandingNavBar = () => {
   const { setShowMobileNavBar, darkMode, AreasToHideMobileNavBar } =
@@ -56,7 +56,7 @@ const LandingNavBar = () => {
             return (
               <li
                 onClick={() => setShowMobileNavBar((current) => !current)}
-                className="mb-0 lg:mb-0 mt-0 lg:mt-0 lg:p-0 py-3 px-3  rounded-md lg:hover:text-hover
+                className="mb-0 lg:mb-0 mt-0 lg:mt-0 lg:p-2 py-3 px-3  rounded-md lg:hover:text-gray-400
                  hover:bg-gray-200 lg:hover:bg-transparent cursor-pointer transition-colors duration-300"
                 key={index}
               >
@@ -66,8 +66,8 @@ const LandingNavBar = () => {
           })}
           <button
             onClick={handleLogin}
-            className="bg-chocolate text-white hover:bg-neutral-600 rounded-3xl px-5 py-2 mt-7 lg:mt-0 font-medium
-             text-[13px] lg:text-[14px] transition-colors duration-300 "
+            className="bg-blue-500 text-white hover:opacity-[0.9] rounded-3xl px-5 py-2 mt-7 lg:mt-0 font-medium
+             text-[13px] lg:text-[14px] transition-opacity duration-300 "
           >
             Login
           </button>

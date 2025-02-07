@@ -21,10 +21,10 @@ const MobileNavBar = () => {
     //   linkName: "Contact",
     //   link: "#",
     // },
-    {
-      linkName: "FAQs",
-      link: "#",
-    },
+    // {
+    //   linkName: "FAQs",
+    //   link: "#",
+    // },
   ];
 
   const mobNavBarRef = useRef(null);

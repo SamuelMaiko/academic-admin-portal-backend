@@ -4,32 +4,20 @@ import { toast } from "react-toastify";
 import { useStateShareContext } from "../../../Context/StateContext";
 import instance from "../../../axios/instance";
 import { createNewCookie } from "../../../Cookies/Cookie";
-import { useProgressBarContext } from "../../../Context/ProgressBarContext";
 import Vini from "../../../assets/Default_pfp.jpg";
 
 const LoginForm = () => {
   const [registrationNumber, setRegistrationNumber] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
-  const { success, setSuccess, setDarkMode } = useStateShareContext();
+  const { setDarkMode } = useStateShareContext();
   const navigate = useNavigate();
-  const {
-    setVerifyDone,
-    setFillDetailsDone,
-    setProfileDone,
-    setChangePasswordDone,
-  } = useProgressBarContext();
 
   const { setFirstName, setLastName, setImageURL } = useStateShareContext();
-
-  // };
 
   const handleUserLogin = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    setError("");
-    setSuccess("");
 
     try {
       const response = await instance.post("/auth/login/", {
@@ -37,53 +25,15 @@ const LoginForm = () => {
         password: password,
       });
 
-      createNewCookie("temporaryEmail", response.data.user.temporary_email);
-
       createNewCookie("access_token", response.data.access);
       createNewCookie("refresh_token", response.data.refresh);
-      // alert("access_token", response.data.access);
 
       // setting first name, last name and imageURL in LOCAL STORAGE
       setFirstName(response.data.user.first_name);
       setLastName(response.data.user.last_name);
       setImageURL(response.data.user.profile_picture_absolute ?? Vini);
       setDarkMode(response.data.user.dark_mode);
-
-      // navigating to onboarding
-      const isVerified = response.data.user.is_verified;
-      const passwordChanged = response.data.user.password_changed;
-      const profileCompleted = response.data.user.profile_completed;
-      const detailsFilled = response.data.user.details_filled;
-
-      setVerifyDone(isVerified);
-      setFillDetailsDone(detailsFilled);
-      setChangePasswordDone(passwordChanged);
-      setProfileDone(profileCompleted);
-
-      if (isVerified) setVerifyDone(true);
-      if (detailsFilled) setFillDetailsDone(true);
-      if (profileCompleted) setProfileDone(true);
-      if (passwordChanged) setChangePasswordDone(true);
-
-      switch (false) {
-        case isVerified:
-          navigate("/onboarding/verify-email");
-          break;
-        case detailsFilled:
-          navigate("/onboarding/fill-details");
-          break;
-        case profileCompleted:
-          navigate("/onboarding/complete-profile");
-          break;
-        case passwordChanged:
-          navigate("/onboarding/change-password");
-          break;
-        default:
-          toast.success("Logged in successfully.");
-          navigate("/manage-work");
-      }
-      // i;
-      // navigate("/home");
+      navigate("/dashboard");
     } catch (error) {
       if (error.response && error.response.status) {
         const status = error.response.status;
@@ -91,16 +41,16 @@ const LoginForm = () => {
 
         switch (status) {
           case 400:
-            setError(`${message}`);
+            toast(`${message}`);
             break;
           case 401:
-            setError(`${message}`);
+            toast(`${message}`);
             break;
           case 500:
-            setError(`Server Error: Internal Server Error.`);
+            toast(`Server Error: Internal Server Error.`);
             break;
           default:
-            setError(`Error: ${message}`);
+            toast(`Error: ${message}`);
             break;
         }
       } else {
@@ -111,10 +61,7 @@ const LoginForm = () => {
     }
   };
   return (
-    // <form onSubmit={handleUserLogin} className="lg:w-[35rem] w-full px-5">
     <form onSubmit={handleUserLogin} className="lg:w-[35rem] w-full px-5">
-      {success && <p className="text-green-500">{success}</p>}
-      {error && <p className="text-red-500">{error}</p>}
       <h1 className="text-center text-[29px] lg:text-[35px] ">Login</h1>
       <div className="mb-3 mt-5">
         <label className=" text-[14px] lg:text-[15px] font-semibold">
@@ -148,8 +95,8 @@ const LoginForm = () => {
       <div className="pb-5">
         <button
           type="submit"
-          className="shadow-[0_0_4px_rgba(0,0,0,0.15)] w-full text-center text-[14px] lg:text-[15px] transition-colors 
-                duration-300 hover:bg-neutral-600 bg-chocolate mt-5 text-white rounded-lg py-2 "
+          className="shadow-[0_0_4px_rgba(0,0,0,0.15)] w-full text-center text-[14px] lg:text-[15px] transition-opacity 
+                duration-300 bg-blue-500 hover:opacity-[0.9] mt-5 text-white rounded-lg py-2 "
           disabled={isLoading}
         >
           {isLoading ? "Logging in..." : "Login"}
@@ -163,13 +110,6 @@ const LoginForm = () => {
         >
           Forgot Password?
         </NavLink>
-        {/* <a
-          onClick={() => navigate("/signup")}
-          className="text-[1rem] underline hover:text-blue-700 transition-colors duration-300 "
-          href="#"
-        >
-          Create An Account
-        </a> */}
       </div>
     </form>
   );

@@ -104,7 +104,7 @@ const ForgotPasswordForm = () => {
         <button
           type="button"
           onClick={() => navigate(-1)}
-          className="hover:bg-gray-300 mt-4 px-1 text-[13px] lg:text-[14px] hover:underline rounded-lg"
+          className="hover:bg-gray-100 mt-4 px-1 text-[13px] lg:text-[14px] hover:underline rounded-lg"
         >
           Back
         </button>
