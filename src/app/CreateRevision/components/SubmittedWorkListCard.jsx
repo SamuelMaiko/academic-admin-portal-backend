@@ -1,10 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import formatDate from "../../Home/components/datetime/formatDate";
 import { Divider } from "keep-react";
 import { useAdminContext } from "../../../Context/AdminContext";
 import { Minus } from "lucide-react";
-import relativeTime from "../../Home/components/datetime/RelativeTime";
+import formatDate from "../../../utils/formatDate";
+import relativeTime from "../../../utils/RelativeTime";
 
 const SubmittedWorkListCard = ({ work, sender, created_at }) => {
   const { setWork, setWorkCode, setShowChooseWorkModal } = useAdminContext();

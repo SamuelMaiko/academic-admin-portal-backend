@@ -1,6 +1,5 @@
-import { DotsThree, Pen, Trash } from "phosphor-react";
+import { DotsThree, Trash } from "phosphor-react";
 import React, { useEffect, useRef, useState } from "react";
-import Button from "../../Home/components/ui/Button";
 import { Divider } from "keep-react";
 import PropTypes from "prop-types";
 import NotificationDropDownBlock from "./NotificationDropDownBlock";
@@ -9,13 +8,12 @@ import System from "../../../assets/notifications/System.png";
 import AlarmClock from "../../../assets/notifications/alarm-clock.svg";
 import Transfer from "../../../assets/notifications/Transfer.png";
 import Revision from "../../../assets/notifications/Revision.avif";
-import { CalendarDays, FileSearch, TextSearch, UserCog } from "lucide-react";
-import formatDate from "../../Home/components/datetime/formatDate";
-import relativeTime from "../../Home/components/datetime/RelativeTime";
 import { useNavigate } from "react-router-dom";
-import CountdownToDate from "../../Home/components/CountdownToDate";
 import instance from "../../../axios/instance";
 import { toast } from "react-toastify";
+import CountdownToDate from "../../../SharedComponents/CountdownToDate";
+import formatDate from "../../../utils/formatDate";
+import Button from "../../../SharedComponents/Button";
 
 const NotificationCard = ({
   id,

@@ -1,19 +1,12 @@
 import React, { useEffect, useRef } from "react";
 import { useStateShareContext } from "../../Context/StateContext";
-import Button from "../../app/Home/components/ui/Button";
-import {
-  Binoculars,
-  BookmarkSimple,
-  Briefcase,
-  House,
-  Pen,
-  X,
-} from "phosphor-react";
+import { X } from "phosphor-react";
 import LogoDark from "../../assets/LogoDark.png";
 import LogoLight from "../../assets/LogoLight.png";
 import { useLocation, useNavigate } from "react-router-dom";
 import ProfilePreview from "./ProfilePreview";
 import ButtonLinks from "./ButtonLinks";
+import Button from "../../SharedComponents/Button";
 
 const MobileSideBar = () => {
   const { showMobileSideBar, setShowMobileSideBar, darkMode } =

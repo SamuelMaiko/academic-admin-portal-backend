@@ -1,15 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
-import Vini from "../../../assets/Vinijr.jpeg";
 import PropTypes from "prop-types";
-import { content } from "flowbite-react/tailwind";
-import formatDate from "../../Home/components/datetime/formatDate";
-import relativeTime from "../../Home/components/datetime/RelativeTime";
 import { Checks } from "phosphor-react";
 import { ArrowDown, ChevronDown, File, Plus } from "lucide-react";
 import { Divider } from "keep-react";
 import instance from "../../../axios/instance";
 import { toast } from "react-toastify";
 import hourMinute from "./hourMinute";
+import relativeTime from "../../../utils/RelativeTime";
 
 const RevisionComment = ({
   id,

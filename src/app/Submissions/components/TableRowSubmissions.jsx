@@ -1,13 +1,9 @@
-import { Badge, Button, TableCell, TableRow, toast } from "keep-react";
+import { Button, TableCell, TableRow } from "keep-react";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import CountdownToDate from "../../Home/components/CountdownToDate";
-import formatDate from "../../Home/components/datetime/formatDate";
-import instance from "../../../axios/instance";
-import { useProgressBarContext } from "../../../Context/ProgressBarContext";
-import { useNotificationContext } from "../../../Context/NotificationContext";
 import { Minus } from "lucide-react";
 import claimWork from "../api/claimWork";
+import formatDate from "../../../utils/formatDate";
 
 const TableRowSubmissions = ({
   id,

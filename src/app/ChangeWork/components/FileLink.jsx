@@ -4,8 +4,6 @@ import truncateFileName from "../../../utils/truncateFileName";
 import { useLocation } from "react-router-dom";
 
 const FileLink = ({ file_name = "", file, download_url }) => {
-  const truncatedFileName = truncateFileName(file_name, 40);
-
   const { pathname } = useLocation();
 
   // Define the regex pattern

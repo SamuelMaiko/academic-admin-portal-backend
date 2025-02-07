@@ -1,8 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import Vini from "../../../assets/article.png";
-import Button from "../../Home/components/ui/Button";
 import { useAdminContext } from "../../../Context/AdminContext";
+import Button from "../../../SharedComponents/Button";
 
 const RevisionChatBar = () => {
   const navigate = useNavigate();

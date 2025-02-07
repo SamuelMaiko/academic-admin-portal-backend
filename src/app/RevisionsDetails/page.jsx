@@ -1,12 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import RevisionComment from "./components/RevisionComment";
-import SubmitForm from "../../SharedComponents/SubmitForm";
 import SubmitMessage from "./components/SubmitMessage";
-import { useLocation, useParams } from "react-router-dom";
-import instance from "../../axios/instance";
+import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { File, X } from "lucide-react";
-import { useProgressBarContext } from "../../Context/ProgressBarContext";
 import getRevisionDetails from "./api/getRevisionDetails";
 import { useAdminContext } from "../../Context/AdminContext";
 import NoMessagesIcon from "./components/NoMessagesIcon";
@@ -21,7 +18,6 @@ const RevisionsDetails = () => {
   const messageRef = useRef(null);
   const unReadMessagesRef = useRef(null);
   const { id } = useParams();
-  const { revisions } = useProgressBarContext();
   const { setWorkBeingRevised, setShowNavBar } = useAdminContext();
 
   const markMessagesAsRead = async () => {

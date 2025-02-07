@@ -1,16 +1,10 @@
 import React, { useEffect, useState } from "react";
 import PageHeader from "../../SharedComponents/PageHeader";
-import { Textarea } from "keep-react";
-import FileLink from "../WorkDetail/components/FileLink";
-import { Trash2 } from "lucide-react";
-import instance from "../../axios/instance";
-import { toast } from "react-toastify";
 import { useParams } from "react-router-dom";
 import CommentForm from "./components/CommentForm";
-import FileForm from "./components/FileForm";
-import DeleteFileButton from "./components/DeleteFileButton";
 import getSubmissionDetails from "./api/getSubmissionDetails";
 import Loader from "../../SharedComponents/Loader";
+import FileLink from "../../SharedComponents/FileLink";
 
 const SubmissionsDetail = () => {
   const [file, setFile] = useState(null);

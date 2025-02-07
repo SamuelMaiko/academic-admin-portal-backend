@@ -1,7 +1,7 @@
 import React from "react";
 import LandingNavBar from "../LandingPage/components/LandingNavBar";
 import ForgotPasswordForm from "./components/ForgotPasswordForm";
-import Footer from "../Footer/page";
+import Footer from "../../SharedComponents/Footer";
 
 const ForgotPassword = () => {
   return (

@@ -1,15 +1,6 @@
 import React from "react";
 import { useStateShareContext } from "../../Context/StateContext";
 import { useLocation, useNavigate } from "react-router-dom";
-import Button from "../../app/Home/components/ui/Button";
-import {
-  Binoculars,
-  BookmarkSimple,
-  Briefcase,
-  FileDoc,
-  House,
-  Pen,
-} from "phosphor-react";
 import { useNotificationContext } from "../../Context/NotificationContext";
 import {
   FileEdit,
@@ -18,6 +9,7 @@ import {
   LayoutDashboard,
   UserCircle,
 } from "lucide-react";
+import Button from "../../SharedComponents/Button";
 
 const ButtonLinks = () => {
   const { setShowMobileSideBar } = useStateShareContext();

@@ -1,13 +1,13 @@
 import React, { useRef } from "react";
-import SideBar from "./app/Home/components/SideBar";
 import LoggedInRoutes from "./Routes/LoggedInRoutes";
 import { Outlet } from "react-router-dom";
-import Footer from "./app/Footer/page";
 import { useStateShareContext } from "./Context/StateContext";
 import { useAdminContext } from "./Context/AdminContext";
 import ScrollToTop from "./SharedComponents/ScrollToTop ";
-import NavBar from "./app/Home/components/NavBar";
 import RevisionChatBar from "./app/RevisionsDetails/components/RevisionChatBar";
+import Footer from "./SharedComponents/Footer";
+import SideBar from "./SharedComponents/SideBar";
+import NavBar from "./SharedComponents/NavBar";
 
 const Layout = () => {
   const { darkMode, showEditPFPModal } = useStateShareContext();

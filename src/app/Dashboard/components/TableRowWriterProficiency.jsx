@@ -1,9 +1,5 @@
-import { Table, Badge, TableRow, TableCell } from "keep-react";
+import { TableRow, TableCell } from "keep-react";
 import React from "react";
-import { useNavigate } from "react-router-dom";
-import formatDate from "../../Home/components/datetime/formatDate";
-import { useNotificationContext } from "../../../Context/NotificationContext";
-import { useProgressBarContext } from "../../../Context/ProgressBarContext";
 
 const TableRowWriterProficiency = ({
   id,

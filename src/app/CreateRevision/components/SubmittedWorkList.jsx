@@ -34,7 +34,7 @@ const SubmittedWorkList = () => {
           <X size={20} className="lg:hidden block" />
         </button>
       </div>
-      <div className="h-[70%] overflow-y-scroll">
+      <div className="h-[80%] overflow-y-scroll scrollble">
         {submittedWork &&
           submittedWork.map((item, index) => (
             <SubmittedWorkListCard key={index} {...item} />

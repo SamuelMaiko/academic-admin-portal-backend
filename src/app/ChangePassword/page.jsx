@@ -1,5 +1,4 @@
 import React from "react";
-import Button from "../Home/components/ui/Button";
 import ChangePasswordForm from "./components/ChangePasswordForm";
 import PageHeader from "../../SharedComponents/PageHeader";
 

@@ -1,26 +1,8 @@
 import React, { useEffect, useState } from "react";
 import PageHeader from "../../SharedComponents/PageHeader";
-import PieActiveArc from "./components/PieActiveArc";
 import Block from "./components/Block";
-import {
-  Briefcase,
-  CaretDown,
-  Note,
-  Pen,
-  WarningCircle,
-  XCircle,
-} from "phosphor-react";
-import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
+import { Note, Pen, WarningCircle, XCircle } from "phosphor-react";
 import "react-circular-progressbar/dist/styles.css";
-import ListComponent from "./components/ListComponent";
-import SubmittedWork from "./components/SubmittedWork";
-import WordsWritten from "./components/WordsWritten";
-import RevokedWork from "./components/RevokedWork";
-import QualityIssues from "./components/QualityIssues";
-import { toast } from "react-toastify";
-import instance from "../../axios/instance";
-import WorkCompletedGraph from "./components/WorkCompletedGraph";
-import OverallWritersScore from "./components/OverallWritersScore";
 import TableWriterProficiency from "./components/TableWriterProficiency";
 import getGeneralAnalytics from "./api/getGeneralAnalytics";
 import Loader from "../../SharedComponents/Loader";
@@ -82,16 +64,7 @@ const Dashboard = () => {
           value={generalAnalytics && generalAnalytics.poor_work}
         />
       </div>
-      <div
-        // className="flex flex-col md:flex-row justify-between gap-4 pt-[2rem] md:pt-[3rem]
-        className="hidden flex-col md:flex-row justify-between gap-4 pt-[2rem] md:pt-[3rem]
-       bg-gray-100 dark:bg-darkMode-bars px-[1rem] md:px-[2rem] pb-[3rem]"
-      >
-        {/* left square with trophy */}
-        <OverallWritersScore />
-        right square with graph
-        <WorkCompletedGraph />
-      </div>
+
       <h1 className="font-semibold text-[16px] lg:text-xl pl-[2rem] mt-[3rem]">
         Writers Proficiency
       </h1>

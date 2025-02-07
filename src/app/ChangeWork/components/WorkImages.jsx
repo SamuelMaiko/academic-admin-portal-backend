@@ -1,19 +1,13 @@
 import React, { useState, useEffect } from "react";
 import ImageBlock from "./ImageBlock";
-import { ArrowLeft, CloudArrowDown } from "phosphor-react";
-import CarouselComponent from "./CarouselComponent ";
+import { CloudArrowDown } from "phosphor-react";
 import { Plus, TvMinimalPlay } from "lucide-react";
 import { useStateShareContext } from "../../../Context/StateContext";
-import Chimp from "../../../assets/gpt-redesign-5.webp";
-import { toast } from "react-toastify";
 import { useAdminContext } from "../../../Context/AdminContext";
 import uploadWorkImages from "../../CreateWork/api/uploadWorkImages";
-import { useParams } from "react-router-dom";
 
 const WorkImages = ({ setLoading }) => {
-  const [imagesToDisplay, setImagesToDisplay] = useState([]);
   const {
-    setShowChangeImagesModal,
     workImages,
     zipDetails,
     workToUploadFiles,

@@ -3,10 +3,10 @@ import PageHeader from "../../SharedComponents/PageHeader";
 import ChangeWorkForm from "./components/ChangeWorkForm";
 import { useStateShareContext } from "../../Context/StateContext";
 import { useAdminContext } from "../../Context/AdminContext";
-import CarouselComponent from "./components/CarouselComponent ";
 import { X } from "lucide-react";
 import { ArrowLeft } from "phosphor-react";
 import Loader from "../../SharedComponents/Loader";
+import CarouselComponent from "../../SharedComponents/CarouselComponent ";
 
 const ChangeWork = () => {
   const { showCarouselModal, setShowCarouselModal } = useStateShareContext();

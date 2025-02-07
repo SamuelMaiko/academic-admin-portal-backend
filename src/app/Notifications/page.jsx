@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import PageHeader from "../../SharedComponents/PageHeader";
 import NotificationCard from "./components/NotificationCard";
-import Footer from "../Footer/page";
 import notificationsPic from "../../assets/notifications.png";
 import { toast } from "react-toastify";
 import instance from "../../axios/instance";
 import Loader from "../../SharedComponents/Loader";
 import { useNotificationContext } from "../../Context/NotificationContext";
 import { useAdminContext } from "../../Context/AdminContext";
+import Footer from "../../SharedComponents/Footer";
 
 const Notifications = () => {
   const [loading, setLoading] = useState(false);

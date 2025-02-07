@@ -1,7 +1,6 @@
 import React from "react";
 import { useState } from "react";
 import TextareaAutosize from "react-textarea-autosize";
-import folder from "../../../assets/folder.svg";
 import { toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
 import instance from "../../../axios/instance";
