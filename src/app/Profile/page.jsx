@@ -30,7 +30,7 @@ const Profile = () => {
   useState(() => {
     setLoading(true);
     getProfile().then((data) => {
-      console.log(data);
+      // console.log(data);
       setProfile(data);
       setFirstName(data.first_name);
       setLastName(data.last_name);
