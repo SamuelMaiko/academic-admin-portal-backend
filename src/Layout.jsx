@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 import { useStateShareContext } from "./Context/StateContext";
 import { useAdminContext } from "./Context/AdminContext";
 import ScrollToTop from "./SharedComponents/ScrollToTop ";
-import RevisionChatBar from "./app/RevisionsDetails/components/RevisionChatBar";
+import RevisionChatBar from "./pages/admin/RevisionsDetails/components/RevisionChatBar";
 import Footer from "./SharedComponents/Footer";
 import SideBar from "./SharedComponents/SideBar";
 import NavBar from "./SharedComponents/NavBar";

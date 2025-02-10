@@ -31,6 +31,7 @@ const AdminContext = ({ children }) => {
   const [isActive, setIsActive] = useState(null);
   const [showNavBar, setShowNavBar] = useState(true);
   const [workBeingRevised, setWorkBeingRevised] = useState({});
+  const [submittedWork, setSubmittedWork] = useState([]);
 
   return (
     <createdAdminContext.Provider
@@ -79,6 +80,8 @@ const AdminContext = ({ children }) => {
         setShowNavBar,
         workBeingRevised,
         setWorkBeingRevised,
+        submittedWork,
+        setSubmittedWork,
       }}
     >
       {children}

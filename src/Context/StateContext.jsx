@@ -1,6 +1,6 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 import PropTypes from "prop-types";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import useLocalStorage from "../CustomHooks/useLocalStorage";
 import instance from "../axios/instance";
 import { toast } from "react-toastify";
@@ -26,22 +26,6 @@ const StateContext = ({ children }) => {
   // I mean the one gliding from the right after nenu icon clik
   const [showMobileNavBar, setShowMobileNavBar] = useState(false);
   const [showMobileSideBar, setShowMobileSideBar] = useState(false);
-  const [filters, setFilters] = useLocalStorage("filters", [
-    { type: "words", active: false, value: "2000", title: "2000 words" },
-    { type: "words", active: false, value: "1500", title: "1500 words" },
-    {
-      type: "deadline",
-      active: false,
-      value: "today",
-      title: "Deadline Today",
-    },
-    {
-      type: "deadline",
-      active: false,
-      value: "tomorrow",
-      title: "Deadline Tomorrow",
-    },
-  ]);
   const [showDeleteAccountModal, setShowDeleteAccountModal] = useState(false);
   const [showDeactivateAccountModal, setShowDeactivateAccountModal] =
     useState(false);
@@ -118,8 +102,8 @@ const StateContext = ({ children }) => {
         setShowRevokeWorkModal,
         showMobileSideBar,
         setShowMobileSideBar,
-        filters,
-        setFilters,
+        // filters,
+        // setFilters,
         AreasToHideMobileNavBar,
         showDeleteSubmissionModal,
         setShowDeleteSubmissionModal,

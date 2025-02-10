@@ -1,22 +1,22 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import ManageUsers from "../app/ManageUsers/page";
-import CreateUser from "../app/CreateUser/page";
-import ChangeUser from "../app/ChangeUser/page";
-import ManageWork from "../app/ManageWork/page";
-import CreateWork from "../app/CreateWork/page";
-import ChangeWork from "../app/ChangeWork/page";
-import Revisions from "../app/Revisions/page";
-import CreateRevision from "../app/CreateRevision/page";
-import RevisionsDetails from "../app/RevisionsDetails/page";
-import ChangeRevision from "../app/ChangeRevision/page";
-import Submissions from "../app/Submissions/page";
-import SubmissionsDetail from "../app/SubmissionsDetail/page";
-import Profile from "../app/Profile/page";
-import ChangePassword from "../app/ChangePassword/page";
-import Notifications from "../app/Notifications/page";
-import NotFound from "../app/NotFound/page";
-import Dashboard from "../app/Dashboard/page";
+import ManageUsers from "../pages/admin/ManageUsers/page";
+import CreateUser from "../pages/admin/CreateUser/page";
+import ChangeUser from "../pages/admin/ChangeUser/page";
+import ManageWork from "../pages/admin/ManageWork/page";
+import CreateWork from "../pages/admin/CreateWork/page";
+import ChangeWork from "../pages/admin/ChangeWork/page";
+import Revisions from "../pages/admin/Revisions/page";
+import CreateRevision from "../pages/admin/CreateRevision/page";
+import RevisionsDetails from "../pages/admin/RevisionsDetails/page";
+import ChangeRevision from "../pages/admin/ChangeRevision/page";
+import Submissions from "../pages/admin/Submissions/page";
+import SubmissionsDetail from "../pages/admin/SubmissionsDetail/page";
+import Profile from "../pages/admin/Profile/page";
+import ChangePassword from "../pages/admin/ChangePassword/page";
+import Notifications from "../pages/admin/Notifications/page";
+import NotFound from "../pages/admin/NotFound/page";
+import Dashboard from "../pages/admin/Dashboard/page";
 
 const LoggedInRoutes = () => {
   return (

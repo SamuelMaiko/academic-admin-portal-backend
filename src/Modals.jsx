@@ -1,19 +1,19 @@
 import React from "react";
 import { useStateShareContext } from "./Context/StateContext";
-import DeleteWorkModal from "./app/ChangeWork/components/DeleteWorkModal";
-import Settings from "./app/Settings/page";
-import EditPFPModal from "./app/Profile/components/EditPFPModal";
-import DeleteProfilePhotoModal from "./app/Profile/components/DeleteProfilePhotoModal";
+import DeleteWorkModal from "./pages/admin/ChangeWork/components/DeleteWorkModal";
+import Settings from "./pages/admin/Settings/page";
+import EditPFPModal from "./pages/admin/Profile/components/EditPFPModal";
+import DeleteProfilePhotoModal from "./pages/admin/Profile/components/DeleteProfilePhotoModal";
 import SideBarModal from "./MobileView/SideBar/SideBarModal";
 import TransparentModal from "./MobileView/SideBar/TransparentModal";
-import DeleteAccountModal from "./app/Settings/components/DeleteAccountModal";
-import DeactivateAccountModal from "./app/Settings/components/DeactivateAccountModal";
-import ChooseWriterModal from "./app/CreateWork/components/ChooseWriterModal";
-import ChooseWorkModal from "./app/CreateRevision/components/ChooseWorkModal";
-import DeleteUserModal from "./app/ChangeUser/components/DeleteUserModal";
-import DeactivateUserModal from "./app/ChangeUser/components/DeactivateUserModal";
-import EditImagesModal from "./app/ChangeWork/components/EditImagesModal";
-import EditFilesModal from "./app/ChangeWork/components/EditFilesModal";
+import DeleteAccountModal from "./pages/admin/Settings/components/DeleteAccountModal";
+import DeactivateAccountModal from "./pages/admin/Settings/components/DeactivateAccountModal";
+import ChooseWriterModal from "./pages/admin/CreateWork/components/ChooseWriterModal";
+import ChooseWorkModal from "./pages/admin/CreateRevision/components/ChooseWorkModal";
+import DeleteUserModal from "./pages/admin/ChangeUser/components/DeleteUserModal";
+import DeactivateUserModal from "./pages/admin/ChangeUser/components/DeactivateUserModal";
+import EditImagesModal from "./pages/admin/ChangeWork/components/EditImagesModal";
+import EditFilesModal from "./pages/admin/ChangeWork/components/EditFilesModal";
 
 const Modals = () => {
   const { darkMode } = useStateShareContext();

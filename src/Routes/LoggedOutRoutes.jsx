@@ -1,11 +1,11 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import LandingPage from "../app/LandingPage/page";
-import Login from "../app/Login/page";
-import ForgotPassword from "../app/ForgotPassword/page";
-import VerifySentCode from "../app/VerifySentCode/page";
-import NewPassword from "../app/NewPassword/page";
-import ResetSuccessful from "../app/ResetSuccessful/page";
+import LandingPage from "../pages/admin/LandingPage/page";
+import Login from "../pages/admin/Login/page";
+import ForgotPassword from "../pages/admin/ForgotPassword/page";
+import VerifySentCode from "../pages/admin/VerifySentCode/page";
+import NewPassword from "../pages/admin/NewPassword/page";
+import ResetSuccessful from "../pages/admin/ResetSuccessful/page";
 import EntryPoint from "../EntryPoint";
 
 const LoggedOutRoutes = () => {

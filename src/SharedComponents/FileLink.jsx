@@ -12,9 +12,10 @@ const FileLink = ({ file_name = "", file, download_url }) => {
 
   return (
     <div className="flex justify-between w-[70%] md:w-full">
+      {/* hover:text-blue-700 dark:hover:text-blue-400 */}
       <div
-        className="text-sm flex items-center gap-2 cursor-pointer hover:text-blue-700
-         dark:hover:text-blue-400 hover:underline 
+        className="text-sm flex items-center gap-2 cursor-pointer 
+          hover:underline 
       transition-colors duration-300 mb-2 w-fit
     "
       >
@@ -33,9 +34,10 @@ const FileLink = ({ file_name = "", file, download_url }) => {
       <div className="flex gap-4 ml-5 md:mr-[60%]">
         <a href={file} target="blank" className={`${match ? "hidden" : ""}`}>
           <Eye
+            // dark:hover:text-[#90ee90] hover:text-[#4caf50]
             size={20}
-            className="cursor-pointer text-black hover:text-[#4caf50] dark:text-white
-          dark:hover:text-[#90ee90] transition-colors duration"
+            className="cursor-pointer text-black dark:text-white
+           transition-colors duration"
           />
         </a>
         <a
@@ -43,10 +45,11 @@ const FileLink = ({ file_name = "", file, download_url }) => {
           download
           className="hover:bg-gray-200 rounded-full p-2 cursor-pointer transition-colors duration-300 "
         >
+          {/* dark:hover:text-[#90ee90] hover:text-[#4caf50]*/}
           <Download
             size={20}
-            className="cursor-pointer text-black hover:text-[#4caf50] dark:text-white
-          dark:hover:text-[#90ee90] transition-colors duration "
+            className="cursor-pointer text-black dark:text-white
+           transition-colors duration "
           />
         </a>
       </div>
