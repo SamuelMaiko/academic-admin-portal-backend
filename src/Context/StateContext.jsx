@@ -35,6 +35,23 @@ const StateContext = ({ children }) => {
   const [upload, setUpload] = useState("");
   const [showCarouselModal, setShowCarouselModal] = useState(false);
 
+  const [filters, setFilters] = useLocalStorage("filters", [
+    { type: "words", active: false, value: "2000", title: "2000 words" },
+    { type: "words", active: false, value: "1500", title: "1500 words" },
+    {
+      type: "deadline",
+      active: false,
+      value: "today",
+      title: "Deadline Today",
+    },
+    {
+      type: "deadline",
+      active: false,
+      value: "tomorrow",
+      title: "Deadline Tomorrow",
+    },
+  ]);
+
   // signup process
   const [success, setSuccess] = useState("");
 
@@ -102,8 +119,8 @@ const StateContext = ({ children }) => {
         setShowRevokeWorkModal,
         showMobileSideBar,
         setShowMobileSideBar,
-        // filters,
-        // setFilters,
+        filters,
+        setFilters,
         AreasToHideMobileNavBar,
         showDeleteSubmissionModal,
         setShowDeleteSubmissionModal,
@@ -128,6 +145,11 @@ const StateContext = ({ children }) => {
         lastName,
         setLastName,
         getDetails,
+        //
+        showDeleteSubmissionModal,
+        setShowDeleteSubmissionModal,
+        showRevokeWorkModal,
+        setShowRevokeWorkModal,
       }}
     >
       {children}

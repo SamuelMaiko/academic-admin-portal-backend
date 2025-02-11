@@ -33,7 +33,8 @@ const LoginForm = () => {
       setLastName(response.data.user.last_name);
       setImageURL(response.data.user.profile_picture_absolute ?? Vini);
       setDarkMode(response.data.user.dark_mode);
-      navigate("/dashboard");
+      toast.success("logged in successfully");
+      navigate("/my-dashboard");
     } catch (error) {
       if (error.response && error.response.status) {
         const status = error.response.status;

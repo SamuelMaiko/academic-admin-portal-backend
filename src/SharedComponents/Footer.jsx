@@ -30,7 +30,7 @@ const Footer = ({ side = false }) => {
   ];
   const lastElement = pathname.split("/")[2];
 
-  //  if footer is on side e.g home page, notification page
+  //  if footer is on side e.g work-feed page, notification page
   if (side) {
     return (
       <div
@@ -64,7 +64,7 @@ const Footer = ({ side = false }) => {
       <div
         className={`${
           (pathname === "/bookmarks") |
-          (pathname === "/home") |
+          (pathname === "/work-feed") |
           (pathname === "/submissions") |
           (pathname === "/notifications") |
           regex.test(pathname)

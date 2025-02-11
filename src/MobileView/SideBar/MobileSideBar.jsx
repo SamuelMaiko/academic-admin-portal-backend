@@ -5,8 +5,10 @@ import LogoDark from "../../assets/LogoDark.png";
 import LogoLight from "../../assets/LogoLight.png";
 import { useLocation, useNavigate } from "react-router-dom";
 import ProfilePreview from "./ProfilePreview";
-import ButtonLinks from "./ButtonLinks";
+import AdminButtonLinks from "./AdminButtonLinks";
 import Button from "../../SharedComponents/Button";
+import WriterButtonLinks from "./WriterButtonLinks";
+import { getCookie } from "../../Cookies/Cookie";
 
 const MobileSideBar = () => {
   const { showMobileSideBar, setShowMobileSideBar, darkMode } =
@@ -31,7 +33,7 @@ const MobileSideBar = () => {
     <div
       ref={sideBarRef}
       className={`${
-        showMobileSideBar ? "delay-75 translate-x-[27rem]" : ""
+        showMobileSideBar ? " translate-x-[27rem]" : ""
       } absolute left-[5%]  bg-white dark:bg-darkMode-bars w-[60%] h-[96%]
        top-1/2 -translate-y-1/2 rounded-3xl transition-transform duration-500 z-100 md:hidden `}
     >
@@ -51,10 +53,13 @@ const MobileSideBar = () => {
           alt=""
         />
       </div>
-      {/* profile preview */}
-      {/* <ProfilePreview /> */}
+
       {/* button links */}
-      <ButtonLinks />
+      {getCookie("role") == "Admin" ? (
+        <AdminButtonLinks />
+      ) : (
+        <WriterButtonLinks />
+      )}
     </div>
   );
 };

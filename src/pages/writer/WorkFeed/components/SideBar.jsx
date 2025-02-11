@@ -1,24 +1,24 @@
 import React from "react";
 import { List } from "phosphor-react";
-import LogoDark from "../assets/LogoDark.png";
-// import Logo from "../../../assets/Logo.png";
-import LogoLight from "../assets/LogoLight.png";
-import { useStateShareContext } from "../Context/StateContext";
-import Button from "./Button";
-import AdminSideBarLinks from "./AdminSideBarLinks";
-import WriterSideBarLinks from "./WriterSideBarLinks";
-import { getCookie } from "../Cookies/Cookie";
+import { useStateShareContext } from "../../../Context/StateContext";
+import Button from "./ui/Button";
+import LogoDark from "../../../assets/LogoDark.png";
+import Logo from "../../../assets/Logo.png";
+import LogoLight from "../../../assets/LogoLight.png";
+import ProfilePreview from "./ProfilePreview";
+import SideBarLinks from "./SideBarLinks";
+
 const SideBar = () => {
   const { shrinkSideBar, setShrinkSideBar, darkMode } = useStateShareContext();
+  
 
   return (
     <div
-      // ${shrinkSideBar ? "w-[5rem]" : "w-[20vw]"} ${
       className={`
-      ${shrinkSideBar ? "w-[5rem]" : "w-[17vw]"} ${
+      ${shrinkSideBar ? "w-[5rem]" : "w-[20vw]"} border-r border-[#f5f4f4] ${
         darkMode ? "sidebar" : ""
       } transition-width duration-500 pt-[2rem] dark:bg-darkMode-bars
-       dark:text-darkMode-text hidden md:block h-[calc(100vh-10rem)]`}
+       dark:text-darkMode-text hidden md:block pb-[2rem]`}
     >
       <div
         className={`flex ${
@@ -38,26 +38,21 @@ const SideBar = () => {
           </div>
         </div>
 
-        {/* sidebar toggle button  */}
-        {/* HIDDEN FOR NOW */}
+        {/* sidebar toggle button */}
         <Button
           onClick={() => setShrinkSideBar((current) => !current)}
           buttonType="roundedIconBtn"
-          className={`dark:text-white dark:hover:text-white dark:hover:bg-gray-600 hidden `}
+          className={`dark:text-white dark:hover:text-white dark:hover:bg-gray-600 `}
         >
           <List size={24} />
         </Button>
       </div>
 
       {/* profile preview */}
-      {/* <ProfilePreview /> */}
+      <ProfilePreview />
 
       {/* button links */}
-      {getCookie("role") == "Admin" ? (
-        <AdminSideBarLinks />
-      ) : (
-        <WriterSideBarLinks />
-      )}
+      <SideBarLinks />
     </div>
   );
 };

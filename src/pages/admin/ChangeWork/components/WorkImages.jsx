@@ -49,7 +49,7 @@ const WorkImages = ({ setLoading }) => {
             download={`${zipDetails.zipName}.zip`}
           >
             <button
-              className="text-sm flex items-center gap-2 bg-yellow-300 hover:bg-yellow-400
+              className=" flex items-center gap-2 bg-yellow-300 hover:bg-yellow-400
             transition-colors duration-300 text-black py-1 px-4  font-medium text-[13px] lg:text-[14px]"
             >
               <span>

@@ -107,11 +107,11 @@ const Notifications = () => {
           } min-h-screen dark:text-darkMode-text`}
         >
           <img
-            className="w-[14rem] mx-auto h-auto"
+            className="mx-auto h-[10rem] lg:h-auto lg:w-[16rem]"
             src={notificationsPic}
             alt=""
           />
-          <p className="font-bold text-[16px] lg:text-[17px] text-center">
+          <p className="font-bold text-[17px] md:text-xl text-center">
             No notifications yet!
           </p>
           <p className="font-medium text-[13px] lg:text-[14px] text-center mt-2">

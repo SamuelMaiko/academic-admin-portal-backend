@@ -14,6 +14,8 @@ import DeleteUserModal from "./pages/admin/ChangeUser/components/DeleteUserModal
 import DeactivateUserModal from "./pages/admin/ChangeUser/components/DeactivateUserModal";
 import EditImagesModal from "./pages/admin/ChangeWork/components/EditImagesModal";
 import EditFilesModal from "./pages/admin/ChangeWork/components/EditFilesModal";
+import DeleteSubmissionModal from "./pages/writer/MySubmissions/components/DeleteSubmissionModal";
+import RevokeWorkModal from "./pages/writer/WorkDetail/components/RevokeWorkModal";
 
 const Modals = () => {
   const { darkMode } = useStateShareContext();
@@ -33,6 +35,9 @@ const Modals = () => {
       <DeactivateUserModal />
       <EditImagesModal />
       <EditFilesModal />
+      {/*  */}
+      <DeleteSubmissionModal />
+      <RevokeWorkModal />
     </div>
   );
 };

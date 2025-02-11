@@ -10,7 +10,7 @@ import {
 import { useStateShareContext } from "../Context/StateContext";
 import Button from "./Button";
 
-const SideBarLinks = () => {
+const AdminSideBarLinks = () => {
   const { shrinkSideBar } = useStateShareContext();
   const navigate = useNavigate();
   const { pathname } = useLocation();
@@ -142,4 +142,4 @@ const SideBarLinks = () => {
   );
 };
 
-export default SideBarLinks;
+export default AdminSideBarLinks;

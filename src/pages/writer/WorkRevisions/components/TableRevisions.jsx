@@ -6,31 +6,48 @@ import {
   TableHeader,
   TableHead,
   TableBody,
-  Button,
 } from "keep-react";
 
 import TableRowRevisions from "./TableRowRevisions";
 import UnavailableDark from "../../../../assets/UnavailableDark.png";
 import UnavailableLight from "../../../../assets/UnavailableLight.png";
 import { useStateShareContext } from "../../../../Context/StateContext";
+import { toast } from "react-toastify";
+import instance from "../../../../axios/instance";
 import { useProgressBarContext } from "../../../../Context/ProgressBarContext";
-import { useNavigate } from "react-router-dom";
-import Loader from "../../../../SharedComponents/Loader";
-import getRevisions from "../api/getRevisions";
+import { useNotificationContext } from "../../../../Context/NotificationContext";
 
 const TableRevisions = () => {
   const { darkMode } = useStateShareContext();
   const [loading, setLoading] = useState(false);
   const { revisions, setRevisions } = useProgressBarContext();
-  const navigate = useNavigate();
+  const { setNotificationsCount } = useNotificationContext();
+
+  const fetchRevisions = async () => {
+    setLoading(true);
+    try {
+      const response = await instance.get("/revisions/writer-revisions/");
+      setRevisions(response.data);
+    } catch (error) {
+      if (error.response && error.response.status) {
+        const status = error.response.status;
+        const message = error.response.data;
+
+        switch (status) {
+          case 500:
+            toast.error(`Internal server error`);
+            break;
+        }
+      } else {
+        toast.error("An unexpected error occurred. Please try again later.");
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    setLoading(true);
-    getRevisions().then((data) => {
-      setRevisions(data);
-      setLoading(false);
-      // console.log(data);
-    });
+    fetchRevisions();
   }, []);
 
   return (
@@ -50,48 +67,51 @@ const TableRevisions = () => {
                 {revisions.length} revisions
               </Badge>
             </div>
-            <Button
-              onClick={() => navigate("/revisions/create")}
-              className={` dark:text-darkMode-cardText dark:hover:text-darkMode-cardTextHover py-2
-                 text-blue-500 border-[1px] bg-transparent  border-blue-500 dark:border-darkMode-cardButton
-                  hover:bg-darkMode-cardButtonHover hover:text-white
-                  px-7 transition-colors duration-300 text-[12px] lg:text-[15px]`}
-            >
-              Create revision
-            </Button>
           </div>
         </TableCaption>
         <TableHeader>
           <TableHead className="min-w-[100px]">
             <p className="text-[13px] lg:text-[15px] font-medium text-metal-400 dark:text-sidebartext-hover">
-              #work
+              #
             </p>
           </TableHead>
           <TableHead className="min-w-[122px] text-[13px] lg:text-[15px]">
-            Writer
+            Reviewer
+          </TableHead>
+          <TableHead className="min-w-[150px] text-[13px] lg:text-[15px]">
+            Time reviewed
           </TableHead>
           <TableHead className="min-w-[200px] text-[13px] lg:text-[15px]">
             Submit before
           </TableHead>
-          <TableHead className="min-w-[150px] text-[13px] lg:text-[15px]">
-            Timer
-          </TableHead>
           <TableHead className="min-w-[200px] text-[13px] lg:text-[15px]">
             Status
           </TableHead>
-          <TableHead className="min-w-[100px]" />
         </TableHeader>
         <TableBody
           className={`divide-gray-25 divide-y ${loading ? "hidden" : ""} `}
         >
           {revisions &&
             revisions.map((revision, index) => {
-              return <TableRowRevisions key={index} {...revision} />;
+              return (
+                <TableRowRevisions
+                  key={index}
+                  id={revision.id}
+                  reviewer={revision.reviewer}
+                  status={revision.status}
+                  timeReviewed={revision.created_at}
+                  work={revision.work}
+                  submitBefore={revision.submit_before}
+                  read={revision.is_read}
+                  revisions={revisions}
+                  setRevisions={setRevisions}
+                />
+              );
             })}
         </TableBody>
       </Table>
       <div
-        className={`pb-[8rem] pt-[6rem] ${
+        className={`pb-[8rem] ${
           revisions.length !== 0 || loading ? "hidden" : ""
         } `}
       >
@@ -104,17 +124,8 @@ const TableRevisions = () => {
           No revisions yet!
         </p>
         <p className="font-medium text-[13px] lg:text-[14px] text-center mt-2">
-          The revisions you make for work will appear here.
+          Any revisions for your work will appear here.
         </p>
-      </div>
-      {/* page loader */}
-      <div
-        className={`absolute bg-[rgba(255,255,255,0.5)] inset-0 h-[80vh] bottom-0 flex flex-col items-center justify-center
-        ${loading ? "" : "hidden"}
-        `}
-      >
-        <Loader loading={loading} />
-        <h1 className="font-semibold">Loading ...</h1>
       </div>
     </>
   );

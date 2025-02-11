@@ -82,7 +82,7 @@ const NavBar = () => {
               className="absolute -top-[0.4rem] -right-[0.4rem] size-[13px] flex items-center
               justify-center font-semibold bg-red-500 text-white rounded-full text-[10px]"
             >
-              <span>{notificationsCount.notifications}</span>
+              <span>{notificationsCount.notifications}2</span>
             </div>
           </div>
         </div>

@@ -1,38 +1,53 @@
 import React, { useEffect, useState } from "react";
 import {
-  Badge,
   Table,
-  TableCaption,
-  TableHeader,
-  TableHead,
+  Badge,
   TableBody,
-  Button,
+  TableHead,
+  TableHeader,
+  TableCaption,
 } from "keep-react";
-
-import TableRowRevisions from "./TableRowRevisions";
+import TableRowUptakenWork from "./TableRowUptakenWork";
 import UnavailableDark from "../../../../assets/UnavailableDark.png";
 import UnavailableLight from "../../../../assets/UnavailableLight.png";
 import { useStateShareContext } from "../../../../Context/StateContext";
+import { toast } from "react-toastify";
+import instance from "../../../../axios/instance";
 import { useProgressBarContext } from "../../../../Context/ProgressBarContext";
-import { useNavigate } from "react-router-dom";
 import Loader from "../../../../SharedComponents/Loader";
-import getRevisions from "../api/getRevisions";
 
-const TableRevisions = () => {
+const TableUptakenWork = () => {
   const { darkMode } = useStateShareContext();
+
   const [loading, setLoading] = useState(false);
-  const { revisions, setRevisions } = useProgressBarContext();
-  const navigate = useNavigate();
+  const { uptakenWork, setUptakenWork } = useProgressBarContext();
+
+  const fetchUptakenWork = async () => {
+    setLoading(true);
+    try {
+      const response = await instance.get("/work/uptaken/");
+      setUptakenWork(response.data);
+    } catch (error) {
+      if (error.response && error.response.status) {
+        const status = error.response.status;
+        const message = error.response.data;
+
+        switch (status) {
+          case 500:
+            toast.error(`Internal server error`);
+            break;
+        }
+      } else {
+        toast.error("An unexpected error occurred. Please try again later.");
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    setLoading(true);
-    getRevisions().then((data) => {
-      setRevisions(data);
-      setLoading(false);
-      // console.log(data);
-    });
+    fetchUptakenWork();
   }, []);
-
   return (
     <>
       <Table showCheckbox={false} hoverable={true}>
@@ -40,59 +55,66 @@ const TableRevisions = () => {
           <div className="my-5 flex items-center justify-between px-6">
             <div className="flex items-center gap-5">
               <p className="text-[16px] lg:text-xl font-semibold text-metal-600 dark:text-white">
-                Revisions
+                Uptaken work
               </p>
               <Badge
                 size="sm"
                 color="secondary"
                 className="dark:text-black text-[12px] md:text-sm"
               >
-                {revisions.length} revisions
+                {uptakenWork.length} items
               </Badge>
             </div>
-            <Button
-              onClick={() => navigate("/revisions/create")}
-              className={` dark:text-darkMode-cardText dark:hover:text-darkMode-cardTextHover py-2
-                 text-blue-500 border-[1px] bg-transparent  border-blue-500 dark:border-darkMode-cardButton
-                  hover:bg-darkMode-cardButtonHover hover:text-white
-                  px-7 transition-colors duration-300 text-[12px] lg:text-[15px]`}
-            >
-              Create revision
-            </Button>
           </div>
         </TableCaption>
         <TableHeader>
           <TableHead className="min-w-[100px]">
             <p className="text-[13px] lg:text-[15px] font-medium text-metal-400 dark:text-sidebartext-hover">
-              #work
+              #
             </p>
           </TableHead>
           <TableHead className="min-w-[122px] text-[13px] lg:text-[15px]">
-            Writer
+            Type
+          </TableHead>
+          <TableHead className="min-w-[82px] text-[13px] lg:text-[15px]">
+            Words
           </TableHead>
           <TableHead className="min-w-[200px] text-[13px] lg:text-[15px]">
-            Submit before
+            Deadline
           </TableHead>
-          <TableHead className="min-w-[150px] text-[13px] lg:text-[15px]">
+          <TableHead className="min-w-[140px] text-[13px] lg:text-[15px]">
             Timer
           </TableHead>
-          <TableHead className="min-w-[200px] text-[13px] lg:text-[15px]">
+          <TableHead className="min-w-[150px] text-[13px] lg:text-[15px]">
             Status
           </TableHead>
           <TableHead className="min-w-[100px]" />
         </TableHeader>
         <TableBody
-          className={`divide-gray-25 divide-y ${loading ? "hidden" : ""} `}
+          className={`divide-gray-25 divide-y ${loading ? "hidden" : ""}`}
         >
-          {revisions &&
-            revisions.map((revision, index) => {
-              return <TableRowRevisions key={index} {...revision} />;
+          {uptakenWork &&
+            uptakenWork.map((work, index) => {
+              return (
+                <TableRowUptakenWork
+                  key={index}
+                  id={work.id}
+                  work_code={work.work_code}
+                  type={work.type}
+                  words={work.words}
+                  deadline={work.deadline}
+                  status={work.status}
+                  read={work.uptaken_is_read}
+                  isSubmitted={work.is_submitted}
+                />
+              );
             })}
         </TableBody>
       </Table>
+      <Loader loading={loading} />
       <div
-        className={`pb-[8rem] pt-[6rem] ${
-          revisions.length !== 0 || loading ? "hidden" : ""
+        className={`pb-[8rem] ${
+          uptakenWork.length !== 0 || loading ? "hidden" : ""
         } `}
       >
         <img
@@ -101,23 +123,14 @@ const TableRevisions = () => {
           alt=""
         />
         <p className="font-bold text-[17px] md:text-xl text-center">
-          No revisions yet!
+          No uptaken work yet!
         </p>
         <p className="font-medium text-[13px] lg:text-[14px] text-center mt-2">
-          The revisions you make for work will appear here.
+          Any uptaken work will appear here.
         </p>
-      </div>
-      {/* page loader */}
-      <div
-        className={`absolute bg-[rgba(255,255,255,0.5)] inset-0 h-[80vh] bottom-0 flex flex-col items-center justify-center
-        ${loading ? "" : "hidden"}
-        `}
-      >
-        <Loader loading={loading} />
-        <h1 className="font-semibold">Loading ...</h1>
       </div>
     </>
   );
 };
 
-export default TableRevisions;
+export default TableUptakenWork;
