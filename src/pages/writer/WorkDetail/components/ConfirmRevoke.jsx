@@ -55,27 +55,30 @@ const ConfirmRevoke = () => {
      bg-bgcolor dark:bg-darkMode-body"
     >
       <div className="text-[1.3rem]  px-4 flex items-center justify-between py-3 ">
-        <p className="text-xl font-semibold">Revoke work</p>
+        <p className="text-[16px] lg:text-[18px] font-semibold">Revoke work</p>
         {/* close button */}
         <button
           onClick={() => setShowRevokeWorkModal(false)}
           className="rounded-full hover:bg-neutral-200 dark:hover:bg-gray-600 p-2"
         >
-          <X size={24} />
+          <X size={20} className="cursor-pointer hidden lg:block" />
+          <X size={17} className="cursor-pointer lg:hidden block" />
         </button>
       </div>
       <Divider className="dark:hidden" color="primary" />
       <Divider className="hidden dark:block" color="secondary" />
       {/* central section*/}
       <div className="p-3">
-        <p>Are you sure you want to revoke this work?</p>
+        <p className="text-[15px] lg:text-[16px]">
+          Are you sure you want to revoke this work?
+        </p>
         <div>
-          <p className="font-medium">Note:</p>
-          <p className="text-sm text-red-400">
-            <span className="font-medium">assigned work:</span>admin will be
-            informed of your action.
+          <p className="font-medium text-[15px] lg:text-[16px]">Note:</p>
+          <p className="text-[13px] lg:text-[14px] text-red-400">
+            <span className="font-medium ">assigned work:</span>
+            admin will be informed of your action.
           </p>
-          <p className="text-sm text-red-400">
+          <p className="text-[13px] lg:text-[14px] text-red-400">
             <span className="font-medium">uptaken work:</span>will affect your
             score.
           </p>
@@ -88,13 +91,13 @@ const ConfirmRevoke = () => {
           <button
             onClick={() => setShowRevokeWorkModal(false)}
             className="border-[1px] border-orange-500 py-1 px-3 rounded-2xl hover:bg-gray-100
-             font-medium text-orange-500 transition-background duration-300 flex items-center"
+             font-medium text-orange-500 transition-background duration-300 flex items-center text-[13px] lg:text-[14px]"
           >
             <span>Cancel</span>
           </button>
           <button
             onClick={handleRevokeWork}
-            className={` bg-orange-500 hover:bg-orange-600
+            className={` bg-orange-500 hover:bg-orange-600 text-[13px] lg:text-[14px]
               py-1 px-3 rounded-2xl font-medium text-white transition-background duration-300 flex items-center`}
           >
             <span>{loading ? "loading..." : "Revoke"}</span>

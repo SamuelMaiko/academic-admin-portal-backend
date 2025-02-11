@@ -53,7 +53,7 @@ const SideBar = () => {
       {/* <ProfilePreview /> */}
 
       {/* button links */}
-      {getCookie("role") == "Admin" ? (
+      {getCookie("role") === "Admin" ? (
         <AdminSideBarLinks />
       ) : (
         <WriterSideBarLinks />

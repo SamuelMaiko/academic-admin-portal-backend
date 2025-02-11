@@ -33,13 +33,13 @@ const LandingHeader = () => {
             >
               Login
             </button>
-            {/* <button
-              onClick={handleCreateAccount}
-              className="md:ml-7 rounded-3xl px-5 py-2 mt-4 border-chocolate border-[1px] text-chocolate
+            <button
+              onClick={() => navigate("/login")}
+              className="rounded-3xl px-10 py-3 hidden lg:block mt-4 border-chocolate border-[1px] text-chocolate
                font-semibold text-[19px] lg:text-[1.05rem] hover:bg-gray-200 transition-colors duration-300"
             >
-              Create account
-            </button> */}
+              Login
+            </button>
           </div>
         </section>
 

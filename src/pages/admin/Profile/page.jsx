@@ -44,7 +44,7 @@ const Profile = () => {
           alt="profile page decorator"
           className="w-[90%] h-auto"
         />
-        <div className="absolute inset-0 bg-gray-200 opacity-[0.6] bottom-0"></div>
+        <div className="absolute inset-0 bg-gray-200 dark:bg-[rgba(0,0,0,0.4)] opacity-[0.6] bottom-0"></div>
       </div>
       <div className="flex-1 h-full ">
         <ProfilePhoto />

@@ -59,7 +59,7 @@ const ForgotPasswordForm = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="md:w-[27%] p-6 rounded-lg md:shadow-[0_2px_12px_rgba(0,0,0,0.2)] relative"
+      className="md:w-[27%] px-4 lg:px-6 p-6 rounded-lg md:shadow-[0_2px_12px_rgba(0,0,0,0.2)] relative"
     >
       {error && (
         <p className="text-red-500 hidden absolute -top-12 ">{error}</p>

@@ -9,8 +9,8 @@ const instance = axios.create({
   timeout: 10000,
   headers: {
     "Content-Type": "application/json",
-    // Authorization: `Bearer ${getCookie("access_token")}`,
-    Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MzQ5NjAyLCJpYXQiOjE3MzkwMDMxMDIsImp0aSI6ImRiMGVhNWVlZTBhZTQxNTBhOGM2OWQzN2Y2MDQ0ZDRlIiwidXNlcl9pZCI6MX0.jjD5KmrGfjyGg8673rxJjG_nymGZZSScmR_sDOXGU6g`,
+    Authorization: `Bearer ${getCookie("access_token")}`,
+    // Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MzQ5NjAyLCJpYXQiOjE3MzkwMDMxMDIsImp0aSI6ImRiMGVhNWVlZTBhZTQxNTBhOGM2OWQzN2Y2MDQ0ZDRlIiwidXNlcl9pZCI6MX0.jjD5KmrGfjyGg8673rxJjG_nymGZZSScmR_sDOXGU6g`,
   },
 });
 

@@ -25,7 +25,7 @@ const RevisionChatBar = () => {
             alt=""
           />
         </Button>
-        <p className="md:font-medium text-[17px] md:text-2xl whitespace-nowrap">
+        <p className="md:font-medium text-[16px] md:text-[18px] whitespace-nowrap">
           Revision Chat
         </p>
       </div>
@@ -38,10 +38,10 @@ const RevisionChatBar = () => {
         }}
         className="flex flex-col items-end md:items-center cursor-pointer md:mr-[20%]"
       >
-        <p className="font-bold text-[15px] md:text-lg">
+        <p className="lg:font-semibold text-[15px] md:text-[17px]">
           {workBeingRevised && workBeingRevised.work_code}
         </p>
-        <p className="text-[13px] md:text-[15px] hidden lg:block">
+        <p className="text-[12px] md:text-[14px] hidden lg:block">
           Tap here for work info
         </p>
       </div>

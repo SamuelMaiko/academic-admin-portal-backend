@@ -11,7 +11,7 @@ const WordsWritten = ({ submittedWork, setSubmittedWork }) => {
       className="flex flex-col pt-[1rem] bg-gray-100 dark:bg-darkMode-bars 
      px-[1rem] md:px-[2rem] pb-[1rem]"
     >
-      <h1 className=" font-semibold mb-4 text-[16px] lg:text-xl">
+      <h1 className=" font-semibold mb-4 text-[15px] lg:text-[17px]">
         Words written
       </h1>
       <ul className="text-[15px] ">
