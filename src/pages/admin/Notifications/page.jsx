@@ -77,7 +77,9 @@ const Notifications = () => {
   };
 
   return (
-    <div className={`relative w-full px-4 md:px-[2rem] dark:bg-darkMode-body`}>
+    <div
+      className={`relative w-full px-4 md:px-[2rem] dark:bg-darkMode-body bg-gray-100`}
+    >
       <div className="w-full md:w-[68%] h-full">
         <PageHeader
           title={"Notifications"}

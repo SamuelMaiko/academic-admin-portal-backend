@@ -27,7 +27,7 @@ const WorkCard = ({
         onClick={() => navigate(`/work/${id}`)}
         className={`relative work-card pl-3 font-opensans py-4 ${
           darkMode ? "dark" : ""
-        } hover:bg-[#f1f1f1] transition-colors duration-300 dark:bg-darkMode-cardBg dark:hover:bg-darkMode-cardHover`}
+        } hover:bg-gray-50 transition-colors duration-300 dark:bg-darkMode-cardBg dark:hover:bg-darkMode-cardHover mt-3`}
       >
         <p className="text-[11px] text-[#676767] dark:text-darkMode-cardText">
           Posted {relativeTime(created_at)}

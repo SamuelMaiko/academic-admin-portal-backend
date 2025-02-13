@@ -35,7 +35,7 @@ const TableRowRevisions = ({
       className={`bg-white dark:bg-darkMode-cardBg dark:text-white cursor-pointer ${
         !read
           ? "bg-blue-100 hover:bg-blue-200 dark:bg-blue-700 hover:dark:bg-blue-800"
-          : "hover:bg-lightmode-cardBgHover"
+          : ""
       } h-[4rem]`}
     >
       <TableCell>

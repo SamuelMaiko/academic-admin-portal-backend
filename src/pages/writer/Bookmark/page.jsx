@@ -49,7 +49,7 @@ const Bookmark = () => {
   };
 
   return (
-    <div className="relative w-full min-h-screen px-[1rem] md:px-[2rem] pb-[5rem] dark:bg-darkMode-body">
+    <div className="relative w-full min-h-screen px-[1rem] md:px-[2rem] pb-[5rem] dark:bg-darkMode-body bg-gray-100">
       <div className="h-full w-full md:w-[70%]">
         <PageHeader
           title={"Bookmarks"}

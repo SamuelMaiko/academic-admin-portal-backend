@@ -13,6 +13,7 @@ import QualityIssues from "./components/QualityIssues";
 import { toast } from "react-toastify";
 import instance from "../../../axios/instance";
 import { useAdminContext } from "../../../Context/AdminContext";
+import { useStateShareContext } from "../../../Context/StateContext";
 
 const WriterDashboard = () => {
   const [loading, setLoading] = useState(false);
@@ -21,9 +22,11 @@ const WriterDashboard = () => {
   const [submittedWork, setSubmittedWork] = useState([]);
 
   const { setShowNavBar } = useAdminContext();
+  // const { getDetails } = useStateShareContext();
 
   useEffect(() => {
     setShowNavBar(true);
+    // getDetails();
   }, []);
 
   const percentage = (

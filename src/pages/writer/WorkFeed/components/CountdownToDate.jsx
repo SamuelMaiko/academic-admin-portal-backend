@@ -22,7 +22,7 @@ const CountdownToDate = ({ deadline }) => {
             isLessThan8Hours ? "text-red-500 dark:text-red-400" : ""
           } text-sm font-medium my-2 text-green-500 dark:text-green-400 mb-2 font-opensans`}
         >
-          {days}d {hours}h {minutes}m {seconds}s
+          {days}d {hours}h {minutes}m{/* {seconds}s */}
         </span>
       );
     }

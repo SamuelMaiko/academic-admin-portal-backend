@@ -22,6 +22,7 @@ const WorkFeed = () => {
 
   useEffect(() => {
     getWork();
+    // getDetails();
   }, []);
 
   const getWork = async () => {
@@ -56,13 +57,14 @@ const WorkFeed = () => {
 
   return (
     <div
-      className={` relative px-[1rem] md:px-[2rem] pb-[5rem] dark:bg-darkMode-body dark:text-darkMode-text`}
+      className={` relative ] pb-[5rem] dark:bg-darkMode-body dark:text-darkMode-text `}
     >
-      <div className="sticky top-[5rem] bg-white dark:bg-darkMode-body z-[10] pb-3 pt-4">
+      <div className="sticky top-[5rem] bg-white dark:bg-darkMode-body z-[10] pb-3 pt-4 px-[1rem] md:px-[2rem">
         <SearchInput />
         <Filters />
       </div>
-      <div className="h-full w-[100%] md:w-[70%]">
+      {/* bg-gray-100 */}
+      <div className="min-h-[100vh] w-[100%] md:w-[70%] px-[1rem] md:px-[2rem">
         <PageHeader
           title={"Available work"}
           subTitle={"Browse work that matches your experience."}

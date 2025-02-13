@@ -21,7 +21,7 @@ const getWriters = async () => {
           toast.error("Unauthorized access");
           break;
         default:
-          toast.error("An error occurred. Please try again.");
+        // toast.error("An error occurred. Please try again.");
       }
     } else {
       toast.error("An unexpected error occurred. Please try again later.");

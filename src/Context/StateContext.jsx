@@ -31,7 +31,6 @@ const StateContext = ({ children }) => {
     useState(false);
   // profile picture upload
   const [selectedFile, setSelectedFile] = useState(null);
-  const [imageURL, setImageURL] = useLocalStorage("pfp", "");
   const [upload, setUpload] = useState("");
   const [showCarouselModal, setShowCarouselModal] = useState(false);
 
@@ -65,16 +64,25 @@ const StateContext = ({ children }) => {
 
   // const [showModal, setShowModal] = useState(true);
 
-  const [firstName, setFirstName] = useLocalStorage("firstName", "");
-  const [lastName, setLastName] = useLocalStorage("lastName", "");
+  const [firstName, setFirstName] = useState("yh");
+  const [lastName, setLastName] = useState("");
+  const [imageURL, setImageURL] = useState("");
 
   const getDetails = async () => {
+    // const firstName = localStorage.getItem("firstName");
+    // const lastName = localStorage.getItem("lastName");
+    // const pfp = localStorage.getItem("pfp");
+    // const darkMode = localStorage.getItem("darkMode");
+
+    // If any of these items is empty or missing, fetch the user details
+    // if (!firstName || !lastName || !imageURL) {
     try {
       const response = await instance.get("/profile/");
       // console.log(response.data);
       setImageURL(response.data.profile_picture_absolute ?? Vini);
       setFirstName(response.data.first_name);
       setLastName(response.data.last_name);
+      // alert(response.data.first_name);
     } catch (error) {
       if (error.response && error.response.status) {
         const status = error.response.status;
@@ -90,6 +98,7 @@ const StateContext = ({ children }) => {
         }
       } else {
         toast.error("An unexpected error occurred. Please try again later.");
+        // }
       }
     }
   };

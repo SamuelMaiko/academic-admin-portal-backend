@@ -34,12 +34,28 @@ const LoginForm = () => {
       createNewCookie("role", response.data.user.role);
 
       // setting first name, last name and imageURL in LOCAL STORAGE
-      setFirstName(response.data.user.first_name);
-      setLastName(response.data.user.last_name);
-      setImageURL(response.data.user.profile_picture_absolute ?? Vini);
-      setDarkMode(response.data.user.dark_mode);
+      // console.log(response.data.user);
+      // localStorage.setItem("firstName", response.data.user.first_name);
+      // localStorage.setItem("lastName", response.data.user.last_name);
+      // localStorage.setItem(
+      //   "pfp",
+      //   response.data.user.profile_picture_absolute ?? Vini
+      // );
+      localStorage.setItem(
+        "darkMode",
+        JSON.stringify(response.data.user.dark_mode)
+      );
+      // setLastName(response.data.user.last_name);
+      // setImageURL(response.data.user.profile_picture_absolute ?? Vini);
+      // setDarkMode(response.data.user.dark_mode);
       toast.success("logged in successfully");
-      navigate("/my-dashboard");
+      setTimeout(() => {
+        if (response.data.user.role == "Writer") {
+          navigate("/my-dashboard");
+        } else {
+          navigate("/dashboard");
+        }
+      }, 1000);
     } catch (error) {
       if (error.response && error.response.status) {
         const status = error.response.status;

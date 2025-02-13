@@ -16,7 +16,7 @@ const AssignedWork = () => {
     <div
       className={`w-full px-[1rem] md:px-[2rem] ${
         darkMode ? "dark" : ""
-      } dark:bg-darkMode-body min-h-screen `}
+      } dark:bg-darkMode-body min-h-screen bg-gray-100 `}
     >
       <PageHeader
         title="Assigned work"

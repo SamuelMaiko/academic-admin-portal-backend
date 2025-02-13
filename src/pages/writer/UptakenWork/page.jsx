@@ -11,7 +11,7 @@ const UptakenWork = () => {
   }, []);
 
   return (
-    <div className="w-full px-[1rem] md:px-[2rem] dark:bg-darkMode-body min-h-screen">
+    <div className="w-full px-[1rem] md:px-[2rem] dark:bg-darkMode-body min-h-screen bg-gray-100">
       <PageHeader
         title={"Uptaken work"}
         subTitle={"Browse work you chose from the work feed."}

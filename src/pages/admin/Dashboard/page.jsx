@@ -7,14 +7,17 @@ import TableWriterProficiency from "./components/TableWriterProficiency";
 import getGeneralAnalytics from "./api/getGeneralAnalytics";
 import Loader from "../../../SharedComponents/Loader";
 import { useAdminContext } from "../../../Context/AdminContext";
+import { useStateShareContext } from "../../../Context/StateContext";
 
 const Dashboard = () => {
   const [loading, setLoading] = useState(false);
   const [generalAnalytics, setGeneralAnalytics] = useState({});
   const { setShowNavBar } = useAdminContext();
+  // const { getDetails } = useStateShareContext();
 
   useEffect(() => {
     setShowNavBar(true);
+    // getDetails();
   }, []);
 
   useEffect(() => {

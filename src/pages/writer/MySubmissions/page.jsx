@@ -71,12 +71,14 @@ const MySubmissions = () => {
           }`}
         >
           <img
-            className="mx-auto w-[16rem]"
+            className="mx-auto h-[10rem] lg:h-auto lg:w-[16rem]"
             src={darkMode ? UnavailableDark : UnavailableLight}
             alt=""
           />
-          <p className="font-bold text-2xl text-center">No submissions yet!</p>
-          <p className="font-medium text-sm text-center mt-2">
+          <p className="font-bold text-[17px] md:text-xl text-center">
+            No submissions yet!
+          </p>
+          <p className="font-medium text-[13px] lg:text-[14px] text-center mt-2">
             Any submissions for work will appear here.
           </p>
         </div>
