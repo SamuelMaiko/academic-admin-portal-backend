@@ -44,7 +44,7 @@ const CreateRevisionForm = () => {
     createRevision(work, data).then((data) => {
       setLoading(false);
       navigate("/revisions");
-      console.log(data);
+      // console.log(data);
     });
   };
 

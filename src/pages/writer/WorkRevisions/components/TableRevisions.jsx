@@ -15,19 +15,18 @@ import { useStateShareContext } from "../../../../Context/StateContext";
 import { toast } from "react-toastify";
 import instance from "../../../../axios/instance";
 import { useProgressBarContext } from "../../../../Context/ProgressBarContext";
-import { useNotificationContext } from "../../../../Context/NotificationContext";
 
 const TableRevisions = () => {
   const { darkMode } = useStateShareContext();
   const [loading, setLoading] = useState(false);
   const { revisions, setRevisions } = useProgressBarContext();
-  const { setNotificationsCount } = useNotificationContext();
 
   const fetchRevisions = async () => {
     setLoading(true);
     try {
       const response = await instance.get("/revisions/writer-revisions/");
       setRevisions(response.data);
+      // console.log(response.data);
     } catch (error) {
       if (error.response && error.response.status) {
         const status = error.response.status;

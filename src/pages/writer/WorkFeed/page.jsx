@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import WorkCard from "./components/WorkCard";
 import PageHeader from "../../../SharedComponents/PageHeader";
 import SearchInput from "./components/SearchInput";
@@ -7,7 +7,7 @@ import UnavailableDark from "../../../assets/UnavailableDark.png";
 import UnavailableLight from "../../../assets/UnavailableLight.png";
 import { toast } from "react-toastify";
 import { useProgressBarContext } from "../../../Context/ProgressBarContext";
-import instance from "../../../axios/instance";
+import instance, { backend_url } from "../../../axios/instance";
 import { useStateShareContext } from "../../../Context/StateContext";
 import Footer from "../../../SharedComponents/Footer";
 import Loader from "../../../SharedComponents/Loader";
@@ -30,6 +30,7 @@ const WorkFeed = () => {
     try {
       const response = await instance.get("/work/");
       setWork(response.data);
+      // console.log(response.data);
     } catch (error) {
       if (error.response && error.response.status) {
         const status = error.response.status;
@@ -55,10 +56,98 @@ const WorkFeed = () => {
     setShowNavBar(true);
   }, []);
 
+  const [showBanner, setShowBanner] = useState(false);
+  const socketRef = useRef(null);
+
+  useEffect(() => {
+    // Initialize WebSocket connection
+    socketRef.current = new WebSocket(`ws://${backend_url}/ws/work/`);
+
+    // Handle incoming messages
+    socketRef.current.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      // alert("arrived");
+      // console.log(data);
+
+      if (data.action === "add") {
+        if (!data.work.has_writer) {
+          setWork((prevWork) => [data.work, ...prevWork]);
+          // // Show banner only if the user has scrolled away from the top
+          // if (window.scrollY > 128) {
+          //   setShowBanner(true);
+          // }
+        }
+      } else if (data.action === "update") {
+        if (!data.work.has_writer) {
+          setWork((prevWork) => {
+            const exists = prevWork.some((task) => task.id === data.work.id);
+            if (exists) {
+              const updatedList = prevWork.map((work) => {
+                if (work.id == data.work.id) return data.work;
+                // else if
+                else return work;
+              });
+              return updatedList;
+            } else {
+              return [data.work, ...prevWork];
+            }
+          });
+        }
+        // DELETING the work IF edited to have a writer
+        else {
+          setWork((prevWork) => {
+            const newList = prevWork.filter((work) => work.id !== data.work.id);
+            return newList;
+          });
+        }
+      }
+      // when deleting the work
+      if (data.action === "delete") {
+        setWork((prevWork) => {
+          const newList = prevWork.filter((work) => work.id !== data.work_id);
+          return newList;
+        });
+      }
+    };
+
+    // Handle WebSocket errors
+    socketRef.current.onerror = (error) => {
+      console.error("WebSocket Error:", error);
+      // alert("error");
+    };
+
+    // Close WebSocket on component unmount
+    return () => {
+      socketRef.current.close();
+    };
+  }, []);
+
   return (
     <div
       className={` relative ] pb-[5rem] dark:bg-darkMode-body dark:text-darkMode-text `}
     >
+      {showBanner && (
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            width: "100%",
+            backgroundColor: "orange",
+            color: "white",
+            padding: "10px",
+            textAlign: "center",
+            zIndex: 1000,
+            cursor: "pointer",
+          }}
+          onClick={() => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+            setShowBanner(false);
+          }}
+        >
+          New tasks available! Click to view ↑
+        </div>
+      )}
+
       <div className="sticky top-[5rem] bg-white dark:bg-darkMode-body z-[10] pb-3 pt-4 px-[1rem] md:px-[2rem">
         <SearchInput />
         <Filters />

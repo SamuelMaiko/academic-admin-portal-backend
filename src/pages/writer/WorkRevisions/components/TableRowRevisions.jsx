@@ -58,12 +58,12 @@ const TableRowRevisions = ({
         </p>
       </TableCell>
       <TableCell>
-        <p className="whitespace-nowrap text-[12px] lg:text-[15px]">
+        <p className="whitespace-nowrap text-[12px] lg:text-[15px] lowercase">
           {formatDate(timeReviewed)}
         </p>
       </TableCell>
       <TableCell>
-        <p className="whitespace-nowrap text-[12px] lg:text-[15px]">
+        <p className="whitespace-nowrap text-[12px] lg:text-[15px] lowercase">
           {formatDate(submitBefore)}
         </p>
       </TableCell>
