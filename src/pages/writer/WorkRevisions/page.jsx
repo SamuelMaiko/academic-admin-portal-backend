@@ -39,6 +39,15 @@ const WorkRevisions = () => {
           return updatedRevisions;
         });
       }
+      // DELETING
+      else if (data.action === "delete") {
+        setRevisions((prev) => {
+          const updatedList = prev.filter((revision) => {
+            return revision.id != data.revision_id;
+          });
+          return updatedList;
+        });
+      }
     };
 
     // Handle WebSocket errors

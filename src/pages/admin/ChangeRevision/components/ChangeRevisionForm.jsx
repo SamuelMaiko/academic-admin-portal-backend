@@ -11,11 +11,12 @@ import {
 } from "keep-react";
 import { TimeInput } from "@nextui-org/react";
 import { Time, parseAbsoluteToLocal } from "@internationalized/date";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import extractDate from "../../ChangeWork/helpers/extractDate";
 import formatToISO from "../../CreateWork/helpers/formatToISO";
 import updateRevision from "../api/updateRevision";
 import getRevisionDetails from "../../RevisionsDetails/api/getRevisionDetails";
+import deleteRevision from "../api/deleteRevision";
 
 const ChangeRevisionForm = ({ setPageLoading }) => {
   const { work, setWork, workCode, setWorkCode, setShowChooseWorkModal } =
@@ -26,6 +27,12 @@ const ChangeRevisionForm = ({ setPageLoading }) => {
   );
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
+  const [status, setStatus] = useState("");
+  const navigate = useNavigate();
+
+  const handleWordStatusChange = (event) => {
+    setStatus(event.target.id);
+  };
 
   useEffect(() => {
     setPageLoading(true);
@@ -35,6 +42,7 @@ const ChangeRevisionForm = ({ setPageLoading }) => {
       setDate(extractDate(data.submit_before));
       const deadlineDate = new Date(data.submit_before);
       setTime(new Time(deadlineDate.getHours(), deadlineDate.getMinutes()));
+      setStatus(data.status);
       setPageLoading(false);
     });
   }, []);
@@ -44,9 +52,16 @@ const ChangeRevisionForm = ({ setPageLoading }) => {
     setLoading(true);
     const data = {
       submit_before: formatToISO(date, time),
+      status,
     };
     updateRevision(id, data).then((data) => {
       setLoading(false);
+    });
+  };
+
+  const handleDelete = () => {
+    deleteRevision(id).then(() => {
+      navigate("/revisions");
     });
   };
 
@@ -109,6 +124,48 @@ const ChangeRevisionForm = ({ setPageLoading }) => {
           </div>
         </div>
       </div>
+
+      <div className="mb-10 mt-10 ">
+        <label className="text-[14px] lg:text-[15px] text-neutral-500 dark:text-darkMode-gray ">
+          Status
+        </label>
+
+        <div className="mt-1 flex items-center gap-x-10 gap-y-2 flex-wrap ">
+          <div className="flex gap-2 text-neutral-500 text-[14px] lg:text-[15px]">
+            <input
+              type="radio"
+              name="status"
+              id="Not started"
+              className="cursor-pointer"
+              onChange={handleWordStatusChange}
+              checked={status == "Not started"}
+            />
+            <label htmlFor="Not started">Not started</label>
+          </div>
+          <div className="flex gap-2 text-neutral-500 text-[14px] lg:text-[15px]">
+            <input
+              type="radio"
+              name="status"
+              id="In Progress"
+              className="cursor-pointer"
+              onChange={handleWordStatusChange}
+              checked={status == "In Progress"}
+            />
+            <label htmlFor="In Progress">In progress</label>
+          </div>
+          <div className="flex gap-2 text-neutral-500 text-[14px] lg:text-[15px]">
+            <input
+              type="radio"
+              name="status"
+              id="Completed"
+              className="cursor-pointer"
+              onChange={handleWordStatusChange}
+              checked={status == "Completed"}
+            />
+            <label htmlFor="Completed">Completed</label>
+          </div>
+        </div>
+      </div>
       {/* the submit before time */}
       <div className="mb-8 mt-8">
         <label className="text-[14px] lg:text-[15px] text-neutral-500 dark:text-darkMode-gray">
@@ -152,13 +209,24 @@ const ChangeRevisionForm = ({ setPageLoading }) => {
           </div>
         </div>
       </div>
-      <input
-        className="bg-green-700 hover:bg-green-800 mt-3 rounded-lg text-white flex items-center 
-      } p-[0.6rem] cursor-pointer transition-colors duration-300 text-[14px] lg:text-[15px]"
-        type="submit"
-        value={loading ? "Saving..." : "Save"}
-        disabled={loading}
-      />
+      <div className="flex items-center mt-5 justify-between lg:w-[50%]">
+        <input
+          className="bg-green-700 hover:bg-green-800  rounded-lg text-white flex items-center 
+        } p-[0.6rem] cursor-pointer transition-colors duration-300 text-[14px] lg:text-[15px]"
+          type="submit"
+          value={loading ? "Saving..." : "Save"}
+          disabled={loading}
+        />
+        <Button
+          type="button"
+          onClick={handleDelete}
+          className={` dark:text-darkMode-cardText dark:hover:text-darkMode-cardTextHover py-[0.6rem]
+                            bg-red-500 hover:bg-red-600 text-white h-full
+                            px-4 transition-colors duration-300 text-[14px] lg:text-[15px]`}
+        >
+          Delete
+        </Button>
+      </div>
     </form>
   );
 };
