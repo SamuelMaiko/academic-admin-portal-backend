@@ -105,7 +105,7 @@ const RevisionComment = ({
               is_mine ? "text-right" : ""
             } text-neutral-500 dark:text-sidebartext-hover mb-1`}
           >
-            {is_mine ? "You" : sender.first_name} &middot;{" "}
+            {is_mine ? "You" : sender?.first_name} &middot;{" "}
             <span className="text-[12px] lg:text-[13px]">
               {relativeTime(created_at)}
             </span>{" "}

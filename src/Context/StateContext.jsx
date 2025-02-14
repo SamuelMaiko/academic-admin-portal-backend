@@ -64,9 +64,9 @@ const StateContext = ({ children }) => {
 
   // const [showModal, setShowModal] = useState(true);
 
-  const [firstName, setFirstName] = useState("yh");
-  const [lastName, setLastName] = useState("");
-  const [imageURL, setImageURL] = useState("");
+  const [firstName, setFirstName] = useLocalStorage("firstName", "yh");
+  const [lastName, setLastName] = useLocalStorage("lastName", "yh");
+  const [imageURL, setImageURL] = useLocalStorage("pfp", "yh");
 
   const getDetails = async () => {
     // const firstName = localStorage.getItem("firstName");

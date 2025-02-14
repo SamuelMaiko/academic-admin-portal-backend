@@ -8,6 +8,7 @@ import getRevisionDetails from "./api/getRevisionDetails";
 import { useAdminContext } from "../../../Context/AdminContext";
 import NoMessagesIcon from "./components/NoMessagesIcon";
 import instance from "../../../axios/instance";
+import MessagesDiv from "./components/MessagesDiv";
 
 const RevisionsDetails = () => {
   const [loading, setLoading] = useState(true);
@@ -20,12 +21,14 @@ const RevisionsDetails = () => {
   const unReadMessagesRef = useRef(null);
   const { id } = useParams();
   const { setWorkBeingRevised, setShowNavBar } = useAdminContext();
+  const [unReadMessages, setUnReadMessages] = useState(0);
 
   const markMessagesAsRead = async () => {
     try {
       const response = await instance.post(
         `/revisions/${id}/mark-messages-as-read/`
       );
+      setUnReadMessages(0);
     } catch (error) {
       if (error.response && error.response.status) {
         const status = error.response.status;
@@ -63,20 +66,33 @@ const RevisionsDetails = () => {
     getRevisionDetails(id).then((data) => {
       setWorkBeingRevised(data.work);
       setRevisionMessages(data.messages);
+      // console.log(data.messages);
+
+      const unReadMsgs = data.messages.filter(
+        (item) => item.is_read == false && item.is_mine == false
+      ).length;
+      setUnReadMessages(unReadMsgs);
       // console.log(data);
       setLoading(false);
     });
 
     const timer = setTimeout(() => {
       markMessagesAsRead();
-    }, 1000);
+    }, 3000);
 
     return () => clearTimeout(timer);
   }, []);
 
-  const unReadMessages = revisionMessages.filter(
-    (item) => item.is_read == false && item.is_mine == false
-  ).length;
+  // useEffect(() => {
+
+  //   // const timer = setTimeout(() => {
+  //   //   markMessagesAsRead();
+  //   // }, 2000);
+
+  //   // return () => clearTimeout(timer);
+  // }, []);
+
+  // conn
 
   return (
     // <CarouselComponent images={[logo]} />
@@ -100,20 +116,12 @@ const RevisionsDetails = () => {
           />
 
           <div ref={messageRef}></div>
-          {revisionMessages &&
-            revisionMessages.map((message, index) => {
-              if ((!message.is_mine && message.is_read) || message.is_mine)
-                return (
-                  <RevisionComment
-                    key={index}
-                    {...message}
-                    revisionMessages={revisionMessages}
-                    setRevisionMessages={setRevisionMessages}
-                    setDeleting={setDeleting}
-                    markMessagesAsRead={markMessagesAsRead}
-                  />
-                );
-            })}
+          <MessagesDiv
+            revisionMessages={revisionMessages}
+            setRevisionMessages={setRevisionMessages}
+            setDeleting={setDeleting}
+            markMessagesAsRead={markMessagesAsRead}
+          />
           <div
             ref={unReadMessagesRef}
             className={`${
@@ -129,19 +137,20 @@ const RevisionsDetails = () => {
               {unReadMessages} Unread messages
             </h1>
           </div>
-          {revisionMessages.map((message, index) => {
-            if (!message.is_mine && !message.is_read)
-              return (
-                <RevisionComment
-                  key={index}
-                  {...message}
-                  revisionMessages={revisionMessages}
-                  setRevisionMessages={setRevisionMessages}
-                  setDeleting={setDeleting}
-                  markMessagesAsRead={markMessagesAsRead}
-                />
-              );
-          })}
+          {revisionMessages &&
+            revisionMessages.map((message, index) => {
+              if (!message?.is_mine && !message?.is_read)
+                return (
+                  <RevisionComment
+                    key={index}
+                    {...message}
+                    revisionMessages={revisionMessages}
+                    setRevisionMessages={setRevisionMessages}
+                    setDeleting={setDeleting}
+                    markMessagesAsRead={markMessagesAsRead}
+                  />
+                );
+            })}
 
           <div ref={messageEndRef} className="mt-4"></div>
         </div>
